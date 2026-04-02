@@ -634,20 +634,23 @@
 
     /* ── TECH STACK TICKER ───────────────────────────────── */
     .ticker-section {
-      padding: 0 0 96px;
+      padding: 0 0 64px;
     }
     .ticker-header {
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .ticker-wrap {
       position: relative;
-      overflow: hidden;
+      overflow-x: scroll;
+      overflow-y: hidden;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--surface);
-      padding: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .ticker-wrap::-webkit-scrollbar { display: none; }
 
     /* fade edges */
     .ticker-fade-left,
@@ -665,10 +668,9 @@
       display: flex;
       align-items: center;
       width: max-content;
-      animation: ticker-scroll 28s linear infinite;
       padding: 28px 0;
+      will-change: transform;
     }
-    .ticker-track:hover { animation-play-state: paused; }
 
     @keyframes ticker-scroll {
       0%   { transform: translateX(0); }
@@ -716,18 +718,26 @@
 
     /* ── CALL AGENDA ─────────────────────────────────────── */
     .agenda-section {
-      padding: 80px 0;
+      padding: 64px 0;
     }
     .agenda-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0;
-      margin-top: 48px;
+      margin-top: 40px;
       position: relative;
     }
     @media (max-width: 800px) {
-      .agenda-grid { grid-template-columns: 1fr; }
+      .agenda-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
       .agenda-line { display: none !important; }
+      .agenda-card {
+        padding: 24px 0 !important;
+        border-bottom: 1px solid var(--border);
+      }
+      .agenda-card:last-child { border-bottom: none; }
     }
 
     .agenda-card {
@@ -748,27 +758,25 @@
 
     .agenda-number {
       font-family: var(--font-head);
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 800;
       color: rgba(59,130,246,0.12);
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       transition: color 0.3s;
     }
-    .agenda-card:hover .agenda-number {
-      color: rgba(59,130,246,0.25);
-    }
+    .agenda-card:hover .agenda-number { color: rgba(59,130,246,0.25); }
     .agenda-title {
       font-family: var(--font-head);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: -0.01em;
     }
     .agenda-desc {
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       color: #888;
       font-weight: 300;
       line-height: 1.7;
@@ -776,10 +784,10 @@
 
     /* ── FAQ ─────────────────────────────────────────────── */
     .faq-section {
-      padding: 0 0 96px;
+      padding: 0 0 80px;
     }
     .faq-list {
-      margin-top: 48px;
+      margin-top: 40px;
       display: flex;
       flex-direction: column;
       gap: 0;
@@ -789,57 +797,79 @@
       border-top: 1px solid var(--border);
       cursor: pointer;
       transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
-    .faq-item:hover { background: rgba(255,255,255,0.02); }
+    .faq-item:hover { background: rgba(255,255,255,0.015); }
+    .faq-item.open { background: transparent; }
 
     .faq-q {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 22px 0;
+      padding: 20px 0;
     }
     .faq-q span {
       font-family: var(--font-head);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: #e8e8e8;
       letter-spacing: -0.01em;
+      line-height: 1.4;
+      transition: color 0.2s;
     }
+    .faq-item.open .faq-q span { color: #fff; }
     .faq-icon {
-      width: 28px; height: 28px;
+      width: 26px; height: 26px;
       border-radius: 50%;
-      border: 1px solid var(--border-glow);
-      background: var(--blue-dim);
-      color: var(--blue);
+      border: 1px solid rgba(59,130,246,0.3);
+      background: transparent;
+      color: var(--muted);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 300;
       flex-shrink: 0;
-      transition: transform 0.3s, background 0.2s;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, color 0.2s;
     }
     .faq-item.open .faq-icon {
       transform: rotate(45deg);
-      background: var(--blue);
-      color: #fff;
+      border-color: var(--blue);
+      color: var(--blue);
     }
     .faq-a {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.38s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-a-inner {
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease;
     }
     .faq-item.open .faq-a {
-      max-height: 300px;
-      padding-bottom: 22px;
+      grid-template-rows: 1fr;
     }
     .faq-a p {
-      font-size: 0.9rem;
-      color: #999;
+      font-size: 0.88rem;
+      color: #888;
       font-weight: 300;
-      line-height: 1.75;
+      line-height: 1.8;
+      padding-bottom: 20px;
+      border-left: 2px solid rgba(59,130,246,0.25);
+      padding-left: 14px;
     }
     .faq-a p strong { color: #ddd; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 0 40px; }
+      .vsl-section { padding: 0 0 48px; }
+      .demo-section { padding: 0 0 56px; }
+      .ticker-section { padding: 0 0 48px; }
+      .agenda-section { padding: 48px 0; }
+      .faq-section { padding: 0 0 60px; }
+      .section-title { font-size: 1.6rem; }
+      .confirm-card { padding: 16px; gap: 14px; }
+    }
 
     /* ── ANIMATIONS ──────────────────────────────────────── */
     @keyframes fadeUp {
@@ -1203,9 +1233,9 @@
             <span>Do I need to replace my current CRM or calendar?</span>
             <div class="faq-icon">+</div>
           </div>
-          <div class="faq-a">
+          <div class="faq-a"><div class="faq-a-inner">
             <p>Not at all. Our infrastructure is designed to plug seamlessly into your existing tech stack — GoHighLevel, Calendly, HubSpot, Salesforce, and more — without disrupting your current workflow. We bridge the gap, we don't break the system.</p>
-          </div>
+          </div></div>
         </div>
 
         <div class="faq-item" onclick="toggleFaq(this)">
@@ -1213,9 +1243,9 @@
             <span>What happens if the AI gets asked a question it doesn't know?</span>
             <div class="faq-icon">+</div>
           </div>
-          <div class="faq-a">
+          <div class="faq-a"><div class="faq-a-inner">
             <p>We train your Voice Agent extensively on your specific knowledge base. However, if a lead asks a highly complex or out-of-bounds question, the AI is programmed with a strict fallback protocol to politely take a message and instantly route the full transcript to your team.</p>
-          </div>
+          </div></div>
         </div>
 
         <div class="faq-item" onclick="toggleFaq(this)">
@@ -1223,9 +1253,9 @@
             <span>Do you cover the ad spend and software fees?</span>
             <div class="faq-icon">+</div>
           </div>
-          <div class="faq-a">
+          <div class="faq-a"><div class="faq-a-inner">
             <p>No. You pay us for the custom build, deployment, and optimisation of the 3-pillar system. You retain 100% ownership of your ad accounts and pay Meta directly for your ad spend, as well as the raw usage minutes for the AI telecom platforms.</p>
-          </div>
+          </div></div>
         </div>
 
         <div class="faq-item" onclick="toggleFaq(this)">
@@ -1233,9 +1263,9 @@
             <span>How fast can this system be deployed?</span>
             <div class="faq-icon">+</div>
           </div>
-          <div class="faq-a">
+          <div class="faq-a"><div class="faq-a-inner">
             <p>Once we complete our discovery call and you submit your onboarding form — including your past sales calls and FAQs — our engineering and media teams will have your custom AI and ad campaigns built, tested, and live within <strong>5 to 7 business days.</strong></p>
-          </div>
+          </div></div>
         </div>
 
       </div>
@@ -1338,6 +1368,96 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal, .reveal-child').forEach(el => observer.observe(el));
+
+    // ── Ticker auto-scroll + smooth touch ────────────────
+    (function() {
+      const wrap  = document.querySelector('.ticker-wrap');
+      const track = document.querySelector('.ticker-track');
+      if (!wrap || !track) return;
+
+      const AUTO = 0.6;   // px per frame at rest
+      let rafId      = null;
+      let lastTouchX = 0;
+      let momentum   = AUTO;
+
+      function halfW() { return track.scrollWidth / 2; }
+
+      function clamp() {
+        const hw = halfW();
+        if (wrap.scrollLeft >= hw) wrap.scrollLeft -= hw;
+        if (wrap.scrollLeft < 0)  wrap.scrollLeft += hw;
+      }
+
+      // Pure auto-scroll — runs when no finger on screen
+      function autoTick() {
+        wrap.scrollLeft += AUTO;
+        clamp();
+        rafId = requestAnimationFrame(autoTick);
+      }
+
+      // After finger lifts: decay momentum back toward AUTO speed
+      function momentumTick() {
+        momentum = momentum + (AUTO - momentum) * 0.08;
+        wrap.scrollLeft += momentum;
+        clamp();
+        if (Math.abs(momentum - AUTO) < 0.02) {
+          // Close enough — hand off to clean auto loop
+          autoTick();
+          return;
+        }
+        rafId = requestAnimationFrame(momentumTick);
+      }
+
+      // Start
+      autoTick();
+
+      // ── Touch ──
+      wrap.addEventListener('touchstart', e => {
+        cancelAnimationFrame(rafId);           // stop RAF — no more conflicts
+        lastTouchX = e.touches[0].clientX;
+        momentum   = AUTO;
+      }, { passive: true });
+
+      wrap.addEventListener('touchmove', e => {
+        const x  = e.touches[0].clientX;
+        const dx = lastTouchX - x;
+        momentum   = dx;                       // track swipe velocity
+        wrap.scrollLeft += dx;
+        clamp();
+        lastTouchX = x;
+      }, { passive: true });
+
+      wrap.addEventListener('touchend', () => {
+        if (momentum < 0) momentum = 0;        // don't scroll backwards
+        momentumTick();                        // glide back to auto
+      });
+
+      // ── Mouse drag (desktop) ──
+      let mouseDown = false, lastMouseX = 0;
+      wrap.addEventListener('mousedown', e => {
+        mouseDown  = true;
+        lastMouseX = e.clientX;
+        momentum   = AUTO;
+        cancelAnimationFrame(rafId);
+        wrap.style.cursor = 'grabbing';
+      });
+      window.addEventListener('mousemove', e => {
+        if (!mouseDown) return;
+        const dx = lastMouseX - e.clientX;
+        momentum   = dx;
+        wrap.scrollLeft += dx;
+        clamp();
+        lastMouseX = e.clientX;
+      });
+      window.addEventListener('mouseup', () => {
+        if (!mouseDown) return;
+        mouseDown = false;
+        wrap.style.cursor = 'grab';
+        if (momentum < 0) momentum = 0;
+        momentumTick();
+      });
+      wrap.style.cursor = 'grab';
+    })();
 
     // ── FAQ accordion ─────────────────────────────────────
     function toggleFaq(item) {
