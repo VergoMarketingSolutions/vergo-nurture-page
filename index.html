@@ -738,12 +738,6 @@
       .agenda-card:last-child { border-bottom: none; }
     }
 
-    .agenda-card {
-      padding: 32px 28px 32px 0;
-      position: relative;
-    }
-    .agenda-card:not(:first-child) { padding-left: 28px; }
-
     .agenda-line {
       position: absolute;
       top: 28px;
@@ -789,38 +783,40 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      max-width: 820px;
+      max-width: 100%;
     }
     .faq-item {
       border-top: 1px solid var(--border);
       cursor: pointer;
-      transition: background 0.2s;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      transition: background 0.3s ease, padding-left 0.3s ease;
+      border-radius: 4px;
     }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
-    .faq-item:hover { background: rgba(255,255,255,0.015); }
-    .faq-item.open { background: transparent; }
+    .faq-item:hover { background: rgba(255,255,255,0.02); padding-left: 6px; }
+    .faq-item.open { background: transparent; padding-left: 0; }
 
     .faq-q {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 20px 0;
+      gap: 20px;
+      padding: 24px 0;
     }
     .faq-q span {
       font-family: var(--font-head);
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      color: #e8e8e8;
+      color: #ccc;
       letter-spacing: -0.01em;
       line-height: 1.4;
-      transition: color 0.2s;
+      transition: color 0.3s ease;
     }
+    .faq-item:hover .faq-q span { color: #fff; }
     .faq-item.open .faq-q span { color: #fff; }
     .faq-icon {
-      width: 26px; height: 26px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       border: 1px solid rgba(59,130,246,0.3);
       background: transparent;
@@ -829,8 +825,9 @@
       font-size: 1rem;
       font-weight: 300;
       flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, color 0.2s;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, color 0.3s;
     }
+    .faq-item:hover .faq-icon { border-color: rgba(59,130,246,0.6); color: var(--blue-light); }
     .faq-item.open .faq-icon {
       transform: rotate(45deg);
       border-color: var(--blue);
@@ -841,20 +838,17 @@
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.38s cubic-bezier(0.4,0,0.2,1);
     }
-    .faq-a-inner {
-      overflow: hidden;
-    }
-    .faq-item.open .faq-a {
-      grid-template-rows: 1fr;
-    }
+    .faq-a-inner { overflow: hidden; }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
     .faq-a p {
-      font-size: 0.88rem;
+      font-size: 1rem;
       color: #888;
       font-weight: 300;
       line-height: 1.8;
-      padding-bottom: 20px;
+      padding-bottom: 24px;
       border-left: 2px solid rgba(59,130,246,0.25);
-      padding-left: 14px;
+      padding-left: 18px;
+      max-width: 800px;
     }
     .faq-a p strong { color: #ddd; font-weight: 600; }
 
@@ -870,7 +864,172 @@
       .confirm-card { padding: 16px; gap: 14px; }
     }
 
-    /* ── ARCHITECTURE BLUEPRINT ──────────────────────────── */
+    /* ── AMBIENT BACKGROUND LIGHTS ───────────────────────── */
+    .ambient-light {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: ambient-drift 12s ease-in-out infinite alternate;
+    }
+    .ambient-light-1 {
+      width: 600px; height: 600px;
+      top: -150px; left: -150px;
+      background: radial-gradient(circle, rgba(29,78,216,0.18) 0%, transparent 70%);
+      animation-duration: 14s;
+    }
+    .ambient-light-2 {
+      width: 500px; height: 500px;
+      top: 40%; right: -100px;
+      background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+      animation-duration: 18s;
+      animation-delay: -6s;
+    }
+    .ambient-light-3 {
+      width: 400px; height: 400px;
+      bottom: -100px; left: 30%;
+      background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+      animation-duration: 20s;
+      animation-delay: -3s;
+    }
+    @keyframes ambient-drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    /* ── CARD GLOW HOVER (video-style) ───────────────────── */
+    .pillar-card,
+    .demo-card {
+      transition: border-color 0.45s ease, transform 0.45s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.45s ease, background 0.45s ease;
+    }
+    .pillar-card::after,
+    .demo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .pillar-card:hover::after,
+    .demo-card:hover::after { opacity: 1; }
+    .pillar-card:hover,
+    .demo-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(59,130,246,0.12),
+        0 0 40px rgba(59,130,246,0.06);
+      background: #161616;
+    }
+
+    /* ── GUARANTEE CARD ALWAYS VISIBLE ───────────────────── */
+    .guarantee-card.reveal,
+    .guarantee-card {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Pillar cards */
+    .pillar-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    }
+    .pillar-card:hover {
+      border-color: rgba(59,130,246,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.1);
+      background: #161616;
+    }
+
+    /* Pillar step text brightens on card hover */
+    .pillar-card:hover .pillar-step span { color: #ccc; transition: color 0.3s ease; }
+    .pillar-card:hover .step-final span  { color: #fff; }
+    .pillar-card:hover .pillar-name      { color: #fff; transition: color 0.3s ease; }
+
+    /* Agenda cards */
+    .agenda-card {
+      padding: 32px 28px 32px 0;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+    .agenda-card:not(:first-child) { padding-left: 28px; }
+    .agenda-grid:hover .agenda-card         { opacity: 0.5; }
+    .agenda-grid:hover .agenda-card:hover   { opacity: 1; }
+    .agenda-card:hover .agenda-title        { color: #fff; transition: color 0.3s ease; }
+    .agenda-card:hover .agenda-number       { color: rgba(59,130,246,0.7); }
+
+    /* Demo cards (if still present) */
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .demo-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+    .demo-card:hover::before { opacity: 1; }
+
+    /* Play audio button */
+    .play-audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: transparent;
+      border: 1px solid rgba(59,130,246,0.4);
+      color: var(--blue-light);
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .play-audio-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(59,130,246,0.35);
+      transform: translateY(-2px);
+    }
     .blueprint-section { padding: 80px 0 64px; }
 
     .blueprint-grid {
@@ -892,12 +1051,6 @@
       gap: 24px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .pillar-card:hover {
-      border-color: rgba(59,130,246,0.3);
-      transform: translateY(-4px);
-    }
     .pillar-card--featured {
       background: #131313;
       border-color: rgba(255,255,255,0.1);
@@ -1006,8 +1159,7 @@
       background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-    /* big faded shield behind text — now handled by inline SVG */
-    .guarantee-card::after { display: none; }
+    /* guarantee card before glow */
 
     .guarantee-badge {
       display: inline-flex;
@@ -1050,11 +1202,15 @@
       gap: 10px;
       margin-bottom: 32px;
     }
-    .guarantee-shield-bg {
+    .guarantee-shield-bg { display: none; }
+    /* subtle shield watermark via CSS */
+    .guarantee-card::after {
+      content: '';
       position: absolute;
-      right: -10px; bottom: -20px;
-      width: 180px; height: 180px;
-      opacity: 0.03;
+      right: 40px; bottom: 30px;
+      width: 120px; height: 120px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+      opacity: 0.06;
       pointer-events: none;
     }
     .g-pill {
@@ -1109,6 +1265,9 @@
   </style>
 </head>
 <body>
+  <div class="ambient-light ambient-light-1"></div>
+  <div class="ambient-light ambient-light-2"></div>
+  <div class="ambient-light ambient-light-3"></div>
 
   <!-- ── URGENCY BANNER ─────────────────────────────────── -->
   <div class="banner">
@@ -1395,8 +1554,6 @@
   <section class="guarantee-section">
     <div class="container">
       <div class="guarantee-card reveal">
-        <!-- faded shield watermark -->
-        <svg class="guarantee-shield-bg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="white"/></svg>
         <div class="guarantee-badge">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Zero-Risk Guarantee
