@@ -723,6 +723,7 @@
       gap: 0;
       margin-top: 40px;
       position: relative;
+      max-width: 100%;
     }
     @media (max-width: 800px) {
       .agenda-grid {
@@ -738,10 +739,10 @@
     }
 
     .agenda-card {
-      padding: 32px 32px 32px 0;
+      padding: 32px 28px 32px 0;
       position: relative;
     }
-    .agenda-card:not(:first-child) { padding-left: 32px; }
+    .agenda-card:not(:first-child) { padding-left: 28px; }
 
     .agenda-line {
       position: absolute;
@@ -757,13 +758,13 @@
       font-family: var(--font-head);
       font-size: 3rem;
       font-weight: 800;
-      color: rgba(59,130,246,0.12);
+      color: rgba(59,130,246,0.45);
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 14px;
       transition: color 0.3s;
     }
-    .agenda-card:hover .agenda-number { color: rgba(59,130,246,0.25); }
+    .agenda-card:hover .agenda-number { color: rgba(59,130,246,0.7); }
     .agenda-title {
       font-family: var(--font-head);
       font-size: 1.1rem;
@@ -874,10 +875,11 @@
     .blueprint-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 16px;
       margin-top: 48px;
+      max-width: 100%;
     }
-    @media (max-width: 800px) { .blueprint-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) { .blueprint-grid { grid-template-columns: 1fr; gap: 14px; } }
 
     .pillar-card {
       background: #111;
@@ -975,10 +977,11 @@
     }
     .step-final span { color: #e0e0e0; font-weight: 500; }
     .step-arrow {
-      font-size: 0.75rem;
-      color: rgba(59,130,246,0.4);
-      padding-left: 20px;
+      font-size: 0.85rem;
+      color: rgba(59,130,246,0.7);
+      padding-left: 19px;
       line-height: 1;
+      font-weight: 600;
     }
 
     /* ── GUARANTEE ───────────────────────────────────────── */
@@ -1194,7 +1197,86 @@
     </div>
   </section>
 
+  <!-- ── TECH STACK TICKER ─────────────────────────────── -->
+  <section class="ticker-section">
+    <div class="ticker-header reveal">
+      <div class="container">
+        <div class="section-label"><span>Powered By</span></div>
+        <h2 class="section-title">Enterprise-Grade Infrastructure</h2>
+        <p class="section-sub">The exact platforms running under the hood of your AI system — the same tools trusted by industry leaders worldwide.</p>
+      </div>
+    </div>
 
+    <div class="ticker-wrap">
+      <div class="ticker-fade-left"></div>
+      <div class="ticker-fade-right"></div>
+      <div class="ticker-track">
+
+        <!-- SET 1 -->
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
+          <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sfg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f23c8"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="40" height="40" rx="10" fill="url(#sfg1)"/><path d="M26.5 11H17a3.5 3.5 0 0 0 0 7h6a3.5 3.5 0 0 1 0 7H13" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="13.5" cy="30" r="2" fill="white"/></svg>
+          <span class="ticker-name">Synthflow</span><span class="ticker-role">AI Voice Engine</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#000"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.5" fill="none"/><path d="M15 20 Q20 12 25 20 Q20 28 15 20Z" fill="white"/></svg>
+          <span class="ticker-name">OpenAI</span><span class="ticker-role">The Brain</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#EA4B71"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12" font-weight="900" font-family="Arial,sans-serif">n8n</text></svg>
+          <span class="ticker-name">n8n</span><span class="ticker-role">Automation Glue</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#F22F46"/><circle cx="20" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="16.5" r="2.2" fill="white"/><circle cx="23.5" cy="16.5" r="2.2" fill="white"/><circle cx="16.5" cy="23.5" r="2.2" fill="white"/><circle cx="23.5" cy="23.5" r="2.2" fill="white"/></svg>
+          <span class="ticker-name">Twilio</span><span class="ticker-role">Telecom Backbone</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#00A651"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10" font-weight="900" font-family="Arial,sans-serif">GHL</text></svg>
+          <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <!-- SET 2 -->
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
+          <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sfg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f23c8"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="40" height="40" rx="10" fill="url(#sfg2)"/><path d="M26.5 11H17a3.5 3.5 0 0 0 0 7h6a3.5 3.5 0 0 1 0 7H13" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="13.5" cy="30" r="2" fill="white"/></svg>
+          <span class="ticker-name">Synthflow</span><span class="ticker-role">AI Voice Engine</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#000"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.5" fill="none"/><path d="M15 20 Q20 12 25 20 Q20 28 15 20Z" fill="white"/></svg>
+          <span class="ticker-name">OpenAI</span><span class="ticker-role">The Brain</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#EA4B71"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12" font-weight="900" font-family="Arial,sans-serif">n8n</text></svg>
+          <span class="ticker-name">n8n</span><span class="ticker-role">Automation Glue</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#F22F46"/><circle cx="20" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="16.5" r="2.2" fill="white"/><circle cx="23.5" cy="16.5" r="2.2" fill="white"/><circle cx="16.5" cy="23.5" r="2.2" fill="white"/><circle cx="23.5" cy="23.5" r="2.2" fill="white"/></svg>
+          <span class="ticker-name">Twilio</span><span class="ticker-role">Telecom Backbone</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+        <div class="ticker-item">
+          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#00A651"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10" font-weight="900" font-family="Arial,sans-serif">GHL</text></svg>
+          <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
+        </div>
+        <div class="ticker-divider">◆</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── ARCHITECTURE BLUEPRINT ───────────────────────── -->
   <section class="blueprint-section">
@@ -1330,98 +1412,6 @@
     </div>
   </section>
 
-  <!-- ── TECH STACK TICKER ─────────────────────────────── -->
-  <section class="ticker-section">
-    <div class="ticker-header reveal">
-      <div class="container">
-        <div class="section-label"><span>Powered By</span></div>
-        <h2 class="section-title">Enterprise-Grade Infrastructure</h2>
-        <p class="section-sub">The exact platforms running under the hood of your AI system — the same tools trusted by industry leaders worldwide.</p>
-      </div>
-    </div>
-
-    <div class="ticker-wrap">
-      <div class="ticker-fade-left"></div>
-      <div class="ticker-fade-right"></div>
-      <div class="ticker-track">
-
-        <!-- SET 1 -->
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
-          <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sfg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f23c8"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="40" height="40" rx="10" fill="url(#sfg1)"/><path d="M26.5 11H17a3.5 3.5 0 0 0 0 7h6a3.5 3.5 0 0 1 0 7H13" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="13.5" cy="30" r="2" fill="white"/></svg>
-          <span class="ticker-name">Synthflow</span><span class="ticker-role">AI Voice Engine</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#000"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.5" fill="none"/><path d="M15 20 Q20 12 25 20 Q20 28 15 20Z" fill="white"/></svg>
-          <span class="ticker-name">OpenAI</span><span class="ticker-role">The Brain</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#EA4B71"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12" font-weight="900" font-family="Arial,sans-serif">n8n</text></svg>
-          <span class="ticker-name">n8n</span><span class="ticker-role">Automation Glue</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#F22F46"/><circle cx="20" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="16.5" r="2.2" fill="white"/><circle cx="23.5" cy="16.5" r="2.2" fill="white"/><circle cx="16.5" cy="23.5" r="2.2" fill="white"/><circle cx="23.5" cy="23.5" r="2.2" fill="white"/></svg>
-          <span class="ticker-name">Twilio</span><span class="ticker-role">Telecom Backbone</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#00A651"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10" font-weight="900" font-family="Arial,sans-serif">GHL</text></svg>
-          <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <!-- SET 2 — duplicate for seamless loop -->
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
-          <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sfg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f23c8"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="40" height="40" rx="10" fill="url(#sfg2)"/><path d="M26.5 11H17a3.5 3.5 0 0 0 0 7h6a3.5 3.5 0 0 1 0 7H13" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="13.5" cy="30" r="2" fill="white"/></svg>
-          <span class="ticker-name">Synthflow</span><span class="ticker-role">AI Voice Engine</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#000"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.5" fill="none"/><path d="M15 20 Q20 12 25 20 Q20 28 15 20Z" fill="white"/></svg>
-          <span class="ticker-name">OpenAI</span><span class="ticker-role">The Brain</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#EA4B71"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12" font-weight="900" font-family="Arial,sans-serif">n8n</text></svg>
-          <span class="ticker-name">n8n</span><span class="ticker-role">Automation Glue</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#F22F46"/><circle cx="20" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="16.5" r="2.2" fill="white"/><circle cx="23.5" cy="16.5" r="2.2" fill="white"/><circle cx="16.5" cy="23.5" r="2.2" fill="white"/><circle cx="23.5" cy="23.5" r="2.2" fill="white"/></svg>
-          <span class="ticker-name">Twilio</span><span class="ticker-role">Telecom Backbone</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-        <div class="ticker-item">
-          <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#00A651"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10" font-weight="900" font-family="Arial,sans-serif">GHL</text></svg>
-          <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
-        </div>
-        <div class="ticker-divider">◆</div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ── CALL AGENDA ───────────────────────────────────── -->
   <section class="agenda-section">
