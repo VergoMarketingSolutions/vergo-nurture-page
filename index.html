@@ -1111,15 +1111,90 @@
 <body>
   <!-- Ambient background lights -->
   <div style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
-    <div style="position:absolute;width:700px;height:700px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(29,78,216,0.13) 0%,transparent 70%);border-radius:50%;animation:orb1 16s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:500px;height:500px;top:35%;right:-120px;background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%);border-radius:50%;animation:orb2 20s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:400px;height:400px;bottom:-100px;left:35%;background:radial-gradient(circle,rgba(37,99,235,0.09) 0%,transparent 70%);border-radius:50%;animation:orb3 24s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:300px;height:300px;top:60%;left:10%;background:radial-gradient(circle,rgba(99,102,241,0.07) 0%,transparent 70%);border-radius:50%;animation:orb1 18s ease-in-out infinite alternate-reverse;"></div>
+    <div style="position:absolute;width:900px;height:900px;top:-300px;left:-200px;background:radial-gradient(circle,rgba(29,78,216,0.22) 0%,rgba(59,130,246,0.08) 40%,transparent 70%);border-radius:50%;animation:orb1 14s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:650px;height:650px;top:30%;right:-180px;background:radial-gradient(circle,rgba(59,130,246,0.18) 0%,rgba(37,99,235,0.06) 40%,transparent 70%);border-radius:50%;animation:orb2 18s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:550px;height:550px;bottom:-150px;left:28%;background:radial-gradient(circle,rgba(37,99,235,0.16) 0%,rgba(59,130,246,0.05) 40%,transparent 70%);border-radius:50%;animation:orb3 22s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:380px;height:380px;top:55%;left:5%;background:radial-gradient(circle,rgba(99,102,241,0.14) 0%,transparent 65%);border-radius:50%;animation:orb1 17s ease-in-out infinite alternate-reverse;"></div>
+    <div style="position:absolute;width:300px;height:300px;top:18%;left:52%;background:radial-gradient(circle,rgba(59,130,246,0.11) 0%,transparent 65%);border-radius:50%;animation:orb2 25s ease-in-out infinite alternate-reverse;"></div>
   </div>
   <style>
-    @keyframes orb1 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(50px,40px) scale(1.1)} }
-    @keyframes orb2 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(-40px,60px) scale(1.08)} }
-    @keyframes orb3 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(30px,-50px) scale(1.12)} }
+    @keyframes orb1 {
+      0%   { transform: translate(0,0) scale(1);    filter: blur(55px); opacity: 0.8; }
+      50%  { opacity: 1; }
+      100% { transform: translate(60px,50px) scale(1.18); filter: blur(75px); opacity: 0.85; }
+    }
+    @keyframes orb2 {
+      0%   { transform: translate(0,0) scale(1);     filter: blur(65px); opacity: 0.7; }
+      50%  { opacity: 1; }
+      100% { transform: translate(-55px,70px) scale(1.12); filter: blur(85px); opacity: 0.8; }
+    }
+    @keyframes orb3 {
+      0%   { transform: translate(0,0) scale(1);    filter: blur(60px); opacity: 0.75; }
+      50%  { opacity: 1; }
+      100% { transform: translate(45px,-60px) scale(1.15); filter: blur(80px); opacity: 0.85; }
+    }
+
+    /* ── VIDEO-STYLE HOVER POP ───────────────────────────── */
+    /* Pillar cards */
+    .pillar-card {
+      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease !important;
+    }
+    .pillar-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .pillar-card:hover {
+      transform: translateY(-10px) scale(1.02) !important;
+      box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.2), 0 0 50px rgba(59,130,246,0.08) !important;
+      border-color: rgba(59,130,246,0.45) !important;
+      background: #161616 !important;
+    }
+    .pillar-card:hover::after { opacity: 1; }
+    .pillar-card:hover .pillar-name  { color: #fff; transition: color 0.3s ease; }
+    .pillar-card:hover .pillar-step span { color: #ccc; transition: color 0.3s ease; }
+    .pillar-card:hover .step-final span  { color: #fff; }
+
+    /* Agenda cards — dim siblings, spotlight hovered one */
+    .agenda-grid:hover .agenda-card         { opacity: 0.45; transition: opacity 0.35s ease; }
+    .agenda-grid:hover .agenda-card:hover   { opacity: 1; }
+    .agenda-card:hover .agenda-title        { color: #fff; transition: color 0.3s ease; }
+    .agenda-card:hover .agenda-number       { color: rgba(59,130,246,0.75); }
+    .agenda-card { transition: opacity 0.35s ease; }
+
+    /* FAQ hover */
+    .faq-item:hover .faq-q span { color: #fff !important; }
+    .faq-item:hover .faq-icon   { border-color: rgba(59,130,246,0.7) !important; color: var(--blue-light) !important; }
+
+    /* VSL play button */
+    .play-btn {
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease !important;
+    }
+    .play-btn:hover {
+      transform: scale(1.12) !important;
+      box-shadow: 0 0 0 18px rgba(59,130,246,0.1), 0 0 70px rgba(59,130,246,0.55) !important;
+    }
+
+    /* CTA button */
+    .cta-btn {
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.34,1.4,0.64,1) !important;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 10px 40px rgba(59,130,246,0.5) !important;
+    }
+
+    /* Ticker items */
+    .ticker-item {
+      transition: opacity 0.3s ease;
+    }
+    .ticker-wrap:hover .ticker-item         { opacity: 0.5; }
+    .ticker-wrap:hover .ticker-item:hover   { opacity: 1; transform: scale(1.05); transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34,1.4,0.64,1); }
   </style>
 
   <!-- ── URGENCY BANNER ─────────────────────────────────── -->
