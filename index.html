@@ -38,7 +38,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ───────────────────────────────────── */
     body::before {
       content: '';
       position: fixed;
@@ -49,7 +48,6 @@
       z-index: 0;
     }
 
-    /* ── URGENCY BANNER ──────────────────────────────────── */
     .banner {
       position: relative;
       z-index: 100;
@@ -90,7 +88,6 @@
       50%      { opacity: 0.4; transform: scale(0.7); }
     }
 
-    /* ── WRAPPER ─────────────────────────────────────────── */
     .container {
       max-width: 1520px;
       margin: 0 auto;
@@ -99,7 +96,6 @@
       z-index: 1;
     }
 
-    /* ── HERO ────────────────────────────────────────────── */
     .hero {
       padding: 96px 0 64px;
       text-align: center;
@@ -169,7 +165,6 @@
       animation: fadeUp 0.6s 0.3s ease both;
     }
 
-    /* ── VIDEO SECTION ───────────────────────────────────── */
     .vsl-section {
       padding: 16px 0 80px;
       animation: fadeUp 0.7s 0.35s ease both;
@@ -271,7 +266,6 @@
       color: var(--muted);
     }
 
-    /* ── DEMO SECTION ────────────────────────────────────── */
     .demo-section { padding: 0 0 96px; }
 
     .section-label {
@@ -310,7 +304,6 @@
       max-width: 520px;
     }
 
-    /* ── CTA STRIP ───────────────────────────────────────── */
     .cta-strip {
       margin-bottom: 80px;
       background: linear-gradient(135deg, #0f1c2e 0%, #0a0a0a 60%);
@@ -385,7 +378,6 @@
     .cta-btn svg { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
     .cta-btn:hover svg { transform: translateX(3px); }
 
-    /* ── FOOTER ──────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 0;
@@ -403,7 +395,6 @@
     .footer-logo span { color: var(--blue); }
     footer p { font-size: 0.76rem; color: #555; }
 
-    /* ── PERSONALISATION CARD ────────────────────────────── */
     .confirm-card {
       max-width: 860px;
       margin: 0 auto 0;
@@ -470,7 +461,6 @@
     .greeting-line.show { display: block; }
     .greeting-line strong { color: #fff; font-weight: 600; }
 
-    /* ── TECH STACK TICKER ───────────────────────────────── */
     .ticker-section { padding: 0 0 64px; }
     .ticker-header { margin-bottom: 40px; }
 
@@ -509,7 +499,7 @@
       padding: 0 48px;
       white-space: nowrap;
       flex-shrink: 0;
-      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      transition: opacity 0.3s ease;
     }
     .ticker-logo { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
     .ticker-name {
@@ -682,18 +672,24 @@
       .confirm-card { padding: 16px; gap: 14px; }
     }
 
-    /* ── BLUEPRINT ───────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       ── BLUEPRINT / PILLAR CARDS — POP-OUT ANIMATION ──────
+       ══════════════════════════════════════════════════════ */
     .blueprint-section { padding: 80px 0 64px; }
 
+    /* Give the grid a 3-D stage so cards can "come forward" */
     .blueprint-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-top: 48px;
       max-width: 100%;
+      perspective: 1200px;
+      perspective-origin: 50% 60%;
     }
-    @media (max-width: 800px) { .blueprint-grid { grid-template-columns: 1fr; gap: 14px; } }
+    @media (max-width: 800px) { .blueprint-grid { grid-template-columns: 1fr; gap: 14px; perspective: none; } }
 
+    /* ── Base card state ── */
     .pillar-card {
       background: #111;
       border: 1px solid rgba(255,255,255,0.07);
@@ -704,38 +700,64 @@
       gap: 24px;
       position: relative;
       overflow: hidden;
-      /* Smooth, gradual transitions — no spring overshoot */
+      /* All properties that animate */
       transition:
-        transform 0.55s cubic-bezier(0.4,0,0.2,1),
-        box-shadow 0.55s cubic-bezier(0.4,0,0.2,1),
-        border-color 0.55s ease,
-        background 0.55s ease;
+        transform 0.5s cubic-bezier(0.34, 1.3, 0.64, 1),
+        box-shadow 0.5s cubic-bezier(0.34, 1.3, 0.64, 1),
+        border-color 0.5s ease,
+        background 0.5s ease,
+        opacity 0.4s ease;
+      will-change: transform, opacity;
+      transform-origin: center bottom;
     }
+
+    /* Radial top-glow overlay — fades in on hover */
     .pillar-card::after {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.15) 0%, transparent 65%);
       opacity: 0;
-      transition: opacity 0.55s ease;
+      transition: opacity 0.5s ease;
       pointer-events: none;
     }
-    .pillar-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(59,130,246,0.2), 0 0 40px rgba(59,130,246,0.06);
-      border-color: rgba(59,130,246,0.4);
-      background: #161616;
-    }
-    .pillar-card:hover::after { opacity: 1; }
-    .pillar-card:hover .pillar-name  { color: #fff; }
-    .pillar-card:hover .pillar-step span { color: #ccc; }
-    .pillar-card:hover .step-final span  { color: #fff; }
 
+    /* ── Grid hover: dim & shrink non-hovered siblings ── */
+    .blueprint-grid:hover .pillar-card {
+      opacity: 0.55;
+      transform: scale(0.95) translateY(4px);
+      box-shadow: none;
+      border-color: rgba(255,255,255,0.05);
+    }
+
+    /* ── Hovered card: pop out toward viewer ── */
+    .blueprint-grid:hover .pillar-card:hover {
+      opacity: 1;
+      transform: scale(1.07) translateY(-18px);
+      box-shadow:
+        0 0 0 1px rgba(59,130,246,0.55),
+        0 32px 72px rgba(0,0,0,0.7),
+        0 8px 32px rgba(0,0,0,0.5),
+        0 0 60px rgba(59,130,246,0.18),
+        0 0 120px rgba(59,130,246,0.08);
+      border-color: rgba(59,130,246,0.6);
+      background: #181818;
+      z-index: 10;
+    }
+    .blueprint-grid:hover .pillar-card:hover::after { opacity: 1; }
+
+    /* Text colour pops on the active card */
+    .blueprint-grid:hover .pillar-card:hover .pillar-name  { color: #fff; }
+    .blueprint-grid:hover .pillar-card:hover .pillar-step span { color: #ddd; }
+    .blueprint-grid:hover .pillar-card:hover .step-final span  { color: #fff; }
+
+    /* ── Featured variant ── */
     .pillar-card--featured {
       background: #131313;
       border-color: rgba(255,255,255,0.1);
     }
+
     .pillar-glow {
       position: absolute;
       top: -60px; left: 50%;
@@ -802,12 +824,9 @@
     .step-final span { color: #e0e0e0; font-weight: 500; }
     .step-arrow { font-size: 0.85rem; color: rgba(59,130,246,0.7); padding-left: 19px; line-height: 1; font-weight: 600; }
 
-    /* ══════════════════════════════════════════════════════
-       ── 30-DAY GUARANTEE FLASHCARD ────────────────────────
-       ══════════════════════════════════════════════════════ */
+    /* ── 30-DAY GUARANTEE ─────────────────────────────────── */
     .guarantee-section { padding: 0 0 80px; }
 
-    /* Perspective container for the flashcard lift */
     .guarantee-card-scene {
       perspective: 1200px;
     }
@@ -818,33 +837,22 @@
       border-radius: 24px;
       overflow: hidden;
       cursor: default;
-
-      /* Layered background: deep navy with subtle grid */
       background:
-        linear-gradient(135deg, #071525 0%, #0c1a2c 40%, #081018 100%);
-
-      /* Subtle grid lines */
-      background-image:
         linear-gradient(135deg, #071525 0%, #0c1a2c 40%, #081018 100%),
         repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(59,130,246,0.04) 39px, rgba(59,130,246,0.04) 40px),
         repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(59,130,246,0.04) 39px, rgba(59,130,246,0.04) 40px);
-
       border: 1px solid rgba(59,130,246,0.3);
       padding: clamp(48px, 7vw, 80px) clamp(28px, 6vw, 72px);
       text-align: center;
-
-      /* Smooth lift + glow — eased, never snappy */
       transition:
         transform 0.7s cubic-bezier(0.4,0,0.2,1),
         box-shadow 0.7s cubic-bezier(0.4,0,0.2,1),
         border-color 0.7s ease,
         filter 0.7s ease;
-
       box-shadow:
         0 0 60px rgba(59,130,246,0.08),
         0 20px 60px rgba(0,0,0,0.5),
         inset 0 0 40px rgba(59,130,246,0.03);
-
       filter: brightness(1);
     }
 
@@ -859,7 +867,6 @@
       filter: brightness(1.07);
     }
 
-    /* Top edge glow strip */
     .guarantee-card::before {
       content: '';
       position: absolute;
@@ -871,7 +878,6 @@
     }
     .guarantee-card:hover::before { opacity: 1; }
 
-    /* Shield watermark in corner */
     .guarantee-card::after {
       content: '';
       position: absolute;
@@ -884,7 +890,6 @@
     }
     .guarantee-card:hover::after { opacity: 0.09; }
 
-    /* Ambient radial bloom — brightens on hover */
     .guarantee-bloom {
       position: absolute;
       top: -100px; left: 50%;
@@ -897,7 +902,6 @@
     }
     .guarantee-card:hover .guarantee-bloom { opacity: 1; }
 
-    /* Bottom ambient glow */
     .guarantee-bloom-bottom {
       position: absolute;
       bottom: -80px; left: 50%;
@@ -949,7 +953,6 @@
     }
     .guarantee-card:hover .guarantee-headline { color: #fff; }
 
-    /* Accent number — big decorative "30" */
     .guarantee-days-accent {
       font-family: var(--font-head);
       font-size: clamp(5rem, 14vw, 9rem);
@@ -1065,9 +1068,9 @@
     .agenda-grid:hover .agenda-card:hover { opacity: 1; }
     .agenda-card { transition: opacity 0.5s ease; }
 
-    /* Ticker hover */
-    .ticker-wrap:hover .ticker-item { opacity: 0.5; }
-    .ticker-wrap:hover .ticker-item:hover { opacity: 1; transform: scale(1.04); }
+    /* Ticker hover — only activates when cursor is over an actual item, not gaps */
+    .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; transition: opacity 0.3s ease; }
+    .ticker-wrap .ticker-item:hover { opacity: 1 !important; }
 
     /* FAQ hover */
     .faq-item:hover .faq-q span { color: #fff; }
@@ -1101,13 +1104,11 @@
     }
   </style>
 
-  <!-- ── URGENCY BANNER ─────────────────────────────────── -->
   <div class="banner">
     <span class="banner-pulse"></span>
     <span id="banner-text">Step 2: Your Call Is Confirmed. Watch This Required Video Before Our Meeting.</span>
   </div>
 
-  <!-- ── HERO ──────────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
       <div class="badge">
@@ -1132,7 +1133,6 @@
     </div>
   </section>
 
-  <!-- ── CONFIRMATION DETAIL CARD ──────────────────────── -->
   <section style="padding: 0 0 32px; position:relative; z-index:1;">
     <div class="container">
       <div class="confirm-card" id="confirm-card">
@@ -1153,7 +1153,6 @@
     </div>
   </section>
 
-  <!-- ── VSL ───────────────────────────────────────────── -->
   <section class="vsl-section">
     <div class="container">
       <div class="vsl-wrapper reveal">
@@ -1180,7 +1179,6 @@
     </div>
   </section>
 
-  <!-- ── TECH STACK TICKER ─────────────────────────────── -->
   <section class="ticker-section">
     <div class="ticker-header reveal">
       <div class="container">
@@ -1194,7 +1192,6 @@
       <div class="ticker-fade-left"></div>
       <div class="ticker-fade-right"></div>
       <div class="ticker-track">
-        <!-- SET 1 -->
         <div class="ticker-item">
           <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
           <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
@@ -1225,7 +1222,7 @@
           <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
         </div>
         <div class="ticker-divider">◆</div>
-        <!-- SET 2 (duplicate for infinite loop) -->
+        <!-- Duplicate set for infinite loop -->
         <div class="ticker-item">
           <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
           <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
@@ -1333,55 +1330,27 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════
-       ── 30-DAY GUARANTEE FLASHCARD ────────────────────────
-       ══════════════════════════════════════════════════════ -->
+  <!-- ── 30-DAY GUARANTEE ─────────────────────────────── -->
   <section class="guarantee-section">
     <div class="container">
       <div class="guarantee-card-scene reveal">
         <div class="guarantee-card">
-
-          <!-- Ambient bloom layers -->
           <div class="guarantee-bloom"></div>
           <div class="guarantee-bloom-bottom"></div>
-
-          <!-- Badge -->
           <div class="guarantee-badge">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Zero-Risk Guarantee
           </div>
-
-          <!-- Big decorative number -->
           <span class="guarantee-days-accent">30</span>
-
-          <!-- Headline -->
           <h2 class="guarantee-headline">Day ROI Guarantee.</h2>
-
-          <!-- Divider -->
           <div class="guarantee-divider"></div>
-
-          <!-- Body -->
           <p class="guarantee-body">We completely remove the risk. If our 3-pillar system does not successfully automate your follow-up and start booking qualified appointments into your calendar within the first 30 days, you get your money back.*</p>
-
-          <!-- Pills -->
           <div class="guarantee-pillars">
-            <div class="g-pill">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Automated Follow-Up
-            </div>
-            <div class="g-pill">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Qualified Bookings
-            </div>
-            <div class="g-pill">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              30-Day Window
-            </div>
+            <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Automated Follow-Up</div>
+            <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Qualified Bookings</div>
+            <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>30-Day Window</div>
           </div>
-
-          <!-- Fine print -->
           <p class="guarantee-fine">*Terms and conditions apply. Money-back guarantee applies strictly to 80% of the initial agency setup fee to cover irreversible infrastructure, telecom, and prompt engineering costs. Third-party ad spend is non-refundable.</p>
-
         </div>
       </div>
     </div>
@@ -1405,7 +1374,6 @@
           </div>
           <div class="agenda-line"></div>
         </div>
-
         <div class="agenda-card">
           <div class="agenda-number">02</div>
           <div class="agenda-content">
@@ -1414,7 +1382,6 @@
           </div>
           <div class="agenda-line"></div>
         </div>
-
         <div class="agenda-card">
           <div class="agenda-number">03</div>
           <div class="agenda-content">
@@ -1436,7 +1403,6 @@
       </div>
 
       <div class="faq-list reveal">
-
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">
             <span>Do I need to replace my current CRM or calendar?</span>
@@ -1446,7 +1412,6 @@
             <p>Not at all. Our infrastructure is designed to plug seamlessly into your existing tech stack — GoHighLevel, Calendly, HubSpot, Salesforce, and more — without disrupting your current workflow. We bridge the gap, we don't break the system.</p>
           </div></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">
             <span>What happens if the AI gets asked a question it doesn't know?</span>
@@ -1456,7 +1421,6 @@
             <p>We train your Voice Agent extensively on your specific knowledge base. However, if a lead asks a highly complex or out-of-bounds question, the AI is programmed with a strict fallback protocol to politely take a message and instantly route the full transcript to your team.</p>
           </div></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">
             <span>Do you cover the ad spend and software fees?</span>
@@ -1466,7 +1430,6 @@
             <p>No. You pay us for the custom build, deployment, and optimisation of the 3-pillar system. You retain 100% ownership of your ad accounts and pay Meta directly for your ad spend, as well as the raw usage minutes for the AI telecom platforms.</p>
           </div></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
           <div class="faq-q">
             <span>How fast can this system be deployed?</span>
@@ -1476,12 +1439,10 @@
             <p>Once we complete our discovery call and you submit your onboarding form — including your past sales calls and FAQs — our engineering and media teams will have your custom AI and ad campaigns built, tested, and live within <strong>5 to 7 business days.</strong></p>
           </div></div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
   <footer>
     <div class="container">
       <div class="footer-logo">Vergo <span>Marketing</span> Solutions</div>
@@ -1569,6 +1530,7 @@
 
       function setPos(p) {
         const hw = halfW();
+        if (!hw) return; // guard against 0 / NaN on first paint
         pos = ((p % hw) + hw) % hw;
         track.style.transform = `translateX(-${pos}px)`;
       }
@@ -1580,7 +1542,8 @@
         }
         requestAnimationFrame(loop);
       }
-      loop();
+      // Defer one frame so the browser has finished layout before we read scrollWidth
+      requestAnimationFrame(loop);
 
       wrap.addEventListener('touchstart', e => { dragging = true; lastX = e.touches[0].clientX; momentum = 0; }, { passive: true });
       wrap.addEventListener('touchmove', e => {
