@@ -181,7 +181,6 @@
       margin: 0 auto;
     }
 
-    /* outer glow ring */
     .vsl-glow {
       position: absolute;
       inset: -2px;
@@ -205,7 +204,6 @@
         0 8px 24px rgba(0,0,0,0.5);
     }
 
-    /* top chrome bar */
     .vsl-chrome {
       display: flex;
       align-items: center;
@@ -241,7 +239,6 @@
       width: 100%; height: 100%;
       border: none;
     }
-    /* placeholder shown when no real src */
     .vsl-placeholder {
       position: absolute;
       inset: 0;
@@ -259,7 +256,7 @@
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 0 0 12px rgba(59,130,246,0.15), 0 0 40px rgba(59,130,246,0.4);
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
     }
     .play-btn:hover {
       transform: scale(1.08);
@@ -274,12 +271,8 @@
       color: var(--muted);
     }
 
-
-
     /* ── DEMO SECTION ────────────────────────────────────── */
-    .demo-section {
-      padding: 0 0 96px;
-    }
+    .demo-section { padding: 0 0 96px; }
 
     .section-label {
       display: flex;
@@ -316,150 +309,6 @@
       margin-bottom: 48px;
       max-width: 520px;
     }
-
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 800px) { .demo-grid { grid-template-columns: 1fr; } }
-    @media (min-width: 801px) and (max-width: 1000px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .demo-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .demo-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .demo-card:hover {
-      border-color: var(--border-glow);
-      transform: translateY(-4px);
-    }
-    .demo-card:hover::before { opacity: 1; }
-
-    .card-icon {
-      width: 42px; height: 42px;
-      border-radius: 10px;
-      background: var(--blue-dim);
-      border: 1px solid var(--border-glow);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-    }
-    .card-industry {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-family: var(--font-head);
-    }
-    .card-title {
-      font-family: var(--font-head);
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .card-desc {
-      font-size: 0.88rem;
-      color: #999;
-      font-weight: 300;
-      line-height: 1.65;
-      flex: 1;
-    }
-
-    /* waveform animation */
-    .waveform {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 28px;
-    }
-    .wave-bar {
-      width: 3px;
-      border-radius: 2px;
-      background: var(--blue);
-      opacity: 0.5;
-      animation: wave 1.1s ease-in-out infinite;
-    }
-    .wave-bar:nth-child(1) { height: 8px;  animation-delay: 0s; }
-    .wave-bar:nth-child(2) { height: 16px; animation-delay: 0.15s; }
-    .wave-bar:nth-child(3) { height: 22px; animation-delay: 0.3s; }
-    .wave-bar:nth-child(4) { height: 14px; animation-delay: 0.45s; }
-    .wave-bar:nth-child(5) { height: 20px; animation-delay: 0.6s; }
-    .wave-bar:nth-child(6) { height: 10px; animation-delay: 0.75s; }
-    .wave-bar:nth-child(7) { height: 18px; animation-delay: 0.9s; }
-    .wave-bar:nth-child(8) { height: 8px;  animation-delay: 0.2s; }
-    @keyframes wave {
-      0%,100% { transform: scaleY(1); }
-      50%      { transform: scaleY(1.8); opacity: 0.9; }
-    }
-
-    .play-audio-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: transparent;
-      border: 1px solid rgba(59,130,246,0.4);
-      color: var(--blue-light);
-      padding: 11px 20px;
-      border-radius: 8px;
-      font-family: var(--font-head);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
-      width: 100%;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .play-audio-btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--blue) 0%, #1d4ed8 100%);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .play-audio-btn:hover::after { opacity: 1; }
-    .play-audio-btn:hover {
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 4px 24px rgba(59,130,246,0.35);
-    }
-    .play-audio-btn span { position: relative; z-index: 1; }
-
-    /* playing state */
-    .play-audio-btn.playing .btn-triangle { display: none; }
-    .play-audio-btn .wave-inline { display: none; }
-    .play-audio-btn.playing .wave-inline { display: flex; gap: 2px; align-items: center; position: relative; z-index: 1; }
-    .wave-inline .wi-bar {
-      width: 2.5px; border-radius: 2px; background: currentColor;
-      animation: wave 0.9s ease-in-out infinite;
-    }
-    .wi-bar:nth-child(1) { height: 6px;  animation-delay: 0s; }
-    .wi-bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
-    .wi-bar:nth-child(3) { height: 14px; animation-delay: 0.3s; }
-    .wi-bar:nth-child(4) { height: 8px;  animation-delay: 0.45s; }
-    .wi-bar:nth-child(5) { height: 12px; animation-delay: 0.6s; }
 
     /* ── CTA STRIP ───────────────────────────────────────── */
     .cta-strip {
@@ -525,15 +374,15 @@
       border: none;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      transition: background 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
       box-shadow: 0 4px 20px rgba(59,130,246,0.4);
     }
     .cta-btn:hover {
       background: #2563eb;
-      box-shadow: 0 6px 32px rgba(59,130,246,0.55);
+      box-shadow: 0 8px 32px rgba(59,130,246,0.5);
       transform: translateY(-2px);
     }
-    .cta-btn svg { transition: transform 0.2s; }
+    .cta-btn svg { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
     .cta-btn:hover svg { transform: translateX(3px); }
 
     /* ── FOOTER ──────────────────────────────────────────── */
@@ -552,10 +401,7 @@
       margin-bottom: 8px;
     }
     .footer-logo span { color: var(--blue); }
-    footer p {
-      font-size: 0.76rem;
-      color: #555;
-    }
+    footer p { font-size: 0.76rem; color: #555; }
 
     /* ── PERSONALISATION CARD ────────────────────────────── */
     .confirm-card {
@@ -591,10 +437,7 @@
       color: #fff;
       margin-bottom: 2px;
     }
-    .confirm-meta {
-      font-size: 0.78rem;
-      color: #777;
-    }
+    .confirm-meta { font-size: 0.78rem; color: #777; }
     .confirm-meta span { color: var(--blue-light); }
     .confirm-time-block {
       display: flex;
@@ -615,12 +458,7 @@
       font-family: var(--font-head);
       margin-bottom: 2px;
     }
-    .confirm-time-val {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #ddd;
-    }
-    /* personalised greeting above headline */
+    .confirm-time-val { font-size: 0.85rem; font-weight: 500; color: #ddd; }
     .greeting-line {
       display: none;
       font-size: clamp(1rem, 2.2vw, 1.15rem);
@@ -633,12 +471,8 @@
     .greeting-line strong { color: #fff; font-weight: 600; }
 
     /* ── TECH STACK TICKER ───────────────────────────────── */
-    .ticker-section {
-      padding: 0 0 64px;
-    }
-    .ticker-header {
-      margin-bottom: 40px;
-    }
+    .ticker-section { padding: 0 0 64px; }
+    .ticker-header { margin-bottom: 40px; }
 
     .ticker-wrap {
       position: relative;
@@ -649,7 +483,6 @@
       touch-action: pan-y;
     }
 
-    /* fade edges */
     .ticker-fade-left,
     .ticker-fade-right {
       position: absolute;
@@ -669,11 +502,6 @@
       will-change: transform;
     }
 
-    @keyframes ticker-scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
     .ticker-item {
       display: flex;
       align-items: center;
@@ -681,13 +509,9 @@
       padding: 0 48px;
       white-space: nowrap;
       flex-shrink: 0;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4,0,0.2,1);
     }
-    .ticker-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
+    .ticker-logo { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
     .ticker-name {
       font-family: var(--font-head);
       font-size: 1.05rem;
@@ -707,16 +531,10 @@
       padding: 4px 12px;
       border-radius: 100px;
     }
-    .ticker-divider {
-      color: rgba(59,130,246,0.3);
-      font-size: 0.5rem;
-      flex-shrink: 0;
-    }
+    .ticker-divider { color: rgba(59,130,246,0.3); font-size: 0.5rem; flex-shrink: 0; }
 
     /* ── CALL AGENDA ─────────────────────────────────────── */
-    .agenda-section {
-      padding: 64px 0;
-    }
+    .agenda-section { padding: 64px 0; }
     .agenda-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -726,28 +544,20 @@
       max-width: 100%;
     }
     @media (max-width: 800px) {
-      .agenda-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+      .agenda-grid { grid-template-columns: 1fr; gap: 0; }
       .agenda-line { display: none !important; }
-      .agenda-card {
-        padding: 24px 0 !important;
-        border-bottom: 1px solid var(--border);
-      }
+      .agenda-card { padding: 24px 0 !important; border-bottom: 1px solid var(--border); }
       .agenda-card:last-child { border-bottom: none; }
     }
 
     .agenda-line {
       position: absolute;
-      top: 28px;
-      left: -24px;
+      top: 28px; left: -24px;
       width: 1px;
       height: calc(100% - 56px);
       background: linear-gradient(to bottom, var(--blue), transparent);
       opacity: 0.35;
     }
-    /* hide line on first card — no divider needed before 01 */
     .agenda-card:first-child .agenda-line { display: none; }
     .agenda-card:last-child .agenda-line  { display: block; }
 
@@ -759,7 +569,7 @@
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 14px;
-      transition: color 0.4s ease, font-size 0.4s cubic-bezier(0.34,1.4,0.64,1), transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
+      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
       display: inline-block;
     }
     .agenda-title {
@@ -769,7 +579,7 @@
       color: #ccc;
       margin-bottom: 10px;
       letter-spacing: -0.01em;
-      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
+      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
       display: inline-block;
     }
     .agenda-desc {
@@ -777,12 +587,11 @@
       color: #777;
       font-weight: 300;
       line-height: 1.75;
-      transition: color 0.35s ease;
+      transition: color 0.55s ease;
     }
-    /* hover pop — spring scale on number and title */
     .agenda-card:hover .agenda-number {
       color: rgba(59,130,246,0.9);
-      transform: scale(1.08) translateY(-2px);
+      transform: translateY(-2px);
     }
     .agenda-card:hover .agenda-title {
       color: #fff;
@@ -804,7 +613,7 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
-      transition: background 0.2s;
+      transition: background 0.35s ease;
     }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
     .faq-item:hover { background: rgba(255,255,255,0.02); }
@@ -823,7 +632,7 @@
       color: #e8e8e8;
       letter-spacing: -0.01em;
       line-height: 1.4;
-      transition: color 0.2s;
+      transition: color 0.35s ease;
     }
     .faq-item.open .faq-q span { color: #fff; }
     .faq-icon {
@@ -836,7 +645,7 @@
       font-size: 1rem;
       font-weight: 300;
       flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, color 0.2s;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease, color 0.35s ease;
     }
     .faq-item.open .faq-icon {
       transform: rotate(45deg);
@@ -846,7 +655,7 @@
     .faq-a {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.38s cubic-bezier(0.4,0,0.2,1);
+      transition: grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1);
     }
     .faq-a-inner { overflow: hidden; }
     .faq-item.open .faq-a { grid-template-rows: 1fr; }
@@ -895,12 +704,34 @@
       gap: 24px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
+      /* Smooth, gradual transitions — no spring overshoot */
+      transition:
+        transform 0.55s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.55s cubic-bezier(0.4,0,0.2,1),
+        border-color 0.55s ease,
+        background 0.55s ease;
+    }
+    .pillar-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.55s ease;
+      pointer-events: none;
     }
     .pillar-card:hover {
-      border-color: rgba(59,130,246,0.3);
-      transform: translateY(-4px);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(59,130,246,0.2), 0 0 40px rgba(59,130,246,0.06);
+      border-color: rgba(59,130,246,0.4);
+      background: #161616;
     }
+    .pillar-card:hover::after { opacity: 1; }
+    .pillar-card:hover .pillar-name  { color: #fff; }
+    .pillar-card:hover .pillar-step span { color: #ccc; }
+    .pillar-card:hover .step-final span  { color: #fff; }
+
     .pillar-card--featured {
       background: #131313;
       border-color: rgba(255,255,255,0.1);
@@ -914,21 +745,8 @@
       background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%);
       pointer-events: none;
     }
-    .pillar-glow {
-      position: absolute;
-      top: -60px; left: 50%;
-      transform: translateX(-50%);
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
 
-    .pillar-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .pillar-header { display: flex; align-items: center; gap: 14px; }
     .pillar-icon {
       width: 44px; height: 44px;
       border-radius: 12px;
@@ -953,19 +771,11 @@
       font-weight: 700;
       color: #fff;
       letter-spacing: -0.01em;
+      transition: color 0.45s ease;
     }
 
-    .pillar-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .pillar-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 0;
-    }
+    .pillar-steps { display: flex; flex-direction: column; gap: 0; }
+    .pillar-step { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; }
     .step-dot {
       width: 8px; height: 8px;
       border-radius: 50%;
@@ -987,115 +797,246 @@
       color: #aaa;
       font-weight: 300;
       line-height: 1.5;
+      transition: color 0.45s ease;
     }
     .step-final span { color: #e0e0e0; font-weight: 500; }
-    .step-arrow {
-      font-size: 0.85rem;
-      color: rgba(59,130,246,0.7);
-      padding-left: 19px;
-      line-height: 1;
-      font-weight: 600;
-    }
+    .step-arrow { font-size: 0.85rem; color: rgba(59,130,246,0.7); padding-left: 19px; line-height: 1; font-weight: 600; }
 
-    /* ── GUARANTEE ───────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       ── 30-DAY GUARANTEE FLASHCARD ────────────────────────
+       ══════════════════════════════════════════════════════ */
     .guarantee-section { padding: 0 0 80px; }
 
+    /* Perspective container for the flashcard lift */
+    .guarantee-card-scene {
+      perspective: 1200px;
+    }
+
     .guarantee-card {
-      background: #0c1625 !important;
-      border: 1.5px solid rgba(59,130,246,0.5) !important;
-      border-radius: 20px !important;
-      padding: clamp(36px, 6vw, 64px) clamp(24px, 6vw, 64px) !important;
-      position: relative !important;
-      overflow: hidden !important;
-      text-align: center !important;
-      animation: fadeUp 0.7s 0.2s ease both;
-      box-shadow: 0 0 60px rgba(59,130,246,0.1), inset 0 0 30px rgba(59,130,246,0.04) !important;
-      opacity: 1 !important;
-      transform: none !important;
+      position: relative;
+      max-width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      cursor: default;
+
+      /* Layered background: deep navy with subtle grid */
+      background:
+        linear-gradient(135deg, #071525 0%, #0c1a2c 40%, #081018 100%);
+
+      /* Subtle grid lines */
+      background-image:
+        linear-gradient(135deg, #071525 0%, #0c1a2c 40%, #081018 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(59,130,246,0.04) 39px, rgba(59,130,246,0.04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(59,130,246,0.04) 39px, rgba(59,130,246,0.04) 40px);
+
+      border: 1px solid rgba(59,130,246,0.3);
+      padding: clamp(48px, 7vw, 80px) clamp(28px, 6vw, 72px);
+      text-align: center;
+
+      /* Smooth lift + glow — eased, never snappy */
+      transition:
+        transform 0.7s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.7s cubic-bezier(0.4,0,0.2,1),
+        border-color 0.7s ease,
+        filter 0.7s ease;
+
+      box-shadow:
+        0 0 60px rgba(59,130,246,0.08),
+        0 20px 60px rgba(0,0,0,0.5),
+        inset 0 0 40px rgba(59,130,246,0.03);
+
+      filter: brightness(1);
     }
+
+    .guarantee-card:hover {
+      transform: translateY(-12px) rotateX(1.5deg);
+      box-shadow:
+        0 0 100px rgba(59,130,246,0.18),
+        0 40px 90px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(59,130,246,0.45),
+        inset 0 0 60px rgba(59,130,246,0.05);
+      border-color: rgba(59,130,246,0.55);
+      filter: brightness(1.07);
+    }
+
+    /* Top edge glow strip */
     .guarantee-card::before {
-      content: '' !important;
-      position: absolute !important;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 500px; height: 300px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 70%);
-      pointer-events: none;
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.7) 30%, rgba(147,197,253,0.9) 50%, rgba(59,130,246,0.7) 70%, transparent);
+      transition: opacity 0.7s ease;
+      opacity: 0.6;
     }
+    .guarantee-card:hover::before { opacity: 1; }
+
+    /* Shield watermark in corner */
     .guarantee-card::after {
-      content: '' !important;
-      position: absolute !important;
-      right: 40px; bottom: 30px;
-      width: 120px; height: 120px;
+      content: '';
+      position: absolute;
+      right: 48px; bottom: 40px;
+      width: 140px; height: 140px;
       background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
-      opacity: 0.06 !important;
+      opacity: 0.05;
+      transition: opacity 0.7s ease;
       pointer-events: none;
     }
+    .guarantee-card:hover::after { opacity: 0.09; }
+
+    /* Ambient radial bloom — brightens on hover */
+    .guarantee-bloom {
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 380px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 68%);
+      pointer-events: none;
+      transition: opacity 0.7s ease;
+      opacity: 0.7;
+    }
+    .guarantee-card:hover .guarantee-bloom { opacity: 1; }
+
+    /* Bottom ambient glow */
+    .guarantee-bloom-bottom {
+      position: absolute;
+      bottom: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 260px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 68%);
+      pointer-events: none;
+      transition: opacity 0.7s ease;
+      opacity: 0;
+    }
+    .guarantee-card:hover .guarantee-bloom-bottom { opacity: 1; }
+
     .guarantee-badge {
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      background: rgba(59,130,246,0.15) !important;
-      border: 1px solid rgba(59,130,246,0.45) !important;
-      border-radius: 100px !important;
-      padding: 7px 18px !important;
-      font-size: 0.72rem !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.1em !important;
-      text-transform: uppercase !important;
-      color: #60a5fa !important;
-      font-family: var(--font-head) !important;
-      margin-bottom: 24px !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #60a5fa;
+      font-family: var(--font-head);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
     }
+    .guarantee-card:hover .guarantee-badge {
+      background: rgba(59,130,246,0.18);
+      border-color: rgba(59,130,246,0.6);
+      box-shadow: 0 0 16px rgba(59,130,246,0.2);
+    }
+
     .guarantee-headline {
-      font-family: var(--font-head) !important;
-      font-size: clamp(2rem, 5vw, 3.2rem) !important;
-      font-weight: 800 !important;
-      letter-spacing: -0.03em !important;
-      color: #fff !important;
-      margin-bottom: 20px !important;
-      line-height: 1.1 !important;
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #e8e8e8;
+      margin-bottom: 8px;
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+      transition: color 0.6s ease;
     }
+    .guarantee-card:hover .guarantee-headline { color: #fff; }
+
+    /* Accent number — big decorative "30" */
+    .guarantee-days-accent {
+      font-family: var(--font-head);
+      font-size: clamp(5rem, 14vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(59,130,246,0.22);
+      display: block;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+      transition: -webkit-text-stroke-color 0.7s ease;
+      user-select: none;
+    }
+    .guarantee-card:hover .guarantee-days-accent {
+      -webkit-text-stroke-color: rgba(59,130,246,0.4);
+    }
+
+    .guarantee-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent);
+      margin: 20px auto 24px;
+      position: relative;
+      z-index: 1;
+      transition: width 0.6s ease, opacity 0.6s ease;
+    }
+    .guarantee-card:hover .guarantee-divider { width: 120px; }
+
     .guarantee-body {
-      font-size: clamp(0.95rem, 2vw, 1.1rem) !important;
-      color: #aaa !important;
-      font-weight: 300 !important;
-      line-height: 1.75 !important;
-      max-width: 680px !important;
-      margin: 0 auto 28px !important;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: #999;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+      transition: color 0.6s ease;
     }
+    .guarantee-card:hover .guarantee-body { color: #bbb; }
+
     .guarantee-pillars {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-wrap: wrap !important;
-      gap: 10px !important;
-      margin-bottom: 32px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
     }
     .g-pill {
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      background: rgba(59,130,246,0.12) !important;
-      border: 1px solid rgba(59,130,246,0.35) !important;
-      border-radius: 100px !important;
-      padding: 9px 20px !important;
-      font-size: 0.82rem !important;
-      font-weight: 600 !important;
-      color: #60a5fa !important;
-      font-family: var(--font-head) !important;
-      letter-spacing: 0.02em !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.28);
+      border-radius: 100px;
+      padding: 9px 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #60a5fa;
+      font-family: var(--font-head);
+      letter-spacing: 0.02em;
+      transition: background 0.6s ease, border-color 0.6s ease, color 0.6s ease;
     }
+    .guarantee-card:hover .g-pill {
+      background: rgba(59,130,246,0.16);
+      border-color: rgba(59,130,246,0.42);
+      color: #93c5fd;
+    }
+
     .guarantee-fine {
-      font-size: 0.68rem !important;
-      color: #555 !important;
-      line-height: 1.6 !important;
-      max-width: 600px !important;
-      margin: 0 auto !important;
-      border-top: 1px solid rgba(255,255,255,0.07) !important;
-      padding-top: 20px !important;
+      font-size: 0.68rem;
+      color: #444;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 20px;
+      position: relative;
+      z-index: 1;
+      transition: color 0.6s ease;
     }
-    .guarantee-shield-bg { display: none; }
+    .guarantee-card:hover .guarantee-fine { color: #555; }
 
     /* ── ANIMATIONS ──────────────────────────────────────── */
     @keyframes fadeUp {
@@ -1108,12 +1049,8 @@
       transform: translateY(28px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    /* stagger children */
     .reveal-child > * {
       opacity: 0;
       transform: translateY(20px);
@@ -1122,6 +1059,19 @@
     .reveal-child.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
     .reveal-child.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.12s; }
     .reveal-child.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.24s; }
+
+    /* Agenda — dim siblings smoothly */
+    .agenda-grid:hover .agenda-card { opacity: 0.4; transition: opacity 0.5s ease; }
+    .agenda-grid:hover .agenda-card:hover { opacity: 1; }
+    .agenda-card { transition: opacity 0.5s ease; }
+
+    /* Ticker hover */
+    .ticker-wrap:hover .ticker-item { opacity: 0.5; }
+    .ticker-wrap:hover .ticker-item:hover { opacity: 1; transform: scale(1.04); }
+
+    /* FAQ hover */
+    .faq-item:hover .faq-q span { color: #fff; }
+    .faq-item:hover .faq-icon { border-color: rgba(59,130,246,0.6); color: var(--blue-light); }
   </style>
 </head>
 <body>
@@ -1149,66 +1099,6 @@
       50%  { opacity: 1; }
       100% { transform: translate(50px,-65px) scale(1.17); filter: blur(75px);  opacity: 0.9; }
     }
-
-    /* ── VIDEO-STYLE HOVER POP ───────────────────────────── */
-    /* Pillar cards */
-    .pillar-card {
-      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease !important;
-    }
-    .pillar-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-    .pillar-card:hover {
-      transform: translateY(-10px) scale(1.02) !important;
-      box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.2), 0 0 50px rgba(59,130,246,0.08) !important;
-      border-color: rgba(59,130,246,0.45) !important;
-      background: #161616 !important;
-    }
-    .pillar-card:hover::after { opacity: 1; }
-    .pillar-card:hover .pillar-name  { color: #fff; transition: color 0.3s ease; }
-    .pillar-card:hover .pillar-step span { color: #ccc; transition: color 0.3s ease; }
-    .pillar-card:hover .step-final span  { color: #fff; }
-
-    /* Agenda cards — dim siblings, spotlight hovered one */
-    .agenda-grid:hover .agenda-card       { opacity: 0.45; transition: opacity 0.35s ease; }
-    .agenda-grid:hover .agenda-card:hover { opacity: 1; }
-    .agenda-card { transition: opacity 0.35s ease; }
-
-    /* FAQ hover */
-    .faq-item:hover .faq-q span { color: #fff !important; }
-    .faq-item:hover .faq-icon   { border-color: rgba(59,130,246,0.7) !important; color: var(--blue-light) !important; }
-
-    /* VSL play button */
-    .play-btn {
-      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease !important;
-    }
-    .play-btn:hover {
-      transform: scale(1.12) !important;
-      box-shadow: 0 0 0 18px rgba(59,130,246,0.1), 0 0 70px rgba(59,130,246,0.55) !important;
-    }
-
-    /* CTA button */
-    .cta-btn {
-      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.34,1.4,0.64,1) !important;
-    }
-    .cta-btn:hover {
-      transform: translateY(-3px) scale(1.02) !important;
-      box-shadow: 0 10px 40px rgba(59,130,246,0.5) !important;
-    }
-
-    /* Ticker items */
-    .ticker-item {
-      transition: opacity 0.3s ease;
-    }
-    .ticker-wrap:hover .ticker-item         { opacity: 0.5; }
-    .ticker-wrap:hover .ticker-item:hover   { opacity: 1; transform: scale(1.05); transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34,1.4,0.64,1); }
   </style>
 
   <!-- ── URGENCY BANNER ─────────────────────────────────── -->
@@ -1225,7 +1115,6 @@
         <span id="badge-text">Booking Confirmed — Next Step Below</span>
       </div>
 
-      <!-- Personalised greeting — shown when name param exists -->
       <p class="greeting-line" id="greeting-line">
         Welcome, <strong id="greeting-name"></strong> — your discovery call is locked in.
       </p>
@@ -1270,21 +1159,13 @@
       <div class="vsl-wrapper reveal">
         <div class="vsl-glow"></div>
         <div class="vsl-frame">
-          <!-- browser chrome -->
           <div class="vsl-chrome">
             <div class="chrome-dot"></div>
             <div class="chrome-dot"></div>
             <div class="chrome-dot"></div>
             <span class="chrome-label">Vergo Marketing Solutions — AI Overview</span>
           </div>
-          <!-- 16:9 video container -->
           <div class="vsl-ratio">
-            <!--
-              REPLACE the placeholder below with your real YouTube embed:
-              <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1&autoplay=0"
-                      allowfullscreen allow="accelerometer; autoplay; clipboard-write;
-                      encrypted-media; gyroscope; picture-in-picture"></iframe>
-            -->
             <div class="vsl-placeholder">
               <div class="play-btn" title="Insert your YouTube embed above">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
@@ -1313,7 +1194,6 @@
       <div class="ticker-fade-left"></div>
       <div class="ticker-fade-right"></div>
       <div class="ticker-track">
-
         <!-- SET 1 -->
         <div class="ticker-item">
           <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
@@ -1345,7 +1225,7 @@
           <span class="ticker-name">GoHighLevel</span><span class="ticker-role">CRM &amp; Dashboard</span>
         </div>
         <div class="ticker-divider">◆</div>
-        <!-- SET 2 -->
+        <!-- SET 2 (duplicate for infinite loop) -->
         <div class="ticker-item">
           <svg class="ticker-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1877F2"/><path d="M20 8C13.373 8 8 13.373 8 20c0 5.99 4.388 10.954 10.125 11.854V23.5h-3.047V20h3.047v-2.647c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H23.83c-1.491 0-1.956.925-1.956 1.874V20h3.328l-.532 3.5H21.875v8.354C27.612 30.954 32 25.99 32 20c0-6.627-5.373-12-12-12z" fill="white"/></svg>
           <span class="ticker-name">Meta Ads</span><span class="ticker-role">Traffic Engine</span>
@@ -1391,7 +1271,6 @@
 
       <div class="blueprint-grid reveal-child">
 
-        <!-- Pillar 1 -->
         <div class="pillar-card">
           <div class="pillar-header">
             <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
@@ -1401,29 +1280,16 @@
             </div>
           </div>
           <div class="pillar-steps">
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Client fills onboarding form</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Client fills onboarding form</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>We create AI-generated ad creatives</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>We create AI-generated ad creatives</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Launch targeted Meta campaigns</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Launch targeted Meta campaigns</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step step-final">
-              <div class="step-dot-final"></div>
-              <span>Qualified leads flow into pipeline</span>
-            </div>
+            <div class="pillar-step step-final"><div class="step-dot-final"></div><span>Qualified leads flow into pipeline</span></div>
           </div>
         </div>
 
-        <!-- Pillar 2 -->
         <div class="pillar-card pillar-card--featured">
           <div class="pillar-glow"></div>
           <div class="pillar-header">
@@ -1434,29 +1300,16 @@
             </div>
           </div>
           <div class="pillar-steps">
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Build your custom AI voice agent</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Build your custom AI voice agent</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>AI instantly contacts new leads</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>AI instantly contacts new leads</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Qualifies & books into your calendar</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Qualifies & books into your calendar</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step step-final">
-              <div class="step-dot-final"></div>
-              <span>Automated show-up reminders sent</span>
-            </div>
+            <div class="pillar-step step-final"><div class="step-dot-final"></div><span>Automated show-up reminders sent</span></div>
           </div>
         </div>
 
-        <!-- Pillar 3 -->
         <div class="pillar-card">
           <div class="pillar-header">
             <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
@@ -1466,25 +1319,13 @@
             </div>
           </div>
           <div class="pillar-steps">
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Client provides 5 past sales recordings</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Client provides 5 past sales recordings</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Plug into our AI script optimiser</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Plug into our AI script optimiser</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step">
-              <div class="step-dot"></div>
-              <span>Deploy new high-converting sales scripts</span>
-            </div>
+            <div class="pillar-step"><div class="step-dot"></div><span>Deploy new high-converting sales scripts</span></div>
             <div class="step-arrow">↓</div>
-            <div class="pillar-step step-final">
-              <div class="step-dot-final"></div>
-              <span>Test, iterate & compound results</span>
-            </div>
+            <div class="pillar-step step-final"><div class="step-dot-final"></div><span>Test, iterate & compound results</span></div>
           </div>
         </div>
 
@@ -1492,26 +1333,59 @@
     </div>
   </section>
 
-  <!-- ── GUARANTEE SECTION ─────────────────────────────── -->
+  <!-- ══════════════════════════════════════════════════════
+       ── 30-DAY GUARANTEE FLASHCARD ────────────────────────
+       ══════════════════════════════════════════════════════ -->
   <section class="guarantee-section">
     <div class="container">
-      <div class="guarantee-card">
-        <div class="guarantee-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Zero-Risk Guarantee
+      <div class="guarantee-card-scene reveal">
+        <div class="guarantee-card">
+
+          <!-- Ambient bloom layers -->
+          <div class="guarantee-bloom"></div>
+          <div class="guarantee-bloom-bottom"></div>
+
+          <!-- Badge -->
+          <div class="guarantee-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Zero-Risk Guarantee
+          </div>
+
+          <!-- Big decorative number -->
+          <span class="guarantee-days-accent">30</span>
+
+          <!-- Headline -->
+          <h2 class="guarantee-headline">Day ROI Guarantee.</h2>
+
+          <!-- Divider -->
+          <div class="guarantee-divider"></div>
+
+          <!-- Body -->
+          <p class="guarantee-body">We completely remove the risk. If our 3-pillar system does not successfully automate your follow-up and start booking qualified appointments into your calendar within the first 30 days, you get your money back.*</p>
+
+          <!-- Pills -->
+          <div class="guarantee-pillars">
+            <div class="g-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Automated Follow-Up
+            </div>
+            <div class="g-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Qualified Bookings
+            </div>
+            <div class="g-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              30-Day Window
+            </div>
+          </div>
+
+          <!-- Fine print -->
+          <p class="guarantee-fine">*Terms and conditions apply. Money-back guarantee applies strictly to 80% of the initial agency setup fee to cover irreversible infrastructure, telecom, and prompt engineering costs. Third-party ad spend is non-refundable.</p>
+
         </div>
-        <h2 class="guarantee-headline">The 30-Day ROI Guarantee.</h2>
-        <p class="guarantee-body">We completely remove the risk. If our 3-pillar system does not successfully automate your follow-up and start booking qualified appointments into your calendar within the first 30 days, you get your money back.*</p>
-        <div class="guarantee-pillars">
-          <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Automated Follow-Up</div>
-          <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Qualified Bookings</div>
-          <div class="g-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 30-Day Window</div>
-        </div>
-        <p class="guarantee-fine">*Terms and conditions apply. Money-back guarantee applies strictly to 80% of the initial agency setup fee to cover irreversible infrastructure, telecom, and prompt engineering costs. Third-party ad spend is non-refundable.</p>
       </div>
     </div>
   </section>
-
 
   <!-- ── CALL AGENDA ───────────────────────────────────── -->
   <section class="agenda-section">
@@ -1616,14 +1490,8 @@
   </footer>
 
   <script>
-    // ── Year ──────────────────────────────────────────────
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ── Calendly URL param personalisation ────────────────
-    // Calendly passes these when "Pass event details" is enabled:
-    //   ?name=John+Smith&email=john@example.com
-    //   &event_type_name=Vergo+One-on-One+Onboarding+call
-    //   &event_start_time=2026-04-01T10%3A00%3A00%2B10%3A00
     (function personalise() {
       const p = new URLSearchParams(window.location.search);
       const name      = (p.get('name')            || '').trim();
@@ -1631,34 +1499,24 @@
       const eventType = (p.get('event_type_name') || '').trim();
       const startRaw  = (p.get('event_start_time')|| '').trim();
 
-      if (!name && !email && !startRaw) return; // no params — stay generic
+      if (!name && !email && !startRaw) return;
 
-      // ── First name only for friendly display
       const firstName = name.split(' ')[0] || name;
-      const initials  = name
-        .split(' ')
-        .map(w => w[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2) || '👋';
+      const initials  = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '👋';
 
-      // ── Banner
       if (firstName) {
         document.getElementById('banner-text').textContent =
           `${firstName.toUpperCase()}, STEP 2: YOUR CALL IS CONFIRMED. WATCH THIS REQUIRED VIDEO BEFORE OUR MEETING.`;
       }
 
-      // ── Badge
       document.getElementById('badge-text').textContent =
         firstName ? `Hey ${firstName} — Booking Confirmed ✓` : 'Booking Confirmed — Next Step Below';
 
-      // ── Greeting line
       if (firstName) {
         document.getElementById('greeting-name').textContent = name || firstName;
         document.getElementById('greeting-line').classList.add('show');
       }
 
-      // ── Confirmation card
       const card = document.getElementById('confirm-card');
       card.classList.add('show');
 
@@ -1674,26 +1532,20 @@
         document.getElementById('confirm-email-row').style.display = 'block';
       }
 
-      // ── Format start time
       if (startRaw) {
         try {
           const dt = new Date(decodeURIComponent(startRaw));
           const formatted = dt.toLocaleString('en-AU', {
-            weekday: 'short',
-            day:     'numeric',
-            month:   'short',
-            year:    'numeric',
-            hour:    'numeric',
-            minute:  '2-digit',
-            timeZoneName: 'short'
+            weekday: 'short', day: 'numeric', month: 'short', year: 'numeric',
+            hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
           });
-          document.getElementById('confirm-time-val').textContent      = formatted;
-          document.getElementById('confirm-time-block').style.display  = 'flex';
-        } catch (e) { /* silently skip bad date */ }
+          document.getElementById('confirm-time-val').textContent     = formatted;
+          document.getElementById('confirm-time-block').style.display = 'flex';
+        } catch (e) {}
       }
     })();
 
-    // ── Scroll-reveal ─────────────────────────────────────
+    // Scroll-reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1704,71 +1556,47 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal, .reveal-child').forEach(el => observer.observe(el));
 
-    // ── Ticker: pure transform, no scroll conflicts ───────
+    // Ticker
     (function() {
       const wrap  = document.querySelector('.ticker-wrap');
       const track = document.querySelector('.ticker-track');
       if (!wrap || !track) return;
 
-      const AUTO_SPEED = 0.5;   // px per frame auto-scroll
-      let pos       = 0;        // current translateX offset (always positive)
-      let momentum  = AUTO_SPEED;
-      let dragging  = false;
-      let lastX     = 0;
-      let rafId     = null;
+      const AUTO_SPEED = 0.5;
+      let pos = 0, momentum = AUTO_SPEED, dragging = false, lastX = 0;
 
       function halfW() { return track.scrollWidth / 2; }
 
       function setPos(p) {
         const hw = halfW();
-        pos = ((p % hw) + hw) % hw;  // always wrap positive
+        pos = ((p % hw) + hw) % hw;
         track.style.transform = `translateX(-${pos}px)`;
       }
 
       function loop() {
         if (!dragging) {
-          // Ease momentum toward AUTO_SPEED
           momentum += (AUTO_SPEED - momentum) * 0.05;
           setPos(pos + momentum);
         }
-        rafId = requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
       }
-
       loop();
 
-      // ── Touch ──────────────────────────────────────────
-      wrap.addEventListener('touchstart', e => {
-        dragging = true;
-        lastX    = e.touches[0].clientX;
-        momentum = 0;
-      }, { passive: true });
-
+      wrap.addEventListener('touchstart', e => { dragging = true; lastX = e.touches[0].clientX; momentum = 0; }, { passive: true });
       wrap.addEventListener('touchmove', e => {
         if (!dragging) return;
-        const x  = e.touches[0].clientX;
-        const dx = lastX - x;          // +ve = finger moving left = scroll right
-        lastX    = x;
+        const dx = lastX - e.touches[0].clientX;
+        lastX = e.touches[0].clientX;
         momentum = dx;
         setPos(pos + dx);
       }, { passive: true });
+      wrap.addEventListener('touchend', () => { dragging = false; if (momentum < 0) momentum = 0; });
 
-      wrap.addEventListener('touchend', () => {
-        dragging = false;
-        // momentum is already the last dx — eases back to AUTO_SPEED in loop
-        if (momentum < 0) momentum = 0;  // don't scroll backwards on release
-      });
-
-      // ── Mouse (desktop) ────────────────────────────────
-      wrap.addEventListener('mousedown', e => {
-        dragging = true;
-        lastX    = e.clientX;
-        momentum = 0;
-        wrap.style.cursor = 'grabbing';
-      });
+      wrap.addEventListener('mousedown', e => { dragging = true; lastX = e.clientX; momentum = 0; wrap.style.cursor = 'grabbing'; });
       window.addEventListener('mousemove', e => {
         if (!dragging) return;
         const dx = lastX - e.clientX;
-        lastX    = e.clientX;
+        lastX = e.clientX;
         momentum = dx;
         setPos(pos + dx);
       });
@@ -1781,29 +1609,11 @@
       wrap.style.cursor = 'grab';
     })();
 
-    // ── FAQ accordion ─────────────────────────────────────
+    // FAQ
     function toggleFaq(item) {
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
-    }
-
-    // ── Play / Pause toggle for audio buttons ─────────────
-    let currentPlaying = null;
-    function togglePlay(btn) {
-      if (currentPlaying && currentPlaying !== btn) {
-        currentPlaying.classList.remove('playing');
-        currentPlaying.querySelector('span:last-child').textContent = 'Play Audio';
-      }
-      if (btn.classList.contains('playing')) {
-        btn.classList.remove('playing');
-        btn.querySelector('span:last-child').textContent = 'Play Audio';
-        currentPlaying = null;
-      } else {
-        btn.classList.add('playing');
-        btn.querySelector('span:last-child').textContent = 'Playing…';
-        currentPlaying = btn;
-      }
     }
   </script>
 </body>
