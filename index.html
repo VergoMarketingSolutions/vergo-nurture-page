@@ -92,9 +92,9 @@
 
     /* ── WRAPPER ─────────────────────────────────────────── */
     .container {
-      max-width: 1280px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 48px;
       position: relative;
       z-index: 1;
     }
@@ -1111,27 +1111,27 @@
 <body>
   <!-- Ambient background lights -->
   <div style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
-    <div style="position:absolute;width:900px;height:900px;top:-300px;left:-200px;background:radial-gradient(circle,rgba(29,78,216,0.22) 0%,rgba(59,130,246,0.08) 40%,transparent 70%);border-radius:50%;animation:orb1 14s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:650px;height:650px;top:30%;right:-180px;background:radial-gradient(circle,rgba(59,130,246,0.18) 0%,rgba(37,99,235,0.06) 40%,transparent 70%);border-radius:50%;animation:orb2 18s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:550px;height:550px;bottom:-150px;left:28%;background:radial-gradient(circle,rgba(37,99,235,0.16) 0%,rgba(59,130,246,0.05) 40%,transparent 70%);border-radius:50%;animation:orb3 22s ease-in-out infinite alternate;"></div>
-    <div style="position:absolute;width:380px;height:380px;top:55%;left:5%;background:radial-gradient(circle,rgba(99,102,241,0.14) 0%,transparent 65%);border-radius:50%;animation:orb1 17s ease-in-out infinite alternate-reverse;"></div>
-    <div style="position:absolute;width:300px;height:300px;top:18%;left:52%;background:radial-gradient(circle,rgba(59,130,246,0.11) 0%,transparent 65%);border-radius:50%;animation:orb2 25s ease-in-out infinite alternate-reverse;"></div>
+    <div style="position:absolute;width:1000px;height:1000px;top:-350px;left:-250px;background:radial-gradient(circle,rgba(29,78,216,0.38) 0%,rgba(59,130,246,0.16) 35%,transparent 68%);border-radius:50%;animation:orb1 14s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:750px;height:750px;top:28%;right:-200px;background:radial-gradient(circle,rgba(59,130,246,0.32) 0%,rgba(37,99,235,0.12) 35%,transparent 68%);border-radius:50%;animation:orb2 18s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:650px;height:650px;bottom:-180px;left:25%;background:radial-gradient(circle,rgba(37,99,235,0.3) 0%,rgba(59,130,246,0.1) 35%,transparent 68%);border-radius:50%;animation:orb3 22s ease-in-out infinite alternate;"></div>
+    <div style="position:absolute;width:450px;height:450px;top:52%;left:3%;background:radial-gradient(circle,rgba(99,102,241,0.26) 0%,transparent 62%);border-radius:50%;animation:orb1 17s ease-in-out infinite alternate-reverse;"></div>
+    <div style="position:absolute;width:350px;height:350px;top:15%;left:50%;background:radial-gradient(circle,rgba(59,130,246,0.2) 0%,transparent 62%);border-radius:50%;animation:orb2 25s ease-in-out infinite alternate-reverse;"></div>
   </div>
   <style>
     @keyframes orb1 {
-      0%   { transform: translate(0,0) scale(1);    filter: blur(55px); opacity: 0.8; }
+      0%   { transform: translate(0,0) scale(1);     filter: blur(50px);  opacity: 0.85; }
       50%  { opacity: 1; }
-      100% { transform: translate(60px,50px) scale(1.18); filter: blur(75px); opacity: 0.85; }
+      100% { transform: translate(70px,55px) scale(1.2);  filter: blur(70px);  opacity: 0.9; }
     }
     @keyframes orb2 {
-      0%   { transform: translate(0,0) scale(1);     filter: blur(65px); opacity: 0.7; }
+      0%   { transform: translate(0,0) scale(1);      filter: blur(60px);  opacity: 0.8; }
       50%  { opacity: 1; }
-      100% { transform: translate(-55px,70px) scale(1.12); filter: blur(85px); opacity: 0.8; }
+      100% { transform: translate(-60px,75px) scale(1.14); filter: blur(80px);  opacity: 0.88; }
     }
     @keyframes orb3 {
-      0%   { transform: translate(0,0) scale(1);    filter: blur(60px); opacity: 0.75; }
+      0%   { transform: translate(0,0) scale(1);     filter: blur(55px);  opacity: 0.8; }
       50%  { opacity: 1; }
-      100% { transform: translate(45px,-60px) scale(1.15); filter: blur(80px); opacity: 0.85; }
+      100% { transform: translate(50px,-65px) scale(1.17); filter: blur(75px);  opacity: 0.9; }
     }
 
     /* ── VIDEO-STYLE HOVER POP ───────────────────────────── */
