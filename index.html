@@ -494,7 +494,10 @@
       width: max-content;
       padding: 28px 0;
       /* Pure CSS animation — runs on compositor thread, never stutters */
-      animation: ticker-scroll 28s linear infinite;
+      animation: ticker-scroll 16s linear infinite;
+    }
+    @media (max-width: 768px) {
+      .ticker-track { animation-duration: 10s; }
       will-change: transform;
     }
 
@@ -665,7 +668,8 @@
     .faq-a p strong { color: #ddd; font-weight: 600; }
 
     @media (max-width: 600px) {
-      .container { padding: 0 18px; }
+      /* Full bleed layout — no side padding on container */
+      .container { padding: 0 16px; }
       .hero { padding: 60px 0 40px; }
       .vsl-section { padding: 0 0 48px; }
       .demo-section { padding: 0 0 56px; }
@@ -674,6 +678,34 @@
       .faq-section { padding: 0 0 60px; }
       .section-title { font-size: 1.6rem; }
       .confirm-card { padding: 16px; gap: 14px; }
+
+      /* Guarantee card — full width, tighter padding */
+      .guarantee-section { padding: 0 0 48px; }
+      .guarantee-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 40px 24px;
+        margin: 0 -16px; /* bleed past container */
+      }
+      .guarantee-card-scene { margin: 0 -16px; }
+
+      /* Smaller ticker items so 2+ logos visible at once */
+      .ticker-item { padding: 0 20px; gap: 10px; }
+      .ticker-logo { width: 26px; height: 26px; }
+      .ticker-name { font-size: 0.82rem; }
+      .ticker-role { font-size: 0.58rem; padding: 3px 8px; }
+      .ticker-track { padding: 20px 0; }
+
+      /* Disable pillar hover pop-out on mobile */
+      .blueprint-grid:hover .pillar-card,
+      .blueprint-grid:hover .pillar-card:hover {
+        opacity: 1 !important;
+        transform: translateZ(0) !important;
+        box-shadow: none !important;
+        border-color: rgba(255,255,255,0.07) !important;
+      }
+      .blueprint-grid:hover .pillar-card:hover::after { opacity: 0 !important; }
     }
 
     /* ══════════════════════════════════════════════════════
@@ -730,19 +762,16 @@
       pointer-events: none;
     }
 
-    /* ── Grid hover: dim non-hovered siblings — opacity only, no scale (scale blurs text) ── */
+    /* ── Pillar hover — dim siblings, pop active card ── */
     .blueprint-grid:hover .pillar-card {
       opacity: 0.5;
       transform: translateZ(0);
       box-shadow: none;
       border-color: rgba(255,255,255,0.05);
     }
-
-    /* ── Hovered card: pop out toward viewer ── */
     .blueprint-grid:hover .pillar-card:hover {
       opacity: 1;
       transform: scale(1.07) translateY(-18px) translateZ(0);
-      /* Reduced to 3 shadow layers — fewer = faster GPU composite */
       box-shadow:
         0 0 0 1px rgba(59,130,246,0.5),
         0 28px 60px rgba(0,0,0,0.65),
@@ -751,11 +780,9 @@
       z-index: 10;
     }
     .blueprint-grid:hover .pillar-card:hover::after { opacity: 1; }
-
-    /* Text colour pops on the active card */
-    .blueprint-grid:hover .pillar-card:hover .pillar-name  { color: #fff; }
-    .blueprint-grid:hover .pillar-card:hover .pillar-step span { color: #ddd; }
-    .blueprint-grid:hover .pillar-card:hover .step-final span  { color: #fff; }
+    .blueprint-grid:hover .pillar-card:hover .pillar-name        { color: #fff; }
+    .blueprint-grid:hover .pillar-card:hover .pillar-step span   { color: #ddd; }
+    .blueprint-grid:hover .pillar-card:hover .step-final span    { color: #fff; }
 
     /* ── Featured variant ── */
     .pillar-card--featured {
@@ -1073,8 +1100,9 @@
     .agenda-grid:hover .agenda-card:hover { opacity: 1; }
     .agenda-card { transition: opacity 0.5s ease; }
 
-    /* Ticker hover — only activates when cursor is over an actual item, not gaps */
-    /* Ticker hover — no dim, no slowdown, just scrolls */
+    /* Ticker hover — dims others, keeps hovered item bright */
+    .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; transition: opacity 0.25s ease; }
+    .ticker-wrap .ticker-item:hover { opacity: 1 !important; }
 
     /* FAQ hover */
     .faq-item:hover .faq-q span { color: #fff; }
