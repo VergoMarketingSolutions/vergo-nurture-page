@@ -470,7 +470,6 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--surface);
-      touch-action: pan-y;
     }
 
     .ticker-fade-left,
@@ -484,13 +483,19 @@
     .ticker-fade-left  { left: 0;  background: linear-gradient(to right, var(--surface), transparent); }
     .ticker-fade-right { right: 0; background: linear-gradient(to left,  var(--surface), transparent); }
 
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
     .ticker-track {
       display: flex;
       align-items: center;
       width: max-content;
       padding: 28px 0;
+      /* Pure CSS animation — runs on compositor thread, never stutters */
+      animation: ticker-scroll 28s linear infinite;
       will-change: transform;
-      transform: translateZ(0);
     }
 
     .ticker-item {
@@ -500,7 +505,6 @@
       padding: 0 48px;
       white-space: nowrap;
       flex-shrink: 0;
-      transition: opacity 0.3s ease;
     }
     .ticker-logo { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
     .ticker-name {
@@ -644,12 +648,11 @@
       color: var(--blue);
     }
     .faq-a {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1);
+      overflow: hidden;
+      height: 0;
+      transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .faq-a-inner { overflow: hidden; }
-    .faq-item.open .faq-a { grid-template-rows: 1fr; }
     .faq-a p {
       font-size: 0.95rem;
       color: #888;
@@ -701,7 +704,6 @@
       gap: 24px;
       position: relative;
       overflow: hidden;
-      /* Fast, GPU-only properties only — no background/color in transition */
       transition:
         transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         box-shadow 0.22s ease,
@@ -709,8 +711,11 @@
         opacity 0.22s ease;
       will-change: transform, opacity;
       transform-origin: center bottom;
-      /* Promote to own layer immediately so hover is instant */
       transform: translateZ(0);
+      /* Prevent subpixel text blur during scale */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      -webkit-font-smoothing: subpixel-antialiased;
     }
 
     /* Radial top-glow overlay — fades in on hover */
@@ -725,10 +730,10 @@
       pointer-events: none;
     }
 
-    /* ── Grid hover: dim & shrink non-hovered siblings ── */
+    /* ── Grid hover: dim non-hovered siblings — opacity only, no scale (scale blurs text) ── */
     .blueprint-grid:hover .pillar-card {
-      opacity: 0.55;
-      transform: scale(0.95) translateZ(0);
+      opacity: 0.5;
+      transform: translateZ(0);
       box-shadow: none;
       border-color: rgba(255,255,255,0.05);
     }
@@ -1069,8 +1074,7 @@
     .agenda-card { transition: opacity 0.5s ease; }
 
     /* Ticker hover — only activates when cursor is over an actual item, not gaps */
-    .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; transition: opacity 0.3s ease; }
-    .ticker-wrap .ticker-item:hover { opacity: 1 !important; }
+    /* Ticker hover — no dim, no slowdown, just scrolls */
 
     /* FAQ hover */
     .faq-item:hover .faq-q span { color: #fff; }
@@ -1514,66 +1518,37 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal, .reveal-child').forEach(el => observer.observe(el));
 
-    // Ticker
-    (function() {
-      const wrap  = document.querySelector('.ticker-wrap');
-      const track = document.querySelector('.ticker-track');
-      if (!wrap || !track) return;
+    // Ticker — handled entirely by CSS animation (ticker-scroll keyframe)
 
-      const AUTO_SPEED = 0.65;
-      let pos = 0, momentum = AUTO_SPEED, dragging = false, lastX = 0;
-
-      function halfW() { return track.scrollWidth / 2; }
-
-      function setPos(p) {
-        const hw = halfW();
-        if (!hw) return; // guard against 0 / NaN on first paint
-        pos = ((p % hw) + hw) % hw;
-        track.style.transform = `translateX(-${pos}px)`;
-      }
-
-      function loop() {
-        if (!dragging) {
-          momentum += (AUTO_SPEED - momentum) * 0.05;
-          setPos(pos + momentum);
-        }
-        requestAnimationFrame(loop);
-      }
-      // Defer one frame so the browser has finished layout before we read scrollWidth
-      requestAnimationFrame(loop);
-
-      wrap.addEventListener('touchstart', e => { dragging = true; lastX = e.touches[0].clientX; momentum = 0; }, { passive: true });
-      wrap.addEventListener('touchmove', e => {
-        if (!dragging) return;
-        const dx = lastX - e.touches[0].clientX;
-        lastX = e.touches[0].clientX;
-        momentum = dx;
-        setPos(pos + dx);
-      }, { passive: true });
-      wrap.addEventListener('touchend', () => { dragging = false; if (momentum < 0) momentum = 0; });
-
-      wrap.addEventListener('mousedown', e => { dragging = true; lastX = e.clientX; momentum = 0; wrap.style.cursor = 'grabbing'; });
-      window.addEventListener('mousemove', e => {
-        if (!dragging) return;
-        const dx = lastX - e.clientX;
-        lastX = e.clientX;
-        momentum = dx;
-        setPos(pos + dx);
-      });
-      window.addEventListener('mouseup', () => {
-        if (!dragging) return;
-        dragging = false;
-        if (momentum < 0) momentum = 0;
-        wrap.style.cursor = 'grab';
-      });
-      wrap.style.cursor = 'grab';
-    })();
-
-    // FAQ
+    // FAQ — measures exact content height so the animation is never jumpy
     function toggleFaq(item) {
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+
+      // Close all open items first
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        const panel = el.querySelector('.faq-a');
+        const inner = el.querySelector('.faq-a-inner');
+        // Lock current height before collapsing so transition has a start point
+        panel.style.height = inner.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          panel.style.height = '0';
+        });
+        el.classList.remove('open');
+      });
+
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        const panel = item.querySelector('.faq-a');
+        const inner = item.querySelector('.faq-a-inner');
+        const targetH = inner.scrollHeight + 'px';
+        panel.style.height = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            panel.style.height = targetH;
+          });
+        });
+        item.classList.add('open');
+      }
     }
   </script>
 </body>
