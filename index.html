@@ -679,18 +679,24 @@
       .section-title { font-size: 1.6rem; }
       .confirm-card { padding: 16px; gap: 14px; }
 
-      /* Guarantee card — full width, tighter padding */
+      /* Guarantee card — true full width by removing container padding for that section */
       .guarantee-section { padding: 0 0 48px; }
+      .guarantee-section .container { padding: 0; }
+      .guarantee-card-scene { width: 100%; }
       .guarantee-card {
         border-radius: 0;
         border-left: none;
         border-right: none;
         padding: 40px 24px;
-        margin: 0 -16px; /* bleed past container */
       }
-      .guarantee-card-scene { margin: 0 -16px; }
 
-      /* Smaller ticker items so 2+ logos visible at once */
+      /* Full-bleed sections — remove container padding so content hits edges */
+      .vsl-section .container,
+      .blueprint-section .container,
+      .ticker-section .container { padding: 0 16px; }
+      .vsl-wrapper { border-radius: 0; }
+      .vsl-frame { border-radius: 0; border-left: none; border-right: none; }
+      .vsl-glow { display: none; }
       .ticker-item { padding: 0 20px; gap: 10px; }
       .ticker-logo { width: 26px; height: 26px; }
       .ticker-name { font-size: 0.82rem; }
@@ -1100,8 +1106,9 @@
     .agenda-grid:hover .agenda-card:hover { opacity: 1; }
     .agenda-card { transition: opacity 0.5s ease; }
 
-    /* Ticker hover — dims others, keeps hovered item bright */
-    .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; transition: opacity 0.25s ease; }
+    /* Ticker hover — dims others, keeps hovered item bright. Transition on base state handles the fade-back */
+    .ticker-item { transition: opacity 0.4s ease; }
+    .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; }
     .ticker-wrap .ticker-item:hover { opacity: 1 !important; }
 
     /* FAQ hover */
