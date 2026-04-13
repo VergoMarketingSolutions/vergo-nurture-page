@@ -152,252 +152,14 @@
       font-size: clamp(1rem, 2.2vw, 1.2rem);
       color: #aaa;
       max-width: 600px;
-      margin: 0 auto 20px;
+      margin: 0 auto 0;
       font-weight: 300;
       animation: fadeUp 0.6s 0.2s ease both;
     }
 
-    .scroll-hint {
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-
-    .vsl-section {
-      padding: 16px 0 80px;
-      animation: fadeUp 0.7s 0.35s ease both;
-    }
-
-    .vsl-wrapper {
-      position: relative;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .vsl-glow {
-      position: absolute;
-      inset: -2px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--blue) 0%, transparent 50%, var(--blue) 100%);
-      opacity: 0.25;
-      filter: blur(1px);
-      z-index: 0;
-    }
-
-    .vsl-frame {
-      position: relative;
-      z-index: 1;
-      background: #1a1a1a;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(59,130,246,0.15),
-        0 40px 80px rgba(0,0,0,0.7),
-        0 8px 24px rgba(0,0,0,0.5);
-    }
-
-    .vsl-chrome {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 12px 16px;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid var(--border);
-    }
-    .chrome-dot {
-      width: 11px; height: 11px;
-      border-radius: 50%;
-    }
-    .chrome-dot:nth-child(1) { background: #ff5f57; }
-    .chrome-dot:nth-child(2) { background: #febc2e; }
-    .chrome-dot:nth-child(3) { background: #28c840; }
-    .chrome-label {
-      margin-left: auto;
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      font-family: var(--font-head);
-    }
-
-    .vsl-ratio {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      background: #0d0d0d;
-    }
-    .vsl-ratio iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-    .vsl-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      background: radial-gradient(ellipse at 50% 60%, #141e2e 0%, #0a0a0a 100%);
-    }
-    .play-btn {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: var(--blue);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 12px rgba(59,130,246,0.15), 0 0 40px rgba(59,130,246,0.4);
-      cursor: pointer;
-      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .play-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 0 16px rgba(59,130,246,0.12), 0 0 60px rgba(59,130,246,0.5);
-    }
-    .play-btn svg { margin-left: 4px; }
-    .placeholder-label {
-      font-family: var(--font-head);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .demo-section { padding: 0 0 96px; }
-
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .section-label span {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-family: var(--font-head);
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .section-sub {
-      color: #888;
-      font-size: 1rem;
-      font-weight: 300;
-      margin-bottom: 48px;
-      max-width: 520px;
-    }
-
-    .cta-strip {
-      margin-bottom: 80px;
-      background: linear-gradient(135deg, #0f1c2e 0%, #0a0a0a 60%);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 20px;
-      padding: clamp(36px, 5vw, 60px) clamp(24px, 5vw, 64px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      flex-wrap: wrap;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-strip::before {
-      content: '';
-      position: absolute;
-      right: -100px; top: -100px;
-      width: 400px; height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .cta-left { max-width: 560px; }
-    .cta-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-family: var(--font-head);
-      margin-bottom: 10px;
-    }
-    .cta-heading {
-      font-family: var(--font-head);
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 10px;
-    }
-    .cta-sub {
-      font-size: 0.9rem;
-      color: #888;
-      font-weight: 300;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--blue);
-      color: #fff;
-      padding: 16px 32px;
-      border-radius: 10px;
-      font-family: var(--font-head);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: 0 4px 20px rgba(59,130,246,0.4);
-    }
-    .cta-btn:hover {
-      background: #2563eb;
-      box-shadow: 0 8px 32px rgba(59,130,246,0.5);
-      transform: translateY(-2px);
-    }
-    .cta-btn svg { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .cta-btn:hover svg { transform: translateX(3px); }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: var(--font-head);
-      font-size: 0.9rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #fff;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .footer-logo span { color: var(--blue); }
-    footer p { font-size: 0.76rem; color: #555; }
-
     .confirm-card {
       max-width: 860px;
-      margin: 0 auto 0;
+      margin: 0 auto;
       background: linear-gradient(135deg, #0d1a2a 0%, #0f1218 100%);
       border: 1px solid rgba(59,130,246,0.25);
       border-radius: 14px;
@@ -461,6 +223,13 @@
     .greeting-line.show { display: block; }
     .greeting-line strong { color: #fff; font-weight: 600; }
 
+    /* confirm card section spacing */
+    .confirm-section {
+      padding: 40px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+
     .ticker-section { padding: 0 0 64px; }
     .ticker-header { margin-bottom: 40px; }
 
@@ -493,12 +262,7 @@
       align-items: center;
       width: max-content;
       padding: 28px 0;
-      /* Pure CSS animation — runs on compositor thread, never stutters */
       animation: ticker-scroll 16s linear infinite;
-    }
-    @media (max-width: 768px) {
-      .ticker-track { animation-duration: 10s; }
-      will-change: transform;
     }
 
     .ticker-item {
@@ -531,205 +295,45 @@
     }
     .ticker-divider { color: rgba(59,130,246,0.3); font-size: 0.5rem; flex-shrink: 0; }
 
-    /* ── CALL AGENDA ─────────────────────────────────────── */
-    .agenda-section { padding: 64px 0; }
-    .agenda-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      margin-top: 40px;
-      position: relative;
-      max-width: 100%;
-    }
-    @media (max-width: 800px) {
-      .agenda-grid { grid-template-columns: 1fr; gap: 0; }
-      .agenda-line { display: none !important; }
-      .agenda-card { padding: 24px 0 !important; border-bottom: 1px solid var(--border); }
-      .agenda-card:last-child { border-bottom: none; }
-    }
-
-    .agenda-line {
-      position: absolute;
-      top: 28px; left: -24px;
-      width: 1px;
-      height: calc(100% - 56px);
-      background: linear-gradient(to bottom, var(--blue), transparent);
-      opacity: 0.35;
-    }
-    .agenda-card:first-child .agenda-line { display: none; }
-    .agenda-card:last-child .agenda-line  { display: block; }
-
-    .agenda-number {
-      font-family: var(--font-head);
-      font-size: 3rem;
-      font-weight: 800;
-      color: rgba(59,130,246,0.45);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 14px;
-      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
-      display: inline-block;
-    }
-    .agenda-title {
-      font-family: var(--font-head);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #ccc;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
-      display: inline-block;
-    }
-    .agenda-desc {
-      font-size: 0.92rem;
-      color: #777;
-      font-weight: 300;
-      line-height: 1.75;
-      transition: color 0.55s ease;
-    }
-    .agenda-card:hover .agenda-number {
-      color: rgba(59,130,246,0.9);
-      transform: translateY(-2px);
-    }
-    .agenda-card:hover .agenda-title {
-      color: #fff;
-      transform: translateY(-1px);
-    }
-    .agenda-card:hover .agenda-desc { color: #aaa; }
-
-    /* ── FAQ ─────────────────────────────────────────────── */
-    .faq-section { padding: 0 0 80px; }
-    .faq-list {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      max-width: 100%;
-    }
-    .faq-item {
-      border-top: 1px solid var(--border);
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      transition: background 0.35s ease;
-    }
-    .faq-item:last-child { border-bottom: 1px solid var(--border); }
-    .faq-item:hover { background: rgba(255,255,255,0.02); }
-    .faq-item.open { background: transparent; }
-    .faq-q {
+    .section-label {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 22px 0;
+      gap: 12px;
+      margin-bottom: 12px;
     }
-    .faq-q span {
-      font-family: var(--font-head);
-      font-size: 1.1rem;
+    .section-label span {
+      font-size: 0.72rem;
       font-weight: 600;
-      color: #e8e8e8;
-      letter-spacing: -0.01em;
-      line-height: 1.4;
-      transition: color 0.35s ease;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-family: var(--font-head);
     }
-    .faq-item.open .faq-q span { color: #fff; }
-    .faq-icon {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 1px solid rgba(59,130,246,0.3);
-      background: transparent;
-      color: var(--muted);
-      display: flex; align-items: center; justify-content: center;
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: #888;
       font-size: 1rem;
       font-weight: 300;
-      flex-shrink: 0;
-      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease, color 0.35s ease;
-    }
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      border-color: var(--blue);
-      color: var(--blue);
-    }
-    .faq-a {
-      overflow: hidden;
-      height: 0;
-      transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .faq-a-inner { overflow: hidden; }
-    .faq-a p {
-      font-size: 0.95rem;
-      color: #888;
-      font-weight: 300;
-      line-height: 1.8;
-      padding-bottom: 20px;
-      border-left: 2px solid rgba(59,130,246,0.25);
-      padding-left: 14px;
-    }
-    .faq-a p strong { color: #ddd; font-weight: 600; }
-
-    @media (max-width: 600px) {
-      /* Full bleed layout — no side padding on container */
-      .container { padding: 0 16px; }
-      .hero { padding: 60px 0 40px; }
-      .vsl-section { padding: 0 0 48px; }
-      .demo-section { padding: 0 0 56px; }
-      .ticker-section { padding: 0 0 48px; }
-      .agenda-section { padding: 48px 0; }
-      .faq-section { padding: 0 0 60px; }
-      .section-title { font-size: 1.6rem; }
-      .confirm-card { padding: 16px; gap: 14px; }
-
-      /* Guarantee card — forced full width */
-      .guarantee-section { padding: 0 0 48px !important; }
-      .guarantee-section .container { padding: 0 !important; max-width: 100% !important; width: 100% !important; }
-      .guarantee-card-scene,
-      .guarantee-card-scene.reveal,
-      .guarantee-card-scene.reveal.visible {
-        width: 100% !important;
-        margin: 0 !important;
-        transform: none !important;
-        opacity: 1 !important;
-      }
-      .guarantee-card {
-        border-radius: 0 !important;
-        border-left: none !important;
-        border-right: none !important;
-        padding: 44px 20px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-      }
-
-      /* Full-bleed sections — remove container padding so content hits edges */
-      .vsl-section .container,
-      .blueprint-section .container,
-      .ticker-section .container { padding: 0 16px; }
-      .vsl-wrapper { border-radius: 0; }
-      .vsl-frame { border-radius: 0; border-left: none; border-right: none; }
-      .vsl-glow { display: none; }
-      .ticker-item { padding: 0 20px; gap: 10px; }
-      .ticker-logo { width: 26px; height: 26px; }
-      .ticker-name { font-size: 0.82rem; }
-      .ticker-role { font-size: 0.58rem; padding: 3px 8px; }
-      .ticker-track { padding: 20px 0; }
-
-      /* Disable pillar hover pop-out on mobile */
-      .blueprint-grid:hover .pillar-card,
-      .blueprint-grid:hover .pillar-card:hover {
-        opacity: 1 !important;
-        transform: translateZ(0) !important;
-        box-shadow: none !important;
-        border-color: rgba(255,255,255,0.07) !important;
-      }
-      .blueprint-grid:hover .pillar-card:hover::after { opacity: 0 !important; }
+      margin-bottom: 48px;
+      max-width: 520px;
     }
 
-    /* ══════════════════════════════════════════════════════
-       ── BLUEPRINT / PILLAR CARDS — POP-OUT ANIMATION ──────
-       ══════════════════════════════════════════════════════ */
+    /* ── BLUEPRINT / PILLAR CARDS ── */
     .blueprint-section { padding: 80px 0 64px; }
 
-    /* Give the grid a 3-D stage so cards can "come forward" */
     .blueprint-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -741,7 +345,6 @@
     }
     @media (max-width: 800px) { .blueprint-grid { grid-template-columns: 1fr; gap: 14px; perspective: none; } }
 
-    /* ── Base card state ── */
     .pillar-card {
       background: #111;
       border: 1px solid rgba(255,255,255,0.07);
@@ -760,13 +363,11 @@
       will-change: transform, opacity;
       transform-origin: center bottom;
       transform: translateZ(0);
-      /* Prevent subpixel text blur during scale */
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       -webkit-font-smoothing: subpixel-antialiased;
     }
 
-    /* Radial top-glow overlay — fades in on hover */
     .pillar-card::after {
       content: '';
       position: absolute;
@@ -778,7 +379,6 @@
       pointer-events: none;
     }
 
-    /* ── Pillar hover — dim siblings, pop active card ── */
     .blueprint-grid:hover .pillar-card {
       opacity: 0.5;
       transform: translateZ(0);
@@ -800,7 +400,6 @@
     .blueprint-grid:hover .pillar-card:hover .pillar-step span   { color: #ddd; }
     .blueprint-grid:hover .pillar-card:hover .step-final span    { color: #fff; }
 
-    /* ── Featured variant ── */
     .pillar-card--featured {
       background: #131313;
       border-color: rgba(255,255,255,0.1);
@@ -872,7 +471,7 @@
     .step-final span { color: #e0e0e0; font-weight: 500; }
     .step-arrow { font-size: 0.85rem; color: rgba(59,130,246,0.7); padding-left: 19px; line-height: 1; font-weight: 600; }
 
-    /* ── 30-DAY GUARANTEE ─────────────────────────────────── */
+    /* ── 30-DAY GUARANTEE ── */
     .guarantee-section { padding: 0 0 80px; }
 
     .guarantee-card-scene { perspective: 1200px; }
@@ -890,7 +489,6 @@
       border: 1px solid rgba(59,130,246,0.3);
       padding: clamp(48px, 7vw, 80px) clamp(28px, 6vw, 72px);
       text-align: center;
-      /* Only GPU-composited properties — no filter, no inset shadow */
       transition:
         transform 0.4s cubic-bezier(0.4,0,0.2,1),
         border-color 0.4s ease,
@@ -927,7 +525,6 @@
       pointer-events: none;
     }
 
-    /* Blooms — removed transition, they're large radial gradients that are expensive to animate */
     .guarantee-bloom {
       position: absolute;
       top: -100px; left: 50%;
@@ -937,7 +534,6 @@
       pointer-events: none;
       opacity: 0.7;
     }
-    .guarantee-bloom-bottom { display: none; }
 
     .guarantee-badge {
       display: inline-flex;
@@ -1042,7 +638,134 @@
       z-index: 1;
     }
 
-    /* ── ANIMATIONS ──────────────────────────────────────── */
+    /* ── CALL AGENDA ── */
+    .agenda-section { padding: 64px 0; }
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 40px;
+      position: relative;
+      max-width: 100%;
+    }
+    @media (max-width: 800px) {
+      .agenda-grid { grid-template-columns: 1fr; gap: 0; }
+      .agenda-line { display: none !important; }
+      .agenda-card { padding: 24px 0 !important; border-bottom: 1px solid var(--border); }
+      .agenda-card:last-child { border-bottom: none; }
+    }
+
+    .agenda-line {
+      position: absolute;
+      top: 28px; left: -24px;
+      width: 1px;
+      height: calc(100% - 56px);
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      opacity: 0.35;
+    }
+    .agenda-card:first-child .agenda-line { display: none; }
+    .agenda-card:last-child .agenda-line  { display: block; }
+
+    .agenda-number {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(59,130,246,0.45);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 14px;
+      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+    .agenda-title {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ccc;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      transition: color 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+    .agenda-desc {
+      font-size: 0.92rem;
+      color: #777;
+      font-weight: 300;
+      line-height: 1.75;
+      transition: color 0.55s ease;
+    }
+    .agenda-card:hover .agenda-number { color: rgba(59,130,246,0.9); transform: translateY(-2px); }
+    .agenda-card:hover .agenda-title  { color: #fff; transform: translateY(-1px); }
+    .agenda-card:hover .agenda-desc   { color: #aaa; }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 0 0 80px; }
+    .faq-list {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 100%;
+    }
+    .faq-item {
+      border-top: 1px solid var(--border);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      transition: background 0.35s ease;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-item:hover { background: rgba(255,255,255,0.02); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+    }
+    .faq-q span {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e8e8e8;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      transition: color 0.35s ease;
+    }
+    .faq-item.open .faq-q span { color: #fff; }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(59,130,246,0.3);
+      background: transparent;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease, color 0.35s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--blue); color: var(--blue); }
+    .faq-a {
+      overflow: hidden;
+      height: 0;
+      transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-a-inner { overflow: hidden; }
+    .faq-a p {
+      font-size: 0.95rem;
+      color: #888;
+      font-weight: 300;
+      line-height: 1.8;
+      padding-bottom: 20px;
+      border-left: 2px solid rgba(59,130,246,0.25);
+      padding-left: 14px;
+    }
+    .faq-a p strong { color: #ddd; font-weight: 600; }
+    .faq-item:hover .faq-q span { color: #fff; }
+    .faq-item:hover .faq-icon { border-color: rgba(59,130,246,0.6); color: var(--blue-light); }
+
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -1064,19 +787,85 @@
     .reveal-child.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.08s; }
     .reveal-child.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.16s; }
 
-    /* Agenda — dim siblings smoothly */
     .agenda-grid:hover .agenda-card { opacity: 0.4; transition: opacity 0.5s ease; }
     .agenda-grid:hover .agenda-card:hover { opacity: 1; }
     .agenda-card { transition: opacity 0.5s ease; }
 
-    /* Ticker hover — dims others, keeps hovered item bright. Transition on base state handles the fade-back */
     .ticker-item { transition: opacity 0.4s ease; }
     .ticker-wrap:has(.ticker-item:hover) .ticker-item { opacity: 0.45; }
     .ticker-wrap .ticker-item:hover { opacity: 1 !important; }
 
-    /* FAQ hover */
-    .faq-item:hover .faq-q span { color: #fff; }
-    .faq-item:hover .faq-icon { border-color: rgba(59,130,246,0.6); color: var(--blue-light); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--blue); }
+    footer p { font-size: 0.76rem; color: #555; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 52px 0 36px; }
+      .hero-headline { font-size: clamp(1.9rem, 8vw, 2.6rem); line-height: 1.15; }
+      .badge { font-size: 0.65rem; padding: 5px 14px; }
+      .banner { padding: 12px 16px; font-size: 0.6rem; letter-spacing: 0.05em; }
+
+      .confirm-section { padding: 24px 0 40px; }
+      .confirm-card { padding: 16px; gap: 12px; border-radius: 12px; }
+      .confirm-time-block { padding: 8px 12px; width: 100%; }
+      .confirm-details { min-width: 0; }
+
+      .ticker-section { padding: 0 0 48px; }
+      .ticker-header .container { padding: 0 20px; }
+      .ticker-item { padding: 0 20px; gap: 10px; }
+      .ticker-logo { width: 26px; height: 26px; }
+      .ticker-name { font-size: 0.82rem; }
+      .ticker-role { font-size: 0.58rem; padding: 3px 8px; }
+      .ticker-track { padding: 20px 0; animation-duration: 10s; }
+      .ticker-fade-left, .ticker-fade-right { width: 60px; }
+
+      .blueprint-section { padding: 48px 0 40px; }
+      .blueprint-grid:hover .pillar-card,
+      .blueprint-grid:hover .pillar-card:hover {
+        opacity: 1 !important;
+        transform: translateZ(0) !important;
+        box-shadow: none !important;
+        border-color: rgba(255,255,255,0.07) !important;
+      }
+      .blueprint-grid:hover .pillar-card:hover::after { opacity: 0 !important; }
+
+      .guarantee-section { padding: 0 0 48px; }
+      .guarantee-section .container { padding: 0; }
+      .guarantee-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 44px 20px;
+      }
+      .g-pill { padding: 9px 16px; font-size: 0.82rem; }
+
+      .agenda-section { padding: 48px 0; }
+      .faq-section { padding: 0 0 60px; }
+      .faq-q span { font-size: 0.95rem; }
+      .section-title { font-size: 1.6rem; }
+      .section-sub { font-size: 0.9rem; margin-bottom: 32px; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-headline { font-size: 1.75rem; }
+      .guarantee-pillars { gap: 8px; }
+      .g-pill { padding: 8px 14px; font-size: 0.78rem; }
+    }
   </style>
 </head>
 <body>
@@ -1125,14 +914,12 @@
       </h1>
 
       <p class="hero-sub">
-        Please watch this 6-minute breakdown to see the exact AI system we will be installing for your business.
+        We will be installing a full AI client acquisition system for your business — here's exactly how it works.
       </p>
-
-      <p class="scroll-hint">↓ Press play to begin</p>
     </div>
   </section>
 
-  <section style="padding: 0 0 32px; position:relative; z-index:1;">
+  <section class="confirm-section">
     <div class="container">
       <div class="confirm-card" id="confirm-card">
         <div class="confirm-avatar" id="confirm-avatar">?</div>
@@ -1146,32 +933,6 @@
           <div>
             <div class="confirm-time-label">Your Call</div>
             <div class="confirm-time-val" id="confirm-time-val">—</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="vsl-section">
-    <div class="container">
-      <div class="vsl-wrapper reveal">
-        <div class="vsl-glow"></div>
-        <div class="vsl-frame">
-          <div class="vsl-chrome">
-            <div class="chrome-dot"></div>
-            <div class="chrome-dot"></div>
-            <div class="chrome-dot"></div>
-            <span class="chrome-label">Vergo Marketing Solutions — AI Overview</span>
-          </div>
-          <div class="vsl-ratio">
-            <div class="vsl-placeholder">
-              <div class="play-btn" title="Insert your YouTube embed above">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-              <span class="placeholder-label">Your VSL video goes here</span>
-            </div>
           </div>
         </div>
       </div>
@@ -1256,7 +1017,7 @@
     </div>
   </section>
 
-  <!-- ── ARCHITECTURE BLUEPRINT ───────────────────────── -->
+  <!-- ── ARCHITECTURE BLUEPRINT ── -->
   <section class="blueprint-section">
     <div class="container">
       <div class="reveal">
@@ -1329,13 +1090,12 @@
     </div>
   </section>
 
-  <!-- ── 30-DAY GUARANTEE ─────────────────────────────── -->
+  <!-- ── 30-DAY GUARANTEE ── -->
   <section class="guarantee-section">
     <div class="container">
       <div class="guarantee-card-scene reveal">
         <div class="guarantee-card">
           <div class="guarantee-bloom"></div>
-          <div class="guarantee-bloom-bottom"></div>
           <div class="guarantee-badge">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Zero-Risk Guarantee
@@ -1355,7 +1115,7 @@
     </div>
   </section>
 
-  <!-- ── CALL AGENDA ───────────────────────────────────── -->
+  <!-- ── CALL AGENDA ── -->
   <section class="agenda-section">
     <div class="container">
       <div class="reveal">
@@ -1392,7 +1152,7 @@
     </div>
   </section>
 
-  <!-- ── FAQ SECTION ───────────────────────────────────── -->
+  <!-- ── FAQ SECTION ── -->
   <section class="faq-section">
     <div class="container">
       <div class="reveal">
@@ -1516,34 +1276,25 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal, .reveal-child').forEach(el => observer.observe(el));
 
-    // Ticker — handled entirely by CSS animation (ticker-scroll keyframe)
-
-    // FAQ — measures exact content height so the animation is never jumpy
+    // FAQ
     function toggleFaq(item) {
       const isOpen = item.classList.contains('open');
 
-      // Close all open items first
       document.querySelectorAll('.faq-item.open').forEach(el => {
         const panel = el.querySelector('.faq-a');
         const inner = el.querySelector('.faq-a-inner');
-        // Lock current height before collapsing so transition has a start point
         panel.style.height = inner.scrollHeight + 'px';
-        requestAnimationFrame(() => {
-          panel.style.height = '0';
-        });
+        requestAnimationFrame(() => { panel.style.height = '0'; });
         el.classList.remove('open');
       });
 
-      // Open clicked item if it was closed
       if (!isOpen) {
         const panel = item.querySelector('.faq-a');
         const inner = item.querySelector('.faq-a-inner');
         const targetH = inner.scrollHeight + 'px';
         panel.style.height = '0';
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            panel.style.height = targetH;
-          });
+          requestAnimationFrame(() => { panel.style.height = targetH; });
         });
         item.classList.add('open');
       }
