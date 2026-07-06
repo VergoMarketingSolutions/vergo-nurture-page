@@ -11,6 +11,7 @@ import {
   Mail,
   Phone,
   ChevronDown,
+  ShieldCheck,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
 
@@ -215,6 +216,10 @@ export default function Quote() {
               <button type="submit" className="button-primary quote-submit">
                 Send My Quote Request
               </button>
+              <p className="form-guarantee">
+                <ShieldCheck size={16} strokeWidth={2.2} />
+                Risk-free — every engagement is backed by our 30-day money-back guarantee.
+              </p>
               <p className="form-fineprint">Lead capture only — no payment details, ever.</p>
             </form>
           )}

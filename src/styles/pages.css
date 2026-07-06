@@ -279,9 +279,101 @@
 }
 
 .spec-cell--win {
+  position: relative;
   border: 2px solid var(--blue);
   background: linear-gradient(165deg, #eef4fd, #fff 60%);
   box-shadow: 0 24px 60px rgba(6, 83, 182, 0.13);
+}
+
+.spec-save {
+  position: absolute;
+  top: -15px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #1d9e5f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 8px 15px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 22px rgba(29, 158, 95, 0.34);
+}
+
+.guarantee {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(150deg, #e9f9ef, #f5fbf7 60%);
+  border: 1px solid rgba(29, 158, 95, 0.24);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 26px 32px;
+}
+
+.guarantee-copy {
+  flex: 1;
+}
+
+.guarantee-copy h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+
+.guarantee-copy p {
+  margin: 0;
+  color: var(--gray);
+  line-height: 1.62;
+  font-size: 14.5px;
+}
+
+.guarantee-copy strong {
+  color: #187a49;
+}
+
+.guarantee-seal {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px dashed #1d9e5f;
+  color: #187a49;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  text-align: center;
+  transform: rotate(-6deg);
+}
+
+.guarantee-seal strong {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.guarantee-seal span {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .guarantee {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .spec-save {
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
 
 .spec-cell-head {
@@ -661,6 +753,20 @@
 .quote-submit {
   margin-top: 4px;
   align-self: flex-start;
+}
+
+.form-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #187a49;
+}
+
+.form-guarantee svg {
+  flex: none;
 }
 
 .form-fineprint {

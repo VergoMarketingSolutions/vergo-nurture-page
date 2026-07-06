@@ -187,6 +187,79 @@
   pointer-events: none;
 }
 
+.wb-vm-save {
+  display: block;
+  font-family: var(--font-hand-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e7d46;
+  opacity: 0.9;
+  transform: rotate(-0.8deg);
+  margin: 2px 0 8px;
+}
+
+.wb-save-sign {
+  position: absolute;
+  top: -28px;
+  right: 4px;
+  z-index: 4;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #1e7d46;
+  color: #fbf6ea;
+  font-family: var(--font-hand-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 0.95;
+  transform: rotate(9deg);
+  box-shadow: 0 10px 20px rgba(30, 125, 70, 0.34);
+}
+
+.wb-save-sign small {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin-top: 3px;
+}
+
+/* keep the VM catch text clear of the discount stamp on desktop */
+.wb-row--vm .wb-cell--catch {
+  padding-right: 88px;
+}
+
+.wb-guarantee {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  font-family: var(--font-hand-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e7d46;
+  border: 2.5px solid #1e7d46;
+  border-radius: 235px 16px 255px 14px / 16px 245px 14px 235px;
+  padding: 12px 24px;
+  margin-bottom: 8px;
+  transform: rotate(-0.6deg);
+}
+
+.wb-guarantee-check {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2.5px solid #1e7d46;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .wb-foot {
   margin-top: 48px;
   display: flex;
@@ -251,5 +324,26 @@
   .wb-row--vm .wb-label {
     color: #1e7d46;
     opacity: 0.75;
+  }
+
+  .wb-save-sign {
+    top: -26px;
+    right: 14px;
+    width: 66px;
+    height: 66px;
+    font-size: 20px;
+  }
+
+  .wb-save-sign small {
+    font-size: 10px;
+  }
+
+  .wb-row--vm .wb-cell--catch {
+    padding-right: 0;
+  }
+
+  .wb-guarantee {
+    font-size: 19px;
+    padding: 11px 18px;
   }
 }

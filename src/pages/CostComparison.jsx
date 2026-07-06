@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { User, Bot, ChevronRight, Sparkles } from 'lucide-react';
+import { User, Bot, ChevronRight, Sparkles, ShieldCheck, Percent } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
 
 const TABLE = [
@@ -74,6 +74,9 @@ export default function CostComparison() {
           </div>
 
           <div className="spec-cell spec-cell--win">
+            <span className="spec-save">
+              <Percent size={13} strokeWidth={2.6} /> ~98% less than in-house
+            </span>
             <div className="spec-cell-head">
               <IconGlass icon={Bot} size="sm" tone="var(--blue)" />
               <span className="spec-tag spec-tag--blue">VM Solutions</span>
@@ -99,6 +102,22 @@ export default function CostComparison() {
             AI-answered calls comes to about <strong>$1,080 AUD</strong> — a small fraction of a{' '}
             <em>single month</em> of a receptionist&rsquo;s salary.
           </p>
+        </div>
+
+        <div className="guarantee">
+          <IconGlass icon={ShieldCheck} size="lg" tone="#1d9e5f" />
+          <div className="guarantee-copy">
+            <h3>And it&rsquo;s completely risk-free</h3>
+            <p>
+              Every engagement is backed by a <strong>30-day money-back guarantee</strong> — no
+              lock-in contracts. If VM Solutions doesn&rsquo;t earn its keep in the first month,
+              you get your money back. Simple as that.
+            </p>
+          </div>
+          <div className="guarantee-seal">
+            <strong>100%</strong>
+            <span>Money-back</span>
+          </div>
         </div>
       </section>
 

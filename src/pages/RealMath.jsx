@@ -129,6 +129,9 @@ export default function RealMath() {
           ))}
 
           <div className="wb-row wb-row--vm">
+            <span className="wb-save-sign" aria-hidden="true">
+              ≈90%<small>cheaper</small>
+            </span>
             <div className="wb-cell wb-cell--opt">
               VM Solutions Bundle
               <span className="wb-vm-note">← the only row that isn&rsquo;t a compromise</span>
@@ -136,6 +139,7 @@ export default function RealMath() {
             <div className="wb-cell wb-cell--cost">
               <span className="wb-label">Monthly cost:</span>
               <span className="wb-vm-price">est. $1,000–$1,500/mo</span>
+              <span className="wb-vm-save">↑ ~90% less than buying it all separately</span>
               <Link to="/quote" className="wb-vm-link">
                 Get Your Number →
                 <SketchCircle />
@@ -149,6 +153,13 @@ export default function RealMath() {
         </div>
 
         <div className="wb-foot">
+          <div className="wb-guarantee">
+            <span className="wb-guarantee-check" aria-hidden="true">✓</span>
+            <span>
+              risk-free: 30-day money-back guarantee — if VM doesn&rsquo;t earn its keep, you
+              don&rsquo;t pay.
+            </span>
+          </div>
           <p className="wb-footnote">
             * ranges pulled from typical published AU pricing — your mileage will vary. The
             point isn&rsquo;t the exact dollars, it&rsquo;s the shape of the problem.
