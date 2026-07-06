@@ -1,0 +1,244 @@
+:root {
+  --canvas: #faf9f7;
+  --ink: #14141a;
+  --blue: #0653b6;
+  --gray: #6b6d76;
+  --radius-pill: 999px;
+  --radius-card: 26px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand: 'Kalam', cursive;
+  --font-hand-display: 'Caveat', cursive;
+  --shadow-card: 0 10px 30px rgba(20, 20, 26, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font: 400 16px/1.55 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(6, 83, 182, 0.18);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+/* ---------- layout utilities ---------- */
+
+.section {
+  max-width: 1208px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.section-head {
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-head h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+}
+
+.section-head p {
+  color: var(--gray);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(6, 83, 182, 0.07);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ---------- buttons & links ---------- */
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 17px 32px;
+  font: 700 14px/1 var(--font-sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+}
+
+.button-primary:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(6, 83, 182, 0.14);
+  transform: translateY(-1px);
+}
+
+.button-primary--sm {
+  padding: 12px 22px;
+  font-size: 12px;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.text-link svg {
+  transition: transform 0.22s;
+}
+
+.text-link:hover svg {
+  transform: translateX(4px);
+}
+
+.text-link--lg {
+  font-size: 15.5px;
+}
+
+/* ---------- liquid glass icon chip (site-wide rule) ---------- */
+
+.icon-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: var(--ink);
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(255, 255, 255, 0.1) 52%,
+      rgba(255, 255, 255, 0.3)
+    ),
+    linear-gradient(160deg, rgba(216, 229, 248, 0.66), rgba(243, 238, 252, 0.52));
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-top-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(20, 20, 26, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.icon-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0) 44%,
+    rgba(255, 255, 255, 0.14) 90%
+  );
+  pointer-events: none;
+}
+
+.icon-glass--lg {
+  width: 60px;
+  height: 60px;
+  border-radius: 19px;
+}
+
+.icon-glass--lg .icon-glass-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.icon-glass--sm {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+}
+
+.icon-glass--sm .icon-glass-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-glass--xs {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+}
+
+.icon-glass--xs .icon-glass-svg {
+  width: 17px;
+  height: 17px;
+}
+
+.icon-glass--round {
+  border-radius: 50%;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .icon-glass {
+    background: rgba(255, 255, 255, 0.85);
+  }
+}
