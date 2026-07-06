@@ -71,6 +71,7 @@ export default function Home() {
         duration: 0.8,
         ease: 'power3.out',
         stagger: 0.12,
+        clearProps: 'transform',
         scrollTrigger: { trigger: '.pillar-grid', start: 'top 78%' },
       });
       gsap.from('.quote-card', {
