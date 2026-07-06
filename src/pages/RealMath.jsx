@@ -14,7 +14,7 @@ const ROWS = [
   },
   {
     option: 'Marketing Agency Only',
-    cost: '$2,500–$10,000/mo',
+    cost: '$2,500–$15,000/mo',
     catchLine: '12-month contracts, doesn’t touch your phones',
   },
   {
@@ -29,7 +29,7 @@ const ROWS = [
   },
   {
     option: 'Buying All of the Above Separately',
-    cost: '$3,000–$6,000+/mo',
+    cost: '$3,000–$12,000+/mo',
     catchLine: 'Three vendors, three contracts, nobody talks to each other',
   },
 ];
@@ -135,6 +135,7 @@ export default function RealMath() {
             </div>
             <div className="wb-cell wb-cell--cost">
               <span className="wb-label">Monthly cost:</span>
+              <span className="wb-vm-price">est. $1,000–$1,500/mo</span>
               <Link to="/quote" className="wb-vm-link">
                 Get Your Number →
                 <SketchCircle />

@@ -154,6 +154,15 @@
   margin-top: 6px;
 }
 
+.wb-vm-price {
+  display: block;
+  color: #1e7d46;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
 .wb-vm-link {
   position: relative;
   display: inline-block;

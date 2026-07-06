@@ -246,13 +246,13 @@ export default function Quote() {
             </div>
             <div className="aside-card">
               <h3>Rather just talk?</h3>
-              <a href="tel:+61390001234" className="aside-contact">
+              <a href="tel:+61481813435" className="aside-contact">
                 <IconGlass icon={Phone} size="xs" />
-                <span>+61 3 9000 1234</span>
+                <span>0481 813 435</span>
               </a>
-              <a href="mailto:hello@vmsolutions.com.au" className="aside-contact">
+              <a href="mailto:vergomarketingsolutions@gmail.com" className="aside-contact">
                 <IconGlass icon={Mail} size="xs" />
-                <span>hello@vmsolutions.com.au</span>
+                <span>vergomarketingsolutions@gmail.com</span>
               </a>
             </div>
           </aside>

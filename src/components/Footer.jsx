@@ -39,13 +39,13 @@ export default function Footer() {
 
         <div className="footer-col footer-contact">
           <h4>Contact</h4>
-          <a href="mailto:hello@vmsolutions.com.au" className="footer-contact-row">
+          <a href="mailto:vergomarketingsolutions@gmail.com" className="footer-contact-row">
             <IconGlass icon={Mail} size="xs" />
-            <span>hello@vmsolutions.com.au</span>
+            <span>vergomarketingsolutions@gmail.com</span>
           </a>
-          <a href="tel:+61390001234" className="footer-contact-row">
+          <a href="tel:+61481813435" className="footer-contact-row">
             <IconGlass icon={Phone} size="xs" />
-            <span>+61 3 9000 1234</span>
+            <span>0481 813 435</span>
           </a>
           <div className="footer-contact-row">
             <IconGlass icon={MapPin} size="xs" />
