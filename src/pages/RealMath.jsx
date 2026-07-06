@@ -29,7 +29,7 @@ const ROWS = [
   },
   {
     option: 'Buying All of the Above Separately',
-    cost: '$3,000–$12,000+/mo',
+    cost: '$7,300–$23,900/mo',
     catchLine: 'Three vendors, three contracts, nobody talks to each other',
   },
 ];
