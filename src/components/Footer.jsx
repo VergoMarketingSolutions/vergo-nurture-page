@@ -55,6 +55,7 @@ export default function Footer() {
       </div>
       <div className="footer-base">
         <span>© 2026 Vergo Marketing Solutions Pty Ltd. All rights reserved.</span>
+        <span>Australian owned &amp; operated · Fully insured</span>
         <span className="footer-tag">Built for the trades.</span>
       </div>
     </footer>

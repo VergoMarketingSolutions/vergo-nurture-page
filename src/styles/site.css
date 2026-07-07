@@ -409,10 +409,6 @@
   .rail-marker {
     animation: none;
   }
-
-  .marquee-track {
-    animation: none !important;
-  }
 }
 
 @media (max-width: 768px) {

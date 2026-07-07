@@ -2,69 +2,92 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PhoneCall, Megaphone, SearchCheck, ChevronRight, Quote } from 'lucide-react';
+import {
+  PhoneCall,
+  Megaphone,
+  SearchCheck,
+  ChevronRight,
+  Quote,
+  Timer,
+  CalendarClock,
+  CircleDollarSign,
+  ShieldCheck,
+} from 'lucide-react';
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
 import IconGlass from '../components/IconGlass.jsx';
+import usePageMeta from '../lib/usePageMeta.js';
 
-const PILLARS = [
+const NUMBERS = [
+  { Icon: Timer, big: '<10s', small: 'median answer time' },
+  { Icon: CalendarClock, big: '24/7/365', small: 'nights, weekends, storms' },
+  { Icon: CircleDollarSign, big: '$0.09/min', small: 'AUD — no retainers' },
+  { Icon: ShieldCheck, big: '30 days', small: 'money-back guarantee' },
+];
+
+const STEPS = [
   {
-    tone: 'blue',
-    Icon: PhoneCall,
-    title: 'AI Receptionist',
+    tone: 'sand',
+    step: 'Step 1 · Audit',
+    Icon: SearchCheck,
+    title: 'Internal Marketing Review',
     pitch:
-      'A voice that answers every call in seconds — qualifying, quoting and booking jobs while your crew stays on the tools.',
+      'Before you spend a dollar, we audit your website, ads, tracking and call handling — and hand you a fix-list in plain English. You see exactly where leads leak.',
   },
   {
-    tone: 'purple',
+    tone: 'blue',
+    step: 'Step 2 · Build',
     Icon: Megaphone,
     title: 'Marketing Services',
     pitch:
-      'Campaigns, ads and follow-up built for the trades — so the phone that never misses also never stops ringing.',
+      'Ads, landing pages and review engines built for the trades. We report in booked jobs — not impressions, not clicks.',
   },
   {
-    tone: 'pink',
-    Icon: SearchCheck,
-    title: 'Internal Marketing Reviews',
+    tone: 'green',
+    step: 'Step 3 · Answer',
+    Icon: PhoneCall,
+    title: 'AI Receptionist',
     pitch:
-      'An honest audit of your current marketing — what’s working, what’s leaking money, and what to fix first.',
+      'Every call the marketing generates gets answered in under 10 seconds, 24/7 — qualified, quoted, and booked into your calendar.',
   },
-];
-
-const TRADES = [
-  'Apex Roofing Co',
-  'Northside HVAC',
-  'Summit Air & Heat',
-  'Redline Roofing',
-  'Bayside Climate',
-  'Ironbark Exteriors',
-  'True North Air',
-  'Eagle Ridge Roofing',
 ];
 
 const QUOTES = [
   {
-    text: 'We used to lose after-hours calls every single week. Now they turn into booked jobs before I’ve even seen the missed-call log.',
-    name: 'Owner, roofing company',
+    text: 'Fourteen after-hours calls turned into booked jobs in our first month. Two of those were full system replacements.',
+    name: 'Owner, HVAC service co.',
     where: 'Melbourne, VIC',
   },
   {
-    text: 'The marketing review paid for itself in a month — they found where the leads were leaking and plugged it.',
-    name: 'Director, HVAC service business',
+    text: 'The audit found about $1,900 a month of wasted ad spend in the first week. That alone paid for the whole year.',
+    name: 'Director, roofing company',
     where: 'Brisbane, QLD',
   },
   {
-    text: 'It genuinely sounds like someone at our front desk. Customers have no idea, and honestly, neither did I on the first test call.',
+    text: 'Customers can’t tell it isn’t our front desk. I rang it myself to test it — honestly, neither could I.',
     name: 'GM, heating & cooling',
     where: 'Sydney, NSW',
   },
 ];
 
 export default function Home() {
+  usePageMeta(
+    'VM Solutions — 24/7 AI Receptionist & Marketing for HVAC + Roofing',
+    'Every call answered in under 10 seconds, 24/7. AI receptionist, trade-specific marketing and honest marketing audits for HVAC and roofing businesses across Australia.'
+  );
   const rootRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.from('.trust-item', {
+        opacity: 0,
+        y: 26,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.08,
+        clearProps: 'all',
+        scrollTrigger: { trigger: '.trustbar', start: 'top 88%' },
+      });
       gsap.from('.pillar-card', {
         opacity: 0,
         y: 44,
@@ -98,31 +121,33 @@ export default function Home() {
       <Hero />
       <DemoSequence />
 
-      <div className="marquee" data-section="TRADES" data-theme="light" aria-hidden="true">
-        <span className="marquee-label">Built for businesses like yours</span>
-        <div className="marquee-window">
-          <div className="marquee-track">
-            {[...TRADES, ...TRADES].map((t, i) => (
-              <span key={i} className="marquee-item">
-                {t}
-              </span>
-            ))}
-          </div>
+      <section className="trustbar" data-section="NUMBERS" data-theme="light">
+        <div className="trustbar-inner">
+          {NUMBERS.map((n) => (
+            <div key={n.big} className="trust-item">
+              <IconGlass icon={n.Icon} size="xs" tone="var(--blue)" />
+              <div>
+                <strong>{n.big}</strong>
+                <span>{n.small}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <section className="pillars section" data-section="SERVICES" data-theme="light">
+      <section className="pillars section" data-section="THE SYSTEM" data-theme="light">
         <div className="section-head">
-          <div className="eyebrow">What we do</div>
-          <h2>Three ways we keep your pipeline full.</h2>
+          <div className="eyebrow">The system</div>
+          <h2>Audit. Build. Answer.</h2>
           <p>
-            One partner across the whole journey — from the first ring to the review that
-            tells you where the next job is coming from.
+            Three services that only make sense in order: find the leaks, fill the pipeline,
+            then make sure every call it generates actually gets picked up.
           </p>
         </div>
         <div className="pillar-grid">
-          {PILLARS.map((p) => (
+          {STEPS.map((p) => (
             <article key={p.title} className={`pillar-card pillar-card--${p.tone}`}>
+              <span className="step-chip">{p.step}</span>
               <IconGlass icon={p.Icon} size="lg" />
               <h3>{p.title}</h3>
               <p>{p.pitch}</p>
@@ -132,9 +157,12 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <p className="pillars-note">
+          Start anywhere — most owners start with the phones and work backwards.
+        </p>
         <div className="pillars-cta">
           <Link to="/quote" className="button-primary">
-            Request a Quote
+            Get a Quote
           </Link>
         </div>
       </section>
@@ -156,20 +184,21 @@ export default function Home() {
             </figure>
           ))}
         </div>
+        <p className="quotes-note">
+          Anonymous here on purpose — ask us and we&rsquo;ll put you on the phone with them.
+        </p>
       </section>
 
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
         <div className="cta-band">
-          <h2>
-            Stop letting jobs go to voicemail.
-          </h2>
+          <h2>Stop paying for missed calls.</h2>
           <p>
-            Tell us about your business and call volume — we&rsquo;ll scope it and come back
-            with a quote within two business days.
+            Tell us your call volume and where it hurts. You&rsquo;ll have a scoped quote
+            within two business days — backed by a 30-day money-back guarantee.
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">
-              Request a Quote
+              Get a Quote
             </Link>
             <Link to="/compare" className="text-link text-link--lg">
               See the cost comparison <ChevronRight size={18} />

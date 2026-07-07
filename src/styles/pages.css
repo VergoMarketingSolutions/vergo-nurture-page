@@ -335,32 +335,58 @@
 }
 
 .guarantee-seal {
+  position: relative;
   flex: none;
-  width: 96px;
-  height: 96px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
-  border: 2px dashed #1d9e5f;
   color: #187a49;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 2px;
   text-align: center;
-  transform: rotate(-6deg);
+}
+
+/* the dashed ring is its own layer so the text stays dead-centre while it spins */
+.guarantee-seal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px dashed #1d9e5f;
+  border-radius: 50%;
+  animation: sealSpin 26s linear infinite;
+}
+
+.guarantee:hover .guarantee-seal::before {
+  animation-duration: 7s;
+}
+
+@keyframes sealSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .guarantee-seal strong {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .guarantee-seal span {
-  font-size: 9.5px;
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.9px;
   text-transform: uppercase;
+  max-width: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guarantee-seal::before {
+    animation: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -373,6 +399,115 @@
   .spec-save {
     right: 50%;
     transform: translateX(50%);
+  }
+}
+
+/* ---------- missed-call cost calculator ---------- */
+
+.calc {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.calc-controls {
+  background: #fff;
+  border: 1px solid rgba(20, 20, 26, 0.05);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  justify-content: center;
+}
+
+.calc-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calc-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.calc-label em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.calc-row input[type='range'] {
+  width: 100%;
+  accent-color: var(--blue);
+  cursor: pointer;
+  height: 26px;
+}
+
+.calc-note {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--gray);
+}
+
+.calc-result {
+  background: linear-gradient(160deg, #fdf0ee, #fff8f6 65%);
+  border: 1px solid rgba(214, 69, 69, 0.18);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.calc-leak-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #c23b3b;
+}
+
+.calc-leak {
+  font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #c23b3b;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-vs {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.calc-vs strong {
+  color: #187a49;
+}
+
+@media (max-width: 860px) {
+  .calc {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-controls,
+  .calc-result {
+    padding: 26px 22px;
   }
 }
 

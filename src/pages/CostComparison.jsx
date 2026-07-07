@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { User, Bot, ChevronRight, Sparkles, ShieldCheck, Percent } from 'lucide-react';
+import { User, Bot, ChevronRight, Sparkles, ShieldCheck, Percent, PhoneMissed } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
+import usePageMeta from '../lib/usePageMeta.js';
+
+const aud = (n) => '$' + Math.round(n).toLocaleString('en-AU');
 
 const TABLE = [
   { label: 'Availability', a: 'Business hours, one desk', b: '24/7/365 — nights, weekends, storms' },
@@ -14,7 +17,15 @@ const TABLE = [
 ];
 
 export default function CostComparison() {
+  usePageMeta(
+    'Cost Comparison — $0.09/min vs a $70k Receptionist | VM Solutions',
+    'An in-house receptionist really costs $70k+ a year. VM Solutions answers 24/7 at $0.09 AUD per minute. Run the numbers, including what your missed calls already cost you.'
+  );
   const rootRef = useRef(null);
+  const [missedWk, setMissedWk] = useState(6);
+  const [jobVal, setJobVal] = useState(800);
+  // deliberately conservative: assume only 1 in 3 missed calls was a real job
+  const leak = (missedWk * 52 * jobVal) / 3;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -117,6 +128,66 @@ export default function CostComparison() {
           <div className="guarantee-seal">
             <strong>100%</strong>
             <span>Money-back</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" data-section="THE LEAK" data-theme="light">
+        <div className="section-head">
+          <div className="eyebrow">Your numbers</div>
+          <h2>What do missed calls already cost you?</h2>
+          <p>Drag the sliders. We&rsquo;ll keep it conservative.</p>
+        </div>
+        <div className="calc">
+          <div className="calc-controls">
+            <label className="calc-row">
+              <span className="calc-label">
+                Calls you miss in a week
+                <em>{missedWk}</em>
+              </span>
+              <input
+                type="range"
+                min="1"
+                max="25"
+                step="1"
+                value={missedWk}
+                onChange={(e) => setMissedWk(Number(e.target.value))}
+                aria-label="Missed calls per week"
+              />
+            </label>
+            <label className="calc-row">
+              <span className="calc-label">
+                Average job value
+                <em>{aud(jobVal)}</em>
+              </span>
+              <input
+                type="range"
+                min="300"
+                max="5000"
+                step="100"
+                value={jobVal}
+                onChange={(e) => setJobVal(Number(e.target.value))}
+                aria-label="Average job value in dollars"
+              />
+            </label>
+            <p className="calc-note">
+              Assumes only 1 in 3 missed calls was a real job. Yours may be worse.
+            </p>
+          </div>
+          <div className="calc-result">
+            <IconGlass icon={PhoneMissed} size="sm" tone="#c23b3b" />
+            <span className="calc-leak-label">Walking to competitors every year</span>
+            <strong className="calc-leak">{aud(leak)}</strong>
+            <span className="calc-vs">
+              A full year of VM answering at this volume: <strong>≈ {aud(1080)}</strong>
+              {leak > 1080 && (
+                <>
+                  {' '}
+                  — about <strong>{Math.max(1, Math.round(leak / 1080))}×</strong> return if we
+                  catch them
+                </>
+              )}
+            </span>
           </div>
         </div>
       </section>

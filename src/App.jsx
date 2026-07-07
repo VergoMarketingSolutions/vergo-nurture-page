@@ -14,8 +14,40 @@ import Quote from './pages/Quote.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Springy pop-in for every glass icon chip as it scrolls into view.
+// Hero manages its own reveals, so its chips are excluded; reduced-motion skips it.
+function useIconReveal(pathname) {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const icons = gsap
+      .utils.toArray('.icon-glass')
+      .filter((el) => !el.closest('.hero-content'));
+    if (!icons.length) return undefined;
+    gsap.set(icons, { scale: 0.4, opacity: 0 });
+    const triggers = ScrollTrigger.batch(icons, {
+      start: 'top 94%',
+      once: true,
+      onEnter: (els) =>
+        gsap.to(els, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'back.out(2.4)',
+          stagger: 0.07,
+          overwrite: true,
+          clearProps: 'scale,opacity,transform',
+        }),
+    });
+    return () => {
+      triggers.forEach((t) => t.kill());
+      gsap.set(icons, { clearProps: 'all' });
+    };
+  }, [pathname]);
+}
+
 export default function App() {
   const location = useLocation();
+  useIconReveal(location.pathname);
 
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.05, smoothWheel: true });

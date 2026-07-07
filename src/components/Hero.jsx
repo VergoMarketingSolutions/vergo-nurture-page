@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PhoneIncoming, CalendarCheck2 } from 'lucide-react';
 
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, l, h) => Math.max(l, Math.min(h, v));
@@ -70,7 +72,7 @@ export default function Hero() {
       headline: q('[data-el="headline"]'),
       sub: q('[data-el="sub"]'),
       ctas: q('[data-el="ctas"]'),
-      stats: q('[data-el="stats"]'),
+      card: q('[data-el="card"]'),
       hint: q('[data-el="hint"]'),
     };
 
@@ -113,6 +115,41 @@ export default function Hero() {
       node.style.opacity = e;
       node.style.transform = `translateY(${lerp(26, 0, e)}px)`;
     };
+
+    // the live call: ring -> answered -> booked, looping while the user watches
+    const call = {
+      card: el.card,
+      status: q('[data-call="status"]'),
+      wave: q('[data-call="wave"]'),
+      line: q('[data-call="line"]'),
+      booked: q('[data-call="booked"]'),
+    };
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let callTl;
+    if (reducedMotion) {
+      call.card.classList.add('is-answered');
+      call.status.textContent = 'Answered · VM receptionist';
+    } else {
+      gsap.set([call.line, call.booked], { opacity: 0, y: 10 });
+      gsap.set(call.wave, { opacity: 0 });
+      callTl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+      callTl
+        .call(() => {
+          call.card.classList.remove('is-answered');
+          call.status.textContent = 'Incoming call…';
+        })
+        .to({}, { duration: 1.7 })
+        .call(() => {
+          call.card.classList.add('is-answered');
+          call.status.textContent = 'Answered · VM receptionist';
+        })
+        .to(call.wave, { opacity: 1, duration: 0.3 })
+        .to(call.line, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '<0.2')
+        .to(call.booked, { opacity: 1, y: 0, duration: 0.55, ease: 'back.out(1.8)' }, '+=1.3')
+        .to({}, { duration: 2.4 })
+        .to([call.wave, call.line, call.booked], { opacity: 0, duration: 0.45 })
+        .set([call.line, call.booked], { y: 10 });
+    }
 
     const render = (p) => {
       const e = easeOut(clamp(p, 0, 1));
@@ -160,7 +197,7 @@ export default function Hero() {
       reveal(el.sub, seg(p, 0.4, 0.62));
       const cta = seg(p, 0.6, 0.85);
       reveal(el.ctas, cta);
-      reveal(el.stats, cta);
+      reveal(el.card, cta);
       el.ctas.style.pointerEvents = cta > 0.5 ? 'auto' : 'none';
       el.hint.style.opacity = clamp(1 - p * 5, 0, 1);
 
@@ -179,7 +216,9 @@ export default function Hero() {
     if (isMobile) {
       // static "cleared dawn" state below 640px
       render(1);
-      return undefined;
+      return () => {
+        if (callTl) callTl.kill();
+      };
     }
 
     const st = ScrollTrigger.create({
@@ -190,7 +229,10 @@ export default function Hero() {
       onUpdate: (self) => render(self.progress),
     });
     render(0);
-    return () => st.kill();
+    return () => {
+      st.kill();
+      if (callTl) callTl.kill();
+    };
   }, []);
 
   return (
@@ -306,30 +348,48 @@ export default function Hero() {
             Every lead <span className="hero-accent">followed&nbsp;up.</span>
           </h1>
           <p className="hero-sub" data-el="sub">
-            VM Solutions clears the chaos of missed calls and cold leads — a 24/7 AI
-            receptionist, sharper marketing, and an honest read on what&rsquo;s actually
-            working. The fog lifts. The calendar fills.
+            You&rsquo;re on the tools and the phone rings anyway. VM answers in under 10
+            seconds, sounds like your best front-desk hire, and books the job straight into
+            your calendar — nights, weekends, storm season.
           </p>
           <div className="hero-ctas" data-el="ctas">
             <Link to="/quote" className="hero-cta-solid">
-              Request a Quote
+              Get a Quote
             </Link>
             <Link to="/services" className="hero-cta-glass">
-              See Services
+              See how it works
             </Link>
           </div>
-          <div className="hero-stats" data-el="stats">
-            <div className="hero-stat">
-              <strong>24/7</strong>
-              <span>Always answering</span>
+          <div className="hero-call" data-el="card" aria-hidden="true">
+            <div className="hero-call-top">
+              <span className="hero-call-dot" />
+              <span className="hero-call-status" data-call="status">
+                Incoming call…
+              </span>
+              <span className="hero-call-time">7:42 PM</span>
             </div>
-            <div className="hero-stat">
-              <strong>&lt;10s</strong>
-              <span>To pick up any call</span>
+            <div className="hero-call-body">
+              <span className="hero-call-icon">
+                <PhoneIncoming size={17} strokeWidth={2} />
+              </span>
+              <div className="hero-call-caller">
+                <strong>Mrs. Chen</strong>
+                <span>Ducted AC not cooling — Thornbury</span>
+              </div>
+              <span className="hero-call-wave" data-call="wave">
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
             </div>
-            <div className="hero-stat">
-              <strong>$0.09/min</strong>
-              <span>AUD — that&rsquo;s it</span>
+            <div className="hero-call-line" data-call="line">
+              &ldquo;Got it — a tech can be there Thursday at 2 PM. Locking that in now.&rdquo;
+            </div>
+            <div className="hero-call-booked" data-call="booked">
+              <CalendarCheck2 size={15} strokeWidth={2.4} />
+              Booked · Thu 2:00 PM · summary texted to you
             </div>
           </div>
         </div>

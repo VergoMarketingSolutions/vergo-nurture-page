@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import usePageMeta from '../lib/usePageMeta.js';
 
 const ROWS = [
   {
@@ -91,6 +92,10 @@ const SketchCircle = () => (
 );
 
 export default function RealMath() {
+  usePageMeta(
+    'The Real Math — What Answering Your Phones Actually Costs | VM Solutions',
+    'Every option for covering your phones and marketing, priced side by side on a whiteboard: answering services, agencies, in-house staff — and the one bundle that beats them.'
+  );
   return (
     <div className="wb" data-section="THE MATH" data-theme="light">
       <WobblyGrid />

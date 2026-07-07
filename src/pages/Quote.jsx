@@ -14,6 +14,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
+import usePageMeta from '../lib/usePageMeta.js';
 
 const SERVICES = [
   { id: 'receptionist', label: 'AI Receptionist', Icon: PhoneCall },
@@ -45,6 +46,10 @@ const FAQS = [
 const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 export default function Quote() {
+  usePageMeta(
+    'Request a Quote | VM Solutions',
+    'Tell us your call volume and where it hurts. A scoped quote within two business days — no lock-in, backed by a 30-day money-back guarantee.'
+  );
   const [values, setValues] = useState({
     business: '',
     contact: '',
