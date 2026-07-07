@@ -23,19 +23,21 @@ function useIconReveal(pathname) {
       .utils.toArray('.icon-glass')
       .filter((el) => !el.closest('.hero-content'));
     if (!icons.length) return undefined;
-    gsap.set(icons, { scale: 0.4, opacity: 0 });
+    // rise + fade, no scale: scaling a backdrop-filter chip mid-tween
+    // resamples its rasterized layer and looks blurry
+    gsap.set(icons, { y: 26, opacity: 0 });
     const triggers = ScrollTrigger.batch(icons, {
       start: 'top 94%',
       once: true,
       onEnter: (els) =>
         gsap.to(els, {
-          scale: 1,
+          y: 0,
           opacity: 1,
-          duration: 0.7,
-          ease: 'back.out(2.4)',
+          duration: 0.65,
+          ease: 'back.out(2.2)',
           stagger: 0.07,
           overwrite: true,
-          clearProps: 'scale,opacity,transform',
+          clearProps: 'y,opacity,transform',
         }),
     });
     return () => {

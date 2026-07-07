@@ -132,21 +132,21 @@ export default function Hero() {
     } else {
       gsap.set([call.line, call.booked], { opacity: 0, y: 10 });
       gsap.set(call.wave, { opacity: 0 });
-      callTl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+      callTl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
       callTl
         .call(() => {
           call.card.classList.remove('is-answered');
           call.status.textContent = 'Incoming call…';
         })
-        .to({}, { duration: 1.7 })
+        .to({}, { duration: 0.8 })
         .call(() => {
           call.card.classList.add('is-answered');
           call.status.textContent = 'Answered · VM receptionist';
         })
-        .to(call.wave, { opacity: 1, duration: 0.3 })
-        .to(call.line, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '<0.2')
-        .to(call.booked, { opacity: 1, y: 0, duration: 0.55, ease: 'back.out(1.8)' }, '+=1.3')
-        .to({}, { duration: 2.4 })
+        .to(call.wave, { opacity: 1, duration: 0.25 })
+        .to(call.line, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '<0.15')
+        .to(call.booked, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.8)' }, '+=0.9')
+        .to({}, { duration: 2.0 })
         .to([call.wave, call.line, call.booked], { opacity: 0, duration: 0.45 })
         .set([call.line, call.booked], { y: 10 });
     }

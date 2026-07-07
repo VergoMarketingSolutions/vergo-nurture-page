@@ -3,12 +3,13 @@
   --ink: #14141a;
   --navy: #0e1b33;
   --blue: #0653b6;
-  --accent: #e8590c; /* safety orange — reserved for primary CTAs only */
+  --accent: var(--navy); /* primary CTAs: deep navy from the site palette */
   --gray: #6b6d76;
   --radius-pill: 999px;
   --radius-card: 26px;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand: 'Kalam', cursive;
   --font-hand-display: 'Caveat', cursive;
   --shadow-card: 0 10px 30px rgba(20, 20, 26, 0.07);
 }
@@ -121,8 +122,8 @@ h4 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--accent);
-  color: #14141a;
+  background: var(--navy);
+  color: #fff;
   border: 2px solid transparent;
   border-radius: var(--radius-pill);
   padding: 17px 32px;
@@ -130,13 +131,12 @@ h4 {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.22s, color 0.22s, box-shadow 0.22s, transform 0.22s;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
 }
 
 .button-primary:hover {
-  background: var(--navy);
-  color: #fff;
-  box-shadow: 0 10px 26px rgba(14, 27, 51, 0.28);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(6, 83, 182, 0.16), 0 10px 26px rgba(14, 27, 51, 0.22);
   transform: translateY(-1px);
 }
 
@@ -261,11 +261,13 @@ h4 {
   }
 }
 
-/* ---- interactive icon chips ---- */
+/* ---- interactive icon chips ----
+   Hover is a pure lift (translate + shadow). Scaling or rotating a
+   backdrop-filter element makes the browser resample its rasterized
+   layer and the chip goes blurry — so no scale/rotate here. */
 
-.icon-glass,
-.icon-glass-svg {
-  transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.42s ease;
+.icon-glass {
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.35s ease;
 }
 
 .icon-glass:hover,
@@ -277,21 +279,12 @@ h4 {
 .spec-cell:hover .icon-glass,
 .service-pick:hover .icon-glass,
 .footer-social a:hover .icon-glass {
-  transform: translateY(-3px) scale(1.09) rotate(-4deg);
-  box-shadow: 0 16px 32px rgba(20, 20, 26, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-.icon-glass:hover .icon-glass-svg,
-.pillar-card:hover .icon-glass-svg,
-.svc-copy:hover .icon-glass-svg,
-.spec-cell:hover .icon-glass-svg,
-.aside-step:hover .icon-glass-svg {
-  transform: scale(1.14);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(20, 20, 26, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .icon-glass,
-  .icon-glass-svg {
+  .icon-glass {
     transition: none;
   }
 }

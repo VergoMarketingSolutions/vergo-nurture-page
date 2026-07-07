@@ -102,9 +102,23 @@ const iconOk = await page.evaluate(async () => {
 });
 log('icons: scroll pop-in settled visible', iconOk);
 
-// CTA is orange
+// CTA is deep navy
 const ctaBg = await page.$eval('.pillars-cta .button-primary', (el) => getComputedStyle(el).backgroundColor);
-log('CTA: accent orange', ctaBg.includes('232, 89, 12'), ctaBg);
+log('CTA: navy from palette', ctaBg.includes('14, 27, 51'), ctaBg);
+
+// icon hover must not scale/rotate (that's what caused the blur)
+const hoverT = await page.evaluate(() => {
+  const el = document.querySelector('.pillar-card .icon-glass');
+  el.parentElement.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+  return new Promise((r) => {
+    setTimeout(() => {
+      const card = el.closest('.pillar-card');
+      card.classList.add('js-hover');
+      r(getComputedStyle(el).transform);
+    }, 100);
+  });
+});
+log('icons: hover uses translate only (no blur-inducing scale)', !/matrix\(0\.|matrix\(1\.[1-9]/.test(hoverT), hoverT);
 
 // ---------- services ----------
 await page.goto(BASE + '/services', { waitUntil: 'networkidle0' });
@@ -128,6 +142,22 @@ await page.evaluate(() => {
   window.scrollTo(0, y);
 });
 await sleep(900);
+// side-by-side table: checks + dashes render
+const marks = await page.evaluate(() => ({
+  checks: document.querySelectorAll('.cmp-check').length,
+  dashes: document.querySelectorAll('.cmp-dash').length,
+  headIcons: document.querySelectorAll('.cmp-row--head .icon-glass').length,
+}));
+log('table: check/dash marks + header icons', marks.checks === 6 && marks.dashes === 6 && marks.headIcons === 2, JSON.stringify(marks));
+await page.evaluate(() => {
+  const el = document.querySelector('.cmp-table');
+  const y = el.getBoundingClientRect().top + window.scrollY - 160;
+  if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true, force: true });
+  window.scrollTo(0, y);
+});
+await sleep(900);
+await page.screenshot({ path: `${OUT}/cmp-table.png` });
+
 const leak1 = await page.$eval('.calc-leak', (el) => el.textContent);
 await page.evaluate(() => {
   const input = document.querySelector('.calc-row input');
@@ -166,7 +196,7 @@ const fonts = await page.evaluate(() => ({
   cell: getComputedStyle(document.querySelector('.wb-row:not(.wb-row--head) .wb-cell--opt')).fontFamily,
   title: getComputedStyle(document.querySelector('.wb-title')).fontFamily,
 }));
-log('fonts: whiteboard body is Inter', fonts.cell.includes('Inter') && !fonts.cell.includes('Kalam'), fonts.cell);
+log('fonts: whiteboard body back to Kalam (as before)', fonts.cell.includes('Kalam'), fonts.cell);
 log('fonts: title still Caveat', fonts.title.includes('Caveat'), fonts.title);
 await scrollTo(500);
 await page.screenshot({ path: `${OUT}/realmath.png` });

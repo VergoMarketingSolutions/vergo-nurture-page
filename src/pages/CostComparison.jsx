@@ -1,7 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { User, Bot, ChevronRight, Sparkles, ShieldCheck, Percent, PhoneMissed } from 'lucide-react';
+import {
+  User,
+  Bot,
+  ChevronRight,
+  Sparkles,
+  ShieldCheck,
+  Percent,
+  PhoneMissed,
+  Check,
+  Minus,
+} from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
@@ -200,17 +210,27 @@ export default function CostComparison() {
         <div className="cmp-table">
           <div className="cmp-row cmp-row--head">
             <div className="cmp-feature"></div>
-            <div className="cmp-a">In-house receptionist</div>
-            <div className="cmp-b">VM Solutions AI</div>
+            <div className="cmp-a">
+              <IconGlass icon={User} size="xs" />
+              <span>In-house receptionist</span>
+            </div>
+            <div className="cmp-b">
+              <IconGlass icon={Bot} size="xs" tone="var(--blue)" />
+              <span>VM Solutions AI</span>
+            </div>
           </div>
           {TABLE.map((r) => (
             <div className="cmp-row" key={r.label}>
               <div className="cmp-feature">{r.label}</div>
               <div className="cmp-a" data-label="In-house receptionist">
-                {r.a}
+                <Minus className="cmp-dash" size={15} strokeWidth={2.4} aria-hidden="true" />
+                <span>{r.a}</span>
               </div>
               <div className="cmp-b" data-label="VM Solutions AI">
-                {r.b}
+                <span className="cmp-check" aria-hidden="true">
+                  <Check size={12} strokeWidth={3.2} />
+                </span>
+                <span>{r.b}</span>
               </div>
             </div>
           ))}
