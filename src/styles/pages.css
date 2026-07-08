@@ -921,6 +921,19 @@
   align-self: flex-start;
 }
 
+.quote-submit:disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.form-senderror {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #c23b3b;
+  line-height: 1.6;
+}
+
 .form-guarantee {
   display: flex;
   align-items: center;

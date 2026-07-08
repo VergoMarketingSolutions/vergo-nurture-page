@@ -61,6 +61,8 @@ export default function Quote() {
   });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   const set = (k, v) => {
     setValues((s) => ({ ...s, [k]: v }));
@@ -86,13 +88,48 @@ export default function Quote() {
     return e;
   };
 
-  const onSubmit = (ev) => {
+  const onSubmit = async (ev) => {
     ev.preventDefault();
+    if (sending) return;
     const e = validate();
     setErrors(e);
-    if (Object.keys(e).length === 0) {
+    if (Object.keys(e).length > 0) return;
+
+    setSending(true);
+    setSendError('');
+    const serviceLabels = values.services
+      .map((id) => SERVICES.find((s) => s.id === id)?.label)
+      .filter(Boolean)
+      .join(', ');
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/vergomarketingsolutions@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `New quote request — ${values.business.trim()}`,
+          _template: 'table',
+          _captcha: 'false',
+          'Business name': values.business.trim(),
+          'Contact name': values.contact.trim(),
+          'Email': values.email.trim(),
+          'Phone': values.phone.trim(),
+          'Services interested in': serviceLabels,
+          'Monthly call/lead volume': values.volume || 'Not specified',
+          'Message': values.message.trim() || '—',
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === 'false') {
+        throw new Error(data.message || `Request failed (${res.status})`);
+      }
       setSent(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      setSendError(
+        'Something went wrong sending your request. Please try again, or call us on 0481 813 435 / email vergomarketingsolutions@gmail.com directly.'
+      );
+    } finally {
+      setSending(false);
     }
   };
 
@@ -218,9 +255,10 @@ export default function Quote() {
                 />
               </div>
 
-              <button type="submit" className="button-primary quote-submit">
-                Send My Quote Request
+              <button type="submit" className="button-primary quote-submit" disabled={sending}>
+                {sending ? 'Sending…' : 'Send My Quote Request'}
               </button>
+              {sendError && <p className="form-senderror">{sendError}</p>}
               <p className="form-guarantee">
                 <ShieldCheck size={16} strokeWidth={2.2} />
                 Risk-free — every engagement is backed by our 30-day money-back guarantee.
