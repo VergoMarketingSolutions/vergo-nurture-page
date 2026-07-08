@@ -66,7 +66,7 @@ const fill = async () => {
 await fill();
 await page.click('.quote-submit');
 await sleep(900);
-log('submit: request sent to FormSubmit endpoint', !!captured && captured.url.includes('vergomarketingsolutions@gmail.com'), captured?.url);
+log('submit: request sent to FormSubmit alias endpoint', !!captured && captured.url.includes('574fc98c40eb790b4c806754b487c034'), captured?.url);
 const payload = captured ? JSON.parse(captured.body) : {};
 log(
   'submit: payload carries all fields',

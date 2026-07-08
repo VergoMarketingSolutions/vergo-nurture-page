@@ -102,7 +102,8 @@ export default function Quote() {
       .filter(Boolean)
       .join(', ');
     try {
-      const res = await fetch('https://formsubmit.co/ajax/vergomarketingsolutions@gmail.com', {
+      // FormSubmit alias for the business inbox — keeps the raw address out of the bundle
+      const res = await fetch('https://formsubmit.co/ajax/574fc98c40eb790b4c806754b487c034', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
