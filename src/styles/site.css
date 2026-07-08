@@ -205,18 +205,20 @@
   letter-spacing: -0.02em;
 }
 
-.footer-social {
+.footer-points {
   display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
-.footer-social a {
+.footer-point {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--ink);
-  transition: transform 0.2s;
-}
-
-.footer-social a:hover {
-  transform: translateY(-2px);
+  max-width: 380px;
 }
 
 .footer-col h4 {

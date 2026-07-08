@@ -309,8 +309,8 @@ export default function Quote() {
 
       <section className="section" data-section="FAQ" data-theme="light">
         <div className="section-head">
-          <div className="eyebrow">Common questions</div>
-          <h2>Asked before you had to ask.</h2>
+          <div className="eyebrow">FAQ</div>
+          <h2>Common questions, answered.</h2>
         </div>
         <div className="faq">
           {FAQS.map((f) => (

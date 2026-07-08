@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck, Clock } from 'lucide-react';
 import IconGlass from './IconGlass.jsx';
 
 export default function Footer() {
@@ -15,16 +15,15 @@ export default function Footer() {
             Vergo Marketing Solutions — the AI front desk and marketing engine for HVAC and
             roofing businesses. Every call answered. Every lead followed up.
           </p>
-          <div className="footer-social">
-            <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-              <IconGlass icon={Facebook} size="sm" round />
-            </a>
-            <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-              <IconGlass icon={Instagram} size="sm" round />
-            </a>
-            <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-              <IconGlass icon={Linkedin} size="sm" round />
-            </a>
+          <div className="footer-points">
+            <div className="footer-point">
+              <IconGlass icon={Clock} size="xs" tone="var(--blue)" />
+              <span>Lines answered 24/7 — call-backs within one business day</span>
+            </div>
+            <div className="footer-point">
+              <IconGlass icon={ShieldCheck} size="xs" tone="#1d9e5f" />
+              <span>30-day money-back guarantee on every engagement</span>
+            </div>
           </div>
         </div>
 
