@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, ShieldCheck, Clock } from 'lucide-react';
 import IconGlass from './IconGlass.jsx';
+import Logo from './Logo.jsx';
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="footer-logo">
-            <span className="nav-mark">VM</span>
+            <Logo className="nav-mark" />
             <span>VM Solutions</span>
           </div>
           <p>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import Logo from './Logo.jsx';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -26,7 +27,7 @@ export default function Nav() {
     <header className="nav">
       <div className="nav-bar">
         <Link to="/" className="nav-brand">
-          <span className="nav-mark">VM</span>
+          <Logo className="nav-mark" />
           <span className="nav-name">
             VM Solutions
             <span className="nav-sub">Vergo Marketing</span>
