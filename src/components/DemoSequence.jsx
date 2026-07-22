@@ -81,8 +81,8 @@ export default function DemoSequence() {
           <div key={f.key} className={`demo-tint demo-tint--${f.tone}`} data-tint={i} />
         ))}
         <div className="demo-inner">
-          <div className="eyebrow">The 40-second story</div>
-          <h2 className="demo-title">Watch a missed call become a booked job.</h2>
+          <div className="eyebrow">How it works</div>
+          <h2 className="demo-title">From missed call to booked job.</h2>
           <div className="demo-card">
             {FRAMES.map((f, i) => (
               <div key={f.key} className={`demo-frame demo-frame--${f.tone}`} data-frame={i}>

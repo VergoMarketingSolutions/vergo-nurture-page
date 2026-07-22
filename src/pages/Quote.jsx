@@ -48,7 +48,7 @@ const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 export default function Quote() {
   usePageMeta(
     'Request a Quote | VM Solutions',
-    'Tell us your call volume and where it hurts. A scoped quote within two business days — no lock-in, backed by a 30-day money-back guarantee.'
+    'Tell us your call volume and current setup. A scoped quote within two business days — no lock-in, backed by a 30-day money-back guarantee.'
   );
   const [values, setValues] = useState({
     business: '',
@@ -138,10 +138,10 @@ export default function Quote() {
     <div className="page">
       <header className="page-head section" data-section="QUOTE" data-theme="light">
         <div className="eyebrow">Request a quote</div>
-        <h1>Tell us where it hurts.</h1>
+        <h1>Tell us about your business.</h1>
         <p>
-          No checkout, no card, no lock-in. Tell us about the business and we&rsquo;ll come
-          back with a scoped quote — usually within two business days.
+          No checkout, no card, no lock-in. Send us a few details and we&rsquo;ll come back
+          with a scoped quote, usually within two business days.
         </p>
       </header>
 
@@ -152,9 +152,9 @@ export default function Quote() {
               <IconGlass icon={CheckCircle2} size="lg" tone="#1d9e5f" />
               <h2>Request received.</h2>
               <p>
-                Thanks, {values.contact.split(' ')[0] || 'legend'} — we&rsquo;ve got it. Someone
-                from VM Solutions will call {values.phone} within one business day to scope
-                things properly.
+                Thanks{values.contact.trim() ? `, ${values.contact.split(' ')[0]}` : ''} — your
+                request is in. Someone from VM Solutions will call {values.phone} within one
+                business day to talk it through.
               </p>
               <Link to="/" className="button-primary">
                 Back to Home
@@ -252,7 +252,7 @@ export default function Quote() {
                   rows={4}
                   value={values.message}
                   onChange={(e) => set('message', e.target.value)}
-                  placeholder="Current setup, busiest season, what’s driving you mad…"
+                  placeholder="Current setup, busy season, what’s not working…"
                 />
               </div>
 
@@ -275,7 +275,7 @@ export default function Quote() {
                 <IconGlass icon={PhoneOutgoing} size="sm" />
                 <div>
                   <strong>1 · We call you back</strong>
-                  <span>Within one business day, a human — promise.</span>
+                  <span>Within one business day, from a real person.</span>
                 </div>
               </div>
               <div className="aside-step">

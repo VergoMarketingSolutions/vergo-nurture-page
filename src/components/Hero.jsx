@@ -394,7 +394,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="scroll-hint" data-el="hint">
-          Scroll to clear the fog
+          Scroll
           <span className="scroll-hint-line" />
         </div>
       </div>

@@ -653,16 +653,24 @@
   background: linear-gradient(155deg, #e7f5ec, #f8fcf9 65%);
 }
 
-.pillars-note,
-.quotes-note {
+.pillars-note {
   text-align: center;
   color: var(--gray);
   font-size: 14px;
   margin: 34px 0 0;
+  font-style: italic;
 }
 
-.pillars-note {
-  font-style: italic;
+.reason-card h3 {
+  margin: 4px 0 0;
+  font-size: 1.15rem;
+}
+
+.reason-card p {
+  margin: 0;
+  color: var(--gray);
+  line-height: 1.6;
+  font-size: 14.5px;
 }
 
 .pillar-card h3 {

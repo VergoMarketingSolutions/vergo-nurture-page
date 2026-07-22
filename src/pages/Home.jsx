@@ -7,7 +7,8 @@ import {
   Megaphone,
   SearchCheck,
   ChevronRight,
-  Quote,
+  PhoneForwarded,
+  LineChart,
   Timer,
   CalendarClock,
   CircleDollarSign,
@@ -52,21 +53,21 @@ const STEPS = [
   },
 ];
 
-const QUOTES = [
+const REASONS = [
   {
-    text: 'Fourteen after-hours calls turned into booked jobs in our first month. Two of those were full system replacements.',
-    name: 'Owner, HVAC service co.',
-    where: 'Melbourne, VIC',
+    Icon: ShieldCheck,
+    title: 'No lock-in contracts',
+    text: 'Month-to-month on the phones, project-scoped on marketing. If it isn’t working, you walk.',
   },
   {
-    text: 'The audit found about $1,900 a month of wasted ad spend in the first week. That alone paid for the whole year.',
-    name: 'Director, roofing company',
-    where: 'Brisbane, QLD',
+    Icon: PhoneForwarded,
+    title: 'You keep your number',
+    text: 'We forward your existing line. Nothing changes for your customers — the calls just start getting answered.',
   },
   {
-    text: 'Customers can’t tell it isn’t our front desk. I rang it myself to test it — honestly, neither could I.',
-    name: 'GM, heating & cooling',
-    where: 'Sydney, NSW',
+    Icon: LineChart,
+    title: 'Measured in booked jobs',
+    text: 'Plain-English reporting on what matters: jobs booked and cost per job, not clicks and impressions.',
   },
 ];
 
@@ -97,13 +98,13 @@ export default function Home() {
         clearProps: 'transform',
         scrollTrigger: { trigger: '.pillar-grid', start: 'top 78%' },
       });
-      gsap.from('.quote-card', {
+      gsap.from('.reason-card', {
         opacity: 0,
         y: 36,
         duration: 0.7,
         ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: '.quote-grid', start: 'top 80%' },
+        scrollTrigger: { trigger: '.reasons-grid', start: 'top 80%' },
       });
       gsap.from('.cta-band', {
         opacity: 0,
@@ -158,7 +159,7 @@ export default function Home() {
           ))}
         </div>
         <p className="pillars-note">
-          Start anywhere — most owners start with the phones and work backwards.
+          Most owners start with the phones and work backwards.
         </p>
         <div className="pillars-cta">
           <Link to="/quote" className="button-primary">
@@ -167,33 +168,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="quotes section" data-section="PROOF" data-theme="light">
+      <section className="quotes section" data-section="WHY VM" data-theme="light">
         <div className="section-head">
-          <div className="eyebrow">From the field</div>
-          <h2>Operators who stopped losing calls.</h2>
+          <div className="eyebrow">Why VM</div>
+          <h2>Straight with you, built for the trades.</h2>
         </div>
-        <div className="quote-grid">
-          {QUOTES.map((q) => (
-            <figure key={q.name} className="quote-card">
-              <IconGlass icon={Quote} size="sm" />
-              <blockquote>{q.text}</blockquote>
-              <figcaption>
-                <strong>{q.name}</strong>
-                <span>{q.where}</span>
-              </figcaption>
-            </figure>
+        <div className="reasons-grid quote-grid">
+          {REASONS.map((r) => (
+            <div key={r.title} className="reason-card quote-card">
+              <IconGlass icon={r.Icon} size="sm" tone="var(--blue)" />
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
+            </div>
           ))}
         </div>
-        <p className="quotes-note">
-          Anonymous here on purpose — ask us and we&rsquo;ll put you on the phone with them.
-        </p>
       </section>
 
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
         <div className="cta-band">
           <h2>Stop paying for missed calls.</h2>
           <p>
-            Tell us your call volume and where it hurts. You&rsquo;ll have a scoped quote
+            Tell us your call volume and current setup. You&rsquo;ll have a scoped quote
             within two business days — backed by a 30-day money-back guarantee.
           </p>
           <div className="cta-band-actions">

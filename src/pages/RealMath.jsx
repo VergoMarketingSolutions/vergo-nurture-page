@@ -101,14 +101,14 @@ export default function RealMath() {
       <WobblyGrid />
       <div className="wb-inner">
         <header className="wb-head">
-          <div className="wb-kicker">ok, grab a marker —</div>
+          <div className="wb-kicker">the honest breakdown</div>
           <h1 className="wb-title">
             The <span className="wb-title-real">Real</span> Math
           </h1>
           <Squiggle className="wb-title-squiggle" />
           <p className="wb-sub">
-            What it actually costs to answer your phones and fill your pipeline — sketched
-            out the way I&rsquo;d explain it to a mate.
+            What it actually costs to answer your phones and fill your pipeline — every option,
+            side by side.
           </p>
         </header>
 
@@ -166,12 +166,11 @@ export default function RealMath() {
             </span>
           </div>
           <p className="wb-footnote">
-            * ranges pulled from typical published AU pricing — your mileage will vary. The
-            point isn&rsquo;t the exact dollars, it&rsquo;s the shape of the problem.
+            * Ranges based on typical published AU pricing. Actual costs vary by provider and
+            scope.
           </p>
           <p className="wb-footnote wb-footnote--green">
-            The whole pitch in one line: one bill instead of three, and your phone never
-            rings out.
+            One bill instead of three — and your phone never rings out.
           </p>
         </div>
       </div>

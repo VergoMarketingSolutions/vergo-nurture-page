@@ -60,9 +60,8 @@ export default function Services() {
           audit, build, answer.
         </h1>
         <p>
-          Three services that feed each other. No packages pulled from thin air — every
-          engagement is scoped to your business, and you can start at whichever step hurts
-          most.
+          Three services that feed each other. No fixed packages — every engagement is
+          scoped to your business, and you can start at whichever step matters most.
         </p>
       </header>
 
@@ -220,8 +219,8 @@ export default function Services() {
         <div className="cta-band">
           <h2>Not sure which step you need first?</h2>
           <p>
-            Tell us where it hurts — we&rsquo;ll point you at the smallest thing that fixes
-            it. Most owners start with the phones and work backwards.
+            Tell us about your setup and we&rsquo;ll point you at the smallest thing that moves
+            the needle. Most owners start with the phones and work backwards.
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">

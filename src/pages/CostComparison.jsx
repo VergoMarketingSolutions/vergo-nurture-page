@@ -69,12 +69,12 @@ export default function CostComparison() {
           Or nine cents a minute.
         </h1>
         <p>
-          This is the only page on this site with prices on it — because this one is simple
-          enough to publish.
+          A receptionist is a fixed salary. Our AI receptionist is a per-minute rate. Here is
+          the difference over a year.
         </p>
       </header>
 
-      <section className="section" data-section="THE DUEL" data-theme="light">
+      <section className="section" data-section="RECEPTIONIST" data-theme="light">
         <div className="spec-duel">
           <div className="spec-cell">
             <div className="spec-cell-head">
@@ -132,7 +132,7 @@ export default function CostComparison() {
             <p>
               Every engagement is backed by a <strong>30-day money-back guarantee</strong> — no
               lock-in contracts. If VM Solutions doesn&rsquo;t earn its keep in the first month,
-              you get your money back. Simple as that.
+              you get your money back.
             </p>
           </div>
           <div className="guarantee-seal">
@@ -142,11 +142,11 @@ export default function CostComparison() {
         </div>
       </section>
 
-      <section className="section" data-section="THE LEAK" data-theme="light">
+      <section className="section" data-section="YOUR NUMBERS" data-theme="light">
         <div className="section-head">
           <div className="eyebrow">Your numbers</div>
           <h2>What do missed calls already cost you?</h2>
-          <p>Drag the sliders. We&rsquo;ll keep it conservative.</p>
+          <p>Based on your own call volume and average job value.</p>
         </div>
         <div className="calc">
           <div className="calc-controls">
@@ -243,15 +243,15 @@ export default function CostComparison() {
           <p>
             Marketing Services and Internal Marketing Reviews are quoted individually based
             on scope — typical engagements run <strong>$1,500–$10,000 AUD</strong> depending
-            on your market, service area and goals. No packages, no lock-in pricing pulled
-            from thin air: we scope it to your business.
+            on your market, service area and goals. No fixed packages — every engagement is
+            scoped to your business.
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">
               Request a Quote
             </Link>
             <Link to="/real-math" className="text-link text-link--lg">
-              Prefer it on a whiteboard? <ChevronRight size={18} />
+              See the full breakdown <ChevronRight size={18} />
             </Link>
           </div>
         </div>
