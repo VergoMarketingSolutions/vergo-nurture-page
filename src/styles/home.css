@@ -675,15 +675,36 @@
 
 /* ---------- testimonials ---------- */
 
-.tm-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+.tm-marquee {
   margin-top: 46px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.tm-track {
+  display: flex;
+  width: max-content;
+  animation: tm-scroll 48s linear infinite;
+}
+
+.tm-marquee:hover .tm-track {
+  animation-play-state: paused;
+}
+
+@keyframes tm-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .tm-card {
-  margin: 0;
+  margin: 0 22px 0 0;
+  width: 340px;
+  flex: none;
   background: #fff;
   border: 1px solid rgba(20, 20, 26, 0.05);
   border-radius: var(--radius-card);
@@ -746,8 +767,25 @@
 }
 
 @media (max-width: 900px) {
-  .tm-grid {
-    grid-template-columns: 1fr;
+  .tm-card {
+    width: min(80vw, 300px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-marquee {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .tm-track {
+    animation: none;
+  }
+
+  .tm-card[aria-hidden='true'] {
+    display: none;
   }
 }
 

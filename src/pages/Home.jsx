@@ -271,33 +271,39 @@ export default function Home() {
           <div className="eyebrow">Reviews</div>
           <h2>What operators say.</h2>
         </div>
-        <div className="tm-grid">
-          {TESTIMONIALS.map((t) => (
-            <figure key={t.name} className="tm-card">
-              <div className="tm-stars" aria-label={`${t.stars} out of 5 stars`}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    fill={i < t.stars ? 'currentColor' : 'none'}
-                    strokeWidth={i < t.stars ? 0 : 1.5}
-                  />
-                ))}
-              </div>
-              <blockquote>{t.quote}</blockquote>
-              <figcaption>
-                <span className="tm-avatar" style={{ background: t.color }}>
-                  {t.initials}
-                </span>
-                <span className="tm-who">
-                  <strong>{t.name}</strong>
-                  <span>
-                    {t.role} · {t.where}
+        <div className="tm-marquee">
+          <div className="tm-track">
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+              <figure
+                key={`${t.name}-${i}`}
+                className="tm-card"
+                aria-hidden={i >= TESTIMONIALS.length ? 'true' : undefined}
+              >
+                <div className="tm-stars" aria-label={`${t.stars} out of 5 stars`}>
+                  {Array.from({ length: 5 }).map((_, j) => (
+                    <Star
+                      key={j}
+                      size={16}
+                      fill={j < t.stars ? 'currentColor' : 'none'}
+                      strokeWidth={j < t.stars ? 0 : 1.5}
+                    />
+                  ))}
+                </div>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption>
+                  <span className="tm-avatar" style={{ background: t.color }}>
+                    {t.initials}
                   </span>
-                </span>
-              </figcaption>
-            </figure>
-          ))}
+                  <span className="tm-who">
+                    <strong>{t.name}</strong>
+                    <span>
+                      {t.role} · {t.where}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
