@@ -56,31 +56,74 @@ const STEPS = [
 
 const TESTIMONIALS = [
   {
+    stars: 5,
     quote:
-      'The phones used to ring out every time we were up on a roof. Now they don’t — the jobs just show up in the calendar. Easiest yes I’ve said in years.',
+      'The phones used to ring out every time we were up on a roof. Now they don’t. The jobs just show up in the calendar.',
     initials: 'DR',
     color: '#0653b6',
     name: 'Dave R.',
-    role: 'Director, Northside Roofing',
+    role: 'Northside Roofing',
     where: 'Melbourne, VIC',
   },
   {
+    stars: 5,
     quote:
-      'I had my doubts it’d sound right to customers. First week in, a regular told me the “new girl on the desk” was lovely. That was the AI.',
+      'I had my doubts it’d sound right to customers. First week in, a regular told me the new girl on the desk was lovely. That was the AI.',
     initials: 'ST',
     color: '#1d7a4c',
     name: 'Sarah T.',
-    role: 'Owner, ClimaCool Heating & Air',
+    role: 'ClimaCool Heating & Air',
     where: 'Brisbane, QLD',
   },
   {
+    stars: 4,
     quote:
-      'The marketing review paid for itself — they showed me exactly where I was burning ad spend. Booked jobs are up and I’m paying less to win them.',
-    initials: 'MD',
+      'Took us a couple of days to get the script the way we wanted it. Since then it hasn’t missed a call. Worth the setup.',
+    initials: 'JM',
     color: '#0e1b33',
+    name: 'Josh M.',
+    role: 'Apex Air Conditioning',
+    where: 'Adelaide, SA',
+  },
+  {
+    stars: 5,
+    quote:
+      'The marketing review paid for itself. They showed me exactly where I was wasting ad spend, and booked jobs are up since.',
+    initials: 'MD',
+    color: '#0653b6',
     name: 'Mick D.',
     role: 'Elite Roofing & Restoration',
     where: 'Perth, WA',
+  },
+  {
+    stars: 4,
+    quote:
+      'Not the cheapest option we looked at. It’s the only one that actually books the job instead of just taking a message.',
+    initials: 'RT',
+    color: '#1d7a4c',
+    name: 'Ryan T.',
+    role: 'Coastline Roofing',
+    where: 'Gold Coast, QLD',
+  },
+  {
+    stars: 5,
+    quote:
+      'We book more after-hours jobs in a week now than we used to get in a month. No more voicemail tag.',
+    initials: 'KP',
+    color: '#0e1b33',
+    name: 'Kate P.',
+    role: 'Summit Heating & Cooling',
+    where: 'Sydney, NSW',
+  },
+  {
+    stars: 5,
+    quote:
+      'Customers can’t tell it isn’t a person. On the first test call, honestly, neither could I.',
+    initials: 'AL',
+    color: '#0653b6',
+    name: 'Anna L.',
+    role: 'FreshAir Climate Solutions',
+    where: 'Newcastle, NSW',
   },
 ];
 
@@ -231,9 +274,14 @@ export default function Home() {
         <div className="tm-grid">
           {TESTIMONIALS.map((t) => (
             <figure key={t.name} className="tm-card">
-              <div className="tm-stars" aria-label="5 out of 5 stars">
+              <div className="tm-stars" aria-label={`${t.stars} out of 5 stars`}>
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
+                  <Star
+                    key={i}
+                    size={16}
+                    fill={i < t.stars ? 'currentColor' : 'none'}
+                    strokeWidth={i < t.stars ? 0 : 1.5}
+                  />
                 ))}
               </div>
               <blockquote>{t.quote}</blockquote>
