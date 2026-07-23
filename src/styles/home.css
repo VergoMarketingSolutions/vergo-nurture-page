@@ -673,6 +673,84 @@
   font-size: 14.5px;
 }
 
+/* ---------- testimonials ---------- */
+
+.tm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 46px;
+}
+
+.tm-card {
+  margin: 0;
+  background: #fff;
+  border: 1px solid rgba(20, 20, 26, 0.05);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tm-stars {
+  display: flex;
+  gap: 3px;
+  color: #e8a91d;
+}
+
+.tm-card blockquote {
+  margin: 0;
+  flex: 1;
+  font-size: 15.5px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.tm-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.tm-avatar {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: grid;
+  place-items: center;
+}
+
+.tm-who {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.tm-who strong {
+  font-size: 14.5px;
+  color: var(--navy);
+}
+
+.tm-who > span {
+  font-size: 12.5px;
+  color: var(--gray);
+}
+
+@media (max-width: 900px) {
+  .tm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .pillar-card h3 {
   font-size: 1.3rem;
   margin: 6px 0 0;

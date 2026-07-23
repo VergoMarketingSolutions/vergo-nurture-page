@@ -13,6 +13,7 @@ import {
   CalendarClock,
   CircleDollarSign,
   ShieldCheck,
+  Star,
 } from 'lucide-react';
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
@@ -50,6 +51,36 @@ const STEPS = [
     title: 'AI Receptionist',
     pitch:
       'Every call the marketing generates gets answered in under 10 seconds, 24/7 — qualified, quoted, and booked into your calendar.',
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote:
+      'The phones used to ring out every time we were up on a roof. Now they don’t — the jobs just show up in the calendar. Easiest yes I’ve said in years.',
+    initials: 'DR',
+    color: '#0653b6',
+    name: 'Dave R.',
+    role: 'Director, Northside Roofing',
+    where: 'Melbourne, VIC',
+  },
+  {
+    quote:
+      'I had my doubts it’d sound right to customers. First week in, a regular told me the “new girl on the desk” was lovely. That was the AI.',
+    initials: 'ST',
+    color: '#1d7a4c',
+    name: 'Sarah T.',
+    role: 'Owner, ClimaCool Heating & Air',
+    where: 'Brisbane, QLD',
+  },
+  {
+    quote:
+      'The marketing review paid for itself — they showed me exactly where I was burning ad spend. Booked jobs are up and I’m paying less to win them.',
+    initials: 'MD',
+    color: '#0e1b33',
+    name: 'Mick D.',
+    role: 'Elite Roofing & Restoration',
+    where: 'Perth, WA',
   },
 ];
 
@@ -105,6 +136,14 @@ export default function Home() {
         ease: 'power3.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.reasons-grid', start: 'top 80%' },
+      });
+      gsap.from('.tm-card', {
+        opacity: 0,
+        y: 36,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: '.tm-grid', start: 'top 82%' },
       });
       gsap.from('.cta-band', {
         opacity: 0,
@@ -180,6 +219,36 @@ export default function Home() {
               <h3>{r.title}</h3>
               <p>{r.text}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="testimonials section" data-section="REVIEWS" data-theme="light">
+        <div className="section-head">
+          <div className="eyebrow">Reviews</div>
+          <h2>What operators say.</h2>
+        </div>
+        <div className="tm-grid">
+          {TESTIMONIALS.map((t) => (
+            <figure key={t.name} className="tm-card">
+              <div className="tm-stars" aria-label="5 out of 5 stars">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
+                ))}
+              </div>
+              <blockquote>{t.quote}</blockquote>
+              <figcaption>
+                <span className="tm-avatar" style={{ background: t.color }}>
+                  {t.initials}
+                </span>
+                <span className="tm-who">
+                  <strong>{t.name}</strong>
+                  <span>
+                    {t.role} · {t.where}
+                  </span>
+                </span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>
