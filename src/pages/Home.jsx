@@ -86,7 +86,7 @@ const TESTIMONIALS = [
     where: 'Adelaide, SA',
   },
   {
-    stars: 5,
+    stars: 4.5,
     quote:
       'The marketing review paid for itself. They showed me exactly where I was wasting ad spend, and booked jobs are up since.',
     initials: 'MD',
@@ -116,7 +116,7 @@ const TESTIMONIALS = [
     where: 'Sydney, NSW',
   },
   {
-    stars: 5,
+    stars: 4.5,
     quote:
       'Customers can’t tell it isn’t a person. On the first test call, honestly, neither could I.',
     initials: 'AL',
@@ -144,6 +144,25 @@ const REASONS = [
     text: 'Plain-English reporting on what matters: jobs booked and cost per job, not clicks and impressions.',
   },
 ];
+
+function Stars({ value }) {
+  return (
+    <div className="tm-stars" aria-label={`${value} out of 5 stars`}>
+      {Array.from({ length: 5 }).map((_, i) => {
+        const fill = Math.max(0, Math.min(1, value - i));
+        return (
+          <span className="tm-star" key={i}>
+            <Star className="tm-star-bg" size={15} fill="currentColor" strokeWidth={0} />
+            <span className="tm-star-fill" style={{ width: `${fill * 100}%` }}>
+              <Star size={15} fill="currentColor" strokeWidth={0} />
+            </span>
+          </span>
+        );
+      })}
+      <span className="tm-rating">{value.toFixed(1)}</span>
+    </div>
+  );
+}
 
 export default function Home() {
   usePageMeta(
@@ -179,14 +198,6 @@ export default function Home() {
         ease: 'power3.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.reasons-grid', start: 'top 80%' },
-      });
-      gsap.from('.tm-card', {
-        opacity: 0,
-        y: 36,
-        duration: 0.7,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: { trigger: '.tm-grid', start: 'top 82%' },
       });
       gsap.from('.cta-band', {
         opacity: 0,
@@ -266,7 +277,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="testimonials section" data-section="REVIEWS" data-theme="light">
+      <section className="testimonials" data-section="REVIEWS" data-theme="light">
         <div className="section-head">
           <div className="eyebrow">Reviews</div>
           <h2>What operators say.</h2>
@@ -279,16 +290,7 @@ export default function Home() {
                 className="tm-card"
                 aria-hidden={i >= TESTIMONIALS.length ? 'true' : undefined}
               >
-                <div className="tm-stars" aria-label={`${t.stars} out of 5 stars`}>
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star
-                      key={j}
-                      size={16}
-                      fill={j < t.stars ? 'currentColor' : 'none'}
-                      strokeWidth={j < t.stars ? 0 : 1.5}
-                    />
-                  ))}
-                </div>
+                <Stars value={t.stars} />
                 <blockquote>{t.quote}</blockquote>
                 <figcaption>
                   <span className="tm-avatar" style={{ background: t.color }}>
