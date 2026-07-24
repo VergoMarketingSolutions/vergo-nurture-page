@@ -698,10 +698,6 @@
   animation: tm-scroll 48s linear infinite;
 }
 
-.tm-marquee:hover .tm-track {
-  animation-play-state: paused;
-}
-
 @keyframes tm-scroll {
   from {
     transform: translateX(0);
