@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarClock, Users, Clock } from 'lucide-react';
 import {
@@ -46,11 +47,13 @@ export function Countdown({ label = `${INTAKE_MONTH} intake closes in`, tone = '
       {label && <span className="countdown-label">{label}</span>}
       <span className="countdown-units" aria-hidden="true">
         {units.map((u, i) => (
-          <span className="cd-block" key={u.l}>
-            <span className="cd-num">{pad(u.v)}</span>
-            <span className="cd-label">{u.l}</span>
+          <Fragment key={u.l}>
+            <span className="cd-block">
+              <span className="cd-num">{pad(u.v)}</span>
+              <span className="cd-label">{u.l}</span>
+            </span>
             {i < units.length - 1 && <span className="cd-sep">:</span>}
-          </span>
+          </Fragment>
         ))}
       </span>
     </div>
