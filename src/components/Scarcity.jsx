@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CalendarClock, Users } from 'lucide-react';
+import { CalendarClock, Users, Clock } from 'lucide-react';
 import {
   SPOTS_LEFT,
   SPOTS_TOTAL,
@@ -7,6 +7,55 @@ import {
   SPOTS_FILLED_PCT,
   INTAKE_MONTH,
 } from '../lib/availability.js';
+import useCountdown from '../lib/useCountdown.js';
+
+const pad = (n) => String(n).padStart(2, '0');
+
+// Compact one-line countdown for tight spots (the availability bar).
+export function CountdownInline({ className = '' }) {
+  const { days, hours, minutes, seconds } = useCountdown();
+  return (
+    <span
+      className={`cd-inline ${className}`.trim()}
+      role="timer"
+      aria-label={`${INTAKE_MONTH} offer closes in ${days} days ${hours} hours`}
+    >
+      <Clock size={13} strokeWidth={2.4} aria-hidden="true" />
+      <span aria-hidden="true">
+        {days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s
+      </span>
+    </span>
+  );
+}
+
+// Boxed digit blocks for prominent placements (hero, availability, CTAs).
+export function Countdown({ label = `${INTAKE_MONTH} intake closes in`, tone = 'light' }) {
+  const { days, hours, minutes, seconds } = useCountdown();
+  const units = [
+    { v: days, l: 'days' },
+    { v: hours, l: 'hrs' },
+    { v: minutes, l: 'min' },
+    { v: seconds, l: 'sec' },
+  ];
+  return (
+    <div
+      className={`countdown countdown--${tone}`}
+      role="timer"
+      aria-label={`${label} ${days} days ${hours} hours ${minutes} minutes`}
+    >
+      {label && <span className="countdown-label">{label}</span>}
+      <span className="countdown-units" aria-hidden="true">
+        {units.map((u, i) => (
+          <span className="cd-block" key={u.l}>
+            <span className="cd-num">{pad(u.v)}</span>
+            <span className="cd-label">{u.l}</span>
+            {i < units.length - 1 && <span className="cd-sep">:</span>}
+          </span>
+        ))}
+      </span>
+    </div>
+  );
+}
 
 // Slim sitewide bar pinned above the floating nav.
 export function AnnouncementBar() {
@@ -18,6 +67,8 @@ export function AnnouncementBar() {
           <strong>{SPOTS_LEFT} spots left</strong> for {INTAKE_MONTH}
           <span className="announce-why"> — we cap intake at {SPOTS_TOTAL} builds a month</span>
         </p>
+        <span className="announce-sep" aria-hidden="true" />
+        <CountdownInline className="announce-countdown" />
         <Link to="/quote" className="announce-cta">
           Claim a spot
         </Link>

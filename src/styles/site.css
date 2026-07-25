@@ -632,3 +632,159 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* ---------- countdown ---------- */
+
+.announce-sep {
+  flex: none;
+  width: 1px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.cd-inline {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffd9bf;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cd-inline svg {
+  flex: none;
+  opacity: 0.9;
+}
+
+@media (max-width: 760px) {
+  .announce-sep,
+  .announce-countdown {
+    display: none;
+  }
+}
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.countdown-units {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cd-block {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 62px;
+  padding: 12px 8px 9px;
+  border-radius: 14px;
+}
+
+.cd-num {
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cd-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.cd-sep {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-60%);
+  font-size: 22px;
+  font-weight: 700;
+  opacity: 0.4;
+}
+
+/* tone: light-surface blocks (availability section, quote header) */
+.countdown--feature .cd-block {
+  background: #fff;
+  border: 1px solid rgba(255, 138, 61, 0.3);
+  box-shadow: var(--shadow-card);
+  color: var(--navy);
+}
+
+.countdown--feature .cd-num {
+  color: #b3480d;
+}
+
+.countdown--feature {
+  margin-bottom: 30px;
+}
+
+/* tone: inside a CTA band's tinted gradient */
+.countdown--band {
+  margin-top: 28px;
+}
+
+.countdown--band .cd-block {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 138, 61, 0.35);
+  color: var(--navy);
+}
+
+.countdown--band .cd-num {
+  color: #b3480d;
+}
+
+/* tone: hero — solid blocks that hold on both night sky and dawn wash */
+.countdown--hero {
+  flex-basis: 100%;
+  margin-top: 6px;
+}
+
+.countdown--hero .countdown-label {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.countdown--hero .cd-block {
+  background: rgba(14, 27, 51, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
+.countdown--hero .cd-num {
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .cd-block {
+    min-width: 54px;
+    padding: 10px 6px 8px;
+  }
+
+  .cd-num {
+    font-size: 23px;
+  }
+}
