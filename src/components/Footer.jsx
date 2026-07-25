@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ShieldCheck, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck, Clock, CalendarClock } from 'lucide-react';
 import IconGlass from './IconGlass.jsx';
 import Logo from './Logo.jsx';
+import { SPOTS_LEFT, SPOTS_TOTAL, INTAKE_MONTH } from '../lib/availability.js';
 
 export default function Footer() {
   return (
@@ -24,6 +25,15 @@ export default function Footer() {
             <div className="footer-point">
               <IconGlass icon={ShieldCheck} size="xs" tone="#1d9e5f" />
               <span>30-day money-back guarantee on every engagement</span>
+            </div>
+            <div className="footer-point">
+              <IconGlass icon={CalendarClock} size="xs" tone="#e2560c" />
+              <span>
+                <strong>{SPOTS_LEFT} of {SPOTS_TOTAL} {INTAKE_MONTH} build spots left</strong> —{' '}
+                <Link to="/quote" className="footer-inline-link">
+                  claim one
+                </Link>
+              </span>
             </div>
           </div>
         </div>

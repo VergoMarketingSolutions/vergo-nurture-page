@@ -18,6 +18,7 @@ import {
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
 import IconGlass from '../components/IconGlass.jsx';
+import { SpotsMeter, SpotsNote } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const NUMBERS = [
@@ -309,6 +310,14 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section availability" data-section="AVAILABILITY" data-theme="light">
+        <div className="section-head">
+          <div className="eyebrow">Availability</div>
+          <h2>We can&rsquo;t take everyone this month.</h2>
+        </div>
+        <SpotsMeter />
+      </section>
+
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
         <div className="cta-band">
           <h2>Stop paying for missed calls.</h2>
@@ -324,6 +333,7 @@ export default function Home() {
               See the cost comparison <ChevronRight size={18} />
             </Link>
           </div>
+          <SpotsNote />
         </div>
       </section>
     </div>

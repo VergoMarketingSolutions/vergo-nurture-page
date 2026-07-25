@@ -347,3 +347,16 @@
     padding: 11px 18px;
   }
 }
+
+/* availability, in the same marker voice as the rest of the board */
+.wb-scarcity {
+  align-self: flex-start;
+  font-family: var(--font-hand-display);
+  font-size: 23px;
+  font-weight: 600;
+  color: #c2410c;
+  margin: 0 0 10px;
+  transform: rotate(-0.4deg);
+  text-decoration: underline wavy rgba(194, 65, 12, 0.4);
+  text-underline-offset: 6px;
+}

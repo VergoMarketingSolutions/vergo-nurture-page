@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
+import { AnnouncementBar } from './components/Scarcity.jsx';
 import ScrollRail from './components/ScrollRail.jsx';
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
@@ -73,6 +74,7 @@ export default function App() {
 
   return (
     <>
+      <AnnouncementBar />
       <Nav />
       <ScrollRail />
       <main>

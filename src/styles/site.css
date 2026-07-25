@@ -1,8 +1,104 @@
+/* ---------- availability bar ---------- */
+
+:root {
+  --announce-h: 38px;
+}
+
+.announce {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  height: var(--announce-h);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.announce-inner {
+  width: min(1160px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.announce-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff8a3d;
+  box-shadow: 0 0 0 0 rgba(255, 138, 61, 0.7);
+  animation: announce-pulse 2.4s ease-out infinite;
+}
+
+@keyframes announce-pulse {
+  70% {
+    box-shadow: 0 0 0 7px rgba(255, 138, 61, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 61, 0);
+  }
+}
+
+.announce-copy {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.82);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.announce-copy strong {
+  font-weight: 800;
+  color: #fff;
+}
+
+.announce-cta {
+  flex: none;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+}
+
+.announce-cta:hover {
+  text-decoration-color: #fff;
+}
+
+@media (max-width: 640px) {
+  .announce-why {
+    display: none;
+  }
+
+  .announce-copy {
+    font-size: 12.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announce-dot {
+    animation: none;
+  }
+}
+
 /* ---------- nav ---------- */
 
 .nav {
   position: fixed;
-  top: 14px;
+  top: calc(var(--announce-h) + 14px);
   left: 0;
   right: 0;
   z-index: 100;
@@ -106,7 +202,7 @@
 .nav-panel {
   pointer-events: auto;
   position: fixed;
-  top: 90px;
+  top: calc(var(--announce-h) + 90px);
   left: 16px;
   right: 16px;
   z-index: 99;
@@ -410,4 +506,129 @@
   .rail {
     display: none;
   }
+}
+
+/* ---------- scarcity: pill / note / capacity meter ---------- */
+
+.spots-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 138, 61, 0.12);
+  border: 1px solid rgba(255, 138, 61, 0.32);
+  color: #b3480d;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.spots-pill--lg {
+  flex: none;
+  padding: 9px 16px;
+  font-size: 13.5px;
+}
+
+.spots-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #b3480d;
+}
+
+.spots-note svg {
+  flex: none;
+}
+
+.spots-meter {
+  background: #fff;
+  border: 1px solid rgba(255, 138, 61, 0.28);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 28px 30px;
+}
+
+.spots-meter-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.spots-meter-count {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+.spots-meter-count strong {
+  font-size: 30px;
+  font-weight: 800;
+  color: #b3480d;
+  letter-spacing: -0.03em;
+}
+
+.spots-meter-sub {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--gray);
+  max-width: 62ch;
+}
+
+.spots-bar {
+  margin-top: 22px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(20, 20, 26, 0.07);
+  overflow: hidden;
+}
+
+.spots-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #ff8a3d, #e2560c);
+}
+
+.spots-bar-legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+@media (max-width: 640px) {
+  .spots-meter {
+    padding: 24px 22px;
+  }
+
+  .spots-meter-head {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+.footer-point strong {
+  color: #b3480d;
+  font-weight: 800;
+}
+
+.footer-inline-link {
+  display: inline !important;
+  margin: 0 !important;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }

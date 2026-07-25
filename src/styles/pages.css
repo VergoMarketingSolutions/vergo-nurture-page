@@ -1,7 +1,8 @@
 /* ---------- page headers ---------- */
 
 .page-head {
-  padding-top: 172px;
+  /* clears the floating nav, which the availability bar pushes down */
+  padding-top: calc(172px + var(--announce-h));
   padding-bottom: 26px;
   text-align: center;
 }
@@ -1096,4 +1097,34 @@
   color: var(--gray);
   line-height: 1.65;
   font-size: 14.5px;
+}
+
+/* ---------- scarcity placements ---------- */
+
+.page-head .spots-pill--head {
+  margin-top: 22px;
+}
+
+.spots-pill--guarantee {
+  margin-top: 14px;
+}
+
+/* in-form reminder: boxed so it reads as a condition of the request,
+   not decoration, and sits directly above the submit */
+.quote-card-form .spots-note {
+  padding: 13px 16px;
+  border-radius: 16px;
+  background: rgba(255, 138, 61, 0.09);
+  border: 1px solid rgba(255, 138, 61, 0.3);
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.quote-card-form .spots-note svg {
+  margin-top: 1px;
+}
+
+.scope-note .spots-note {
+  justify-content: center;
+  margin-top: 22px;
 }

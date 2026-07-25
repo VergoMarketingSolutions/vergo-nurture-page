@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PhoneIncoming, CalendarCheck2 } from 'lucide-react';
+import { SpotsPill } from './Scarcity.jsx';
 
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, l, h) => Math.max(l, Math.min(h, v));
@@ -359,6 +360,7 @@ export default function Hero() {
             <Link to="/services" className="hero-cta-glass">
               See how it works
             </Link>
+            <SpotsPill className="spots-pill--hero" />
           </div>
           <div className="hero-call" data-el="card" aria-hidden="true">
             <div className="hero-call-top">

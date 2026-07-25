@@ -935,3 +935,24 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+/* hero availability chip: solid fill so it holds contrast against both the
+   night sky and the full-dawn wash the scene ends on */
+.spots-pill--hero {
+  flex-basis: 100%;
+  justify-content: center;
+  margin-top: 4px;
+  background: #e2560c;
+  border-color: #e2560c;
+  color: #fff;
+}
+
+/* availability band + the scarcity note that closes each CTA */
+.availability .section-head {
+  margin-bottom: 34px;
+}
+
+.cta-band .spots-note {
+  justify-content: center;
+  margin-top: 26px;
+}

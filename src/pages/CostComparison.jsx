@@ -13,6 +13,7 @@ import {
   Minus,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
+import { SpotsNote, SpotsPill } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const aud = (n) => '$' + Math.round(n).toLocaleString('en-AU');
@@ -134,6 +135,7 @@ export default function CostComparison() {
               lock-in contracts. If VM Solutions doesn&rsquo;t earn its keep in the first month,
               you get your money back.
             </p>
+            <SpotsPill className="spots-pill--guarantee" />
           </div>
           <div className="guarantee-seal">
             <strong>100%</strong>
@@ -254,6 +256,7 @@ export default function CostComparison() {
               See the full breakdown <ChevronRight size={18} />
             </Link>
           </div>
+          <SpotsNote />
         </div>
       </section>
     </div>
