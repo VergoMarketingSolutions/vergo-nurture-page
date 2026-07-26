@@ -14,7 +14,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsPill, SpotsNote, Countdown } from '../components/Scarcity.jsx';
+import { SpotsNote, Countdown } from '../components/Scarcity.jsx';
 import { SPOTS_LEFT, INTAKE_MONTH } from '../lib/availability.js';
 import usePageMeta from '../lib/usePageMeta.js';
 
@@ -145,7 +145,6 @@ export default function Quote() {
           No checkout, no card, no lock-in. Send us a few details and we&rsquo;ll come back
           with a scoped quote, usually within two business days.
         </p>
-        <SpotsPill className="spots-pill--head" />
         <Countdown tone="feature" />
       </header>
 

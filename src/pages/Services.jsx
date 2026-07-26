@@ -12,7 +12,7 @@ import {
   Star,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsNote, Countdown } from '../components/Scarcity.jsx';
+import { Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 function IncludedList({ items }) {
@@ -232,7 +232,6 @@ export default function Services() {
             </Link>
           </div>
           <Countdown tone="band" />
-          <SpotsNote />
         </div>
       </section>
     </div>

@@ -29,8 +29,11 @@ export function CountdownInline({ className = '' }) {
   );
 }
 
-// Boxed digit blocks for prominent placements (hero, availability, CTAs).
-export function Countdown({ label = `${INTAKE_MONTH} intake closes in`, tone = 'light' }) {
+// Scarcity banner (design "Option C"): the spots count sits beside the live
+// clock, split by a divider, as one self-contained unit. `showSpots={false}`
+// drops the spots half for places that already state capacity nearby (e.g.
+// the availability meter), leaving just the captioned clock.
+export function Countdown({ tone = 'feature', showSpots = true, label = 'Intake closes in' }) {
   const { days, hours, minutes, seconds } = useCountdown();
   const units = [
     { v: days, l: 'days' },
@@ -40,22 +43,33 @@ export function Countdown({ label = `${INTAKE_MONTH} intake closes in`, tone = '
   ];
   return (
     <div
-      className={`countdown countdown--${tone}`}
+      className={`countdown countdown--${tone}${showSpots ? '' : ' countdown--clockonly'}`}
       role="timer"
-      aria-label={`${label} ${days} days ${hours} hours ${minutes} minutes`}
+      aria-label={`${SPOTS_LEFT} ${INTAKE_MONTH} spots left. ${label} ${days} days ${hours} hours ${minutes} minutes`}
     >
-      {label && <span className="countdown-label">{label}</span>}
-      <span className="countdown-units" aria-hidden="true">
-        {units.map((u, i) => (
-          <Fragment key={u.l}>
-            <span className="cd-block">
-              <span className="cd-num">{pad(u.v)}</span>
-              <span className="cd-label">{u.l}</span>
-            </span>
-            {i < units.length - 1 && <span className="cd-sep">:</span>}
-          </Fragment>
-        ))}
-      </span>
+      {showSpots && (
+        <>
+          <div className="cd-spots" aria-hidden="true">
+            <span className="cd-spots-num">{SPOTS_LEFT} left</span>
+            <span className="cd-spots-sub">{INTAKE_MONTH} spots</span>
+          </div>
+          <span className="cd-divider" aria-hidden="true" />
+        </>
+      )}
+      <div className="cd-clock">
+        <span className="cd-cap">{label}</span>
+        <span className="countdown-units" aria-hidden="true">
+          {units.map((u, i) => (
+            <Fragment key={u.l}>
+              <span className="cd-block">
+                <span className="cd-num">{pad(u.v)}</span>
+                <span className="cd-label">{u.l}</span>
+              </span>
+              {i < units.length - 1 && <span className="cd-sep">:</span>}
+            </Fragment>
+          ))}
+        </span>
+      </div>
     </div>
   );
 }
