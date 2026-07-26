@@ -667,66 +667,29 @@
   }
 }
 
-/* Option C banner: spots count | divider | captioned clock, as one card. */
 .countdown {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 26px;
-  flex-wrap: wrap;
-  padding: 22px 30px;
-  border-radius: 22px;
-  background: #fff;
-  border: 1px solid rgba(20, 20, 26, 0.06);
-  box-shadow: var(--shadow-card);
-}
-
-.cd-spots {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  text-align: left;
-}
-
-.cd-spots-num {
-  font-size: 27px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: #b3480d;
-}
-
-.cd-spots-sub {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--gray);
-}
-
-.cd-divider {
-  align-self: stretch;
-  width: 1px;
-  background: rgba(20, 20, 26, 0.1);
-}
-
-.cd-clock {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 22px;
 }
 
-.cd-cap {
+.countdown-label {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 10.5px;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
+  background: rgba(255, 138, 61, 0.12);
   color: #b3480d;
 }
 
-.cd-cap::before {
+/* an urgency dot to the left, matching the sitewide announcement bar */
+.countdown-label::before {
   content: '';
   width: 6px;
   height: 6px;
@@ -737,20 +700,21 @@
 .countdown-units {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-variant-numeric: tabular-nums;
 }
 
-/* Solid navy tiles with white numerals — bold on light cards and the peach
-   CTA band alike; the burnt-orange spots figure supplies the scarcity colour. */
+/* Solid navy tiles with white numerals — the default that reads boldly on
+   the light pages and the peach CTA band alike. The little orange month
+   pill above supplies the scarcity colour; the clock supplies the weight. */
 .cd-block {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-width: 74px;
-  padding: 16px 12px 12px;
+  min-width: 78px;
+  padding: 18px 14px 14px;
   border-radius: 16px;
   line-height: 1;
   background: var(--navy);
@@ -759,7 +723,7 @@
 }
 
 .cd-num {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -768,7 +732,7 @@
 }
 
 .cd-label {
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
@@ -779,11 +743,11 @@
   flex: none;
   align-self: center;
   margin-top: -14px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1;
   color: var(--navy);
-  opacity: 0.32;
+  opacity: 0.35;
 }
 
 .countdown--feature {
@@ -792,85 +756,61 @@
 
 .countdown--band {
   margin-top: 28px;
-  background: rgba(255, 255, 255, 0.78);
 }
 
-/* clock-only: no card chrome, just the captioned clock centred */
-.countdown--clockonly {
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  margin-bottom: 26px;
-}
-
-/* tone: hero — dark translucent card that holds on night sky and dawn wash */
+/* tone: hero — solid blocks that hold on both night sky and dawn wash */
 .countdown--hero {
   flex-basis: 100%;
-  margin-top: 8px;
-  background: rgba(14, 27, 51, 0.62);
+  margin-top: 6px;
+}
+
+.countdown--hero .countdown-label {
+  background: rgba(14, 27, 51, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
-  backdrop-filter: blur(10px) saturate(140%);
-}
-
-.countdown--hero .cd-spots-num {
-  color: #ff8a3d;
-}
-
-.countdown--hero .cd-spots-sub {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.countdown--hero .cd-divider {
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.countdown--hero .cd-cap {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   color: #ffd9bf;
 }
 
-.countdown--hero .cd-cap::before {
+.countdown--hero .countdown-label::before {
   background: #ff8a3d;
   box-shadow: 0 0 8px rgba(255, 138, 61, 0.7);
 }
 
 .countdown--hero .cd-block {
-  background: rgba(9, 18, 36, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(14, 27, 51, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
+.countdown--hero .cd-num {
+  color: #fff;
 }
 
 .countdown--hero .cd-sep {
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
-@media (max-width: 560px) {
-  .countdown {
-    gap: 16px;
-    padding: 20px 18px;
-  }
-
-  .cd-divider {
-    display: none;
-  }
-
+@media (max-width: 640px) {
   .countdown-units {
     gap: 8px;
   }
 
   .cd-block {
-    min-width: 60px;
-    padding: 13px 7px 10px;
-    gap: 7px;
+    min-width: 64px;
+    padding: 14px 8px 11px;
+    gap: 8px;
   }
 
   .cd-num {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   .cd-sep {
-    font-size: 17px;
+    font-size: 18px;
     margin-top: -11px;
   }
 }

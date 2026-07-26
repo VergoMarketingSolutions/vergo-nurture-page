@@ -18,7 +18,7 @@ import {
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsMeter, Countdown } from '../components/Scarcity.jsx';
+import { SpotsMeter, SpotsNote, Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const NUMBERS = [
@@ -315,7 +315,7 @@ export default function Home() {
           <div className="eyebrow">Availability</div>
           <h2>We can&rsquo;t take everyone this month.</h2>
         </div>
-        <Countdown tone="plain" showSpots={false} />
+        <Countdown tone="feature" />
         <SpotsMeter />
       </section>
 
@@ -335,6 +335,7 @@ export default function Home() {
             </Link>
           </div>
           <Countdown tone="band" />
+          <SpotsNote />
         </div>
       </section>
     </div>

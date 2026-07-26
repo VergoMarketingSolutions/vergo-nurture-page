@@ -13,7 +13,7 @@ import {
   Minus,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsPill, Countdown } from '../components/Scarcity.jsx';
+import { SpotsNote, SpotsPill, Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const aud = (n) => '$' + Math.round(n).toLocaleString('en-AU');
@@ -257,6 +257,7 @@ export default function CostComparison() {
             </Link>
           </div>
           <Countdown tone="band" />
+          <SpotsNote />
         </div>
       </section>
     </div>
