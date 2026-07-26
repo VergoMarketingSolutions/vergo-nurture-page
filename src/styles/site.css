@@ -704,24 +704,31 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Solid navy tiles with white numerals — the default that reads boldly on
+   the light pages and the peach CTA band alike. The little orange month
+   pill above supplies the scarcity colour; the clock supplies the weight. */
 .cd-block {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 78px;
   padding: 18px 14px 14px;
   border-radius: 16px;
   line-height: 1;
+  background: var(--navy);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(14, 27, 51, 0.2);
 }
 
 .cd-num {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
+  color: #fff;
 }
 
 .cd-label {
@@ -729,7 +736,7 @@
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  opacity: 0.6;
+  color: #ff8a3d;
 }
 
 .cd-sep {
@@ -737,48 +744,18 @@
   align-self: center;
   margin-top: -14px;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-  opacity: 0.28;
-}
-
-/* tone: light-surface blocks (availability section, quote header) */
-.countdown--feature .cd-block {
-  background: #fff;
-  border: 1px solid rgba(255, 138, 61, 0.3);
-  box-shadow: var(--shadow-card);
   color: var(--navy);
-}
-
-.countdown--feature .cd-num {
-  color: #b3480d;
-}
-
-.countdown--feature .cd-sep {
-  color: var(--navy);
+  opacity: 0.35;
 }
 
 .countdown--feature {
   margin-bottom: 30px;
 }
 
-/* tone: inside a CTA band's tinted gradient */
 .countdown--band {
   margin-top: 28px;
-}
-
-.countdown--band .cd-block {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(255, 138, 61, 0.35);
-  color: var(--navy);
-}
-
-.countdown--band .cd-num {
-  color: #b3480d;
-}
-
-.countdown--band .cd-sep {
-  color: var(--navy);
 }
 
 /* tone: hero — solid blocks that hold on both night sky and dawn wash */
