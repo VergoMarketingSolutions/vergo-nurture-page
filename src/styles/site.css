@@ -751,6 +751,9 @@
 }
 
 .countdown--feature {
+  /* the spots pill sits directly above this on the quote header — without a
+     top margin the two pills collide */
+  margin-top: 28px;
   margin-bottom: 30px;
 }
 
@@ -761,7 +764,8 @@
 /* tone: hero — solid blocks that hold on both night sky and dawn wash */
 .countdown--hero {
   flex-basis: 100%;
-  margin-top: 6px;
+  /* +14px flex gap from .hero-ctas = 28px, matching the quote header */
+  margin-top: 14px;
 }
 
 .countdown--hero .countdown-label {
