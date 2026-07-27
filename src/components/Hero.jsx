@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PhoneIncoming, CalendarCheck2 } from 'lucide-react';
-import { SpotsPill, Countdown } from './Scarcity.jsx';
+import { Countdown } from './Scarcity.jsx';
 
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, l, h) => Math.max(l, Math.min(h, v));
@@ -214,24 +213,11 @@ export default function Hero() {
       wrap.dataset.theme = p > 0.6 ? 'light' : 'dark';
     };
 
-    if (isMobile) {
-      // static "cleared dawn" state below 640px
-      render(1);
-      return () => {
-        if (callTl) callTl.kill();
-      };
-    }
-
-    const st = ScrollTrigger.create({
-      trigger: wrap,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.5,
-      onUpdate: (self) => render(self.progress),
-    });
-    render(0);
+    // Static "cleared dawn" scene at every width — the hero no longer drives
+    // the night-to-dawn transition off scroll position, so the mountains,
+    // snow and sun render in their final lit state the moment the page opens.
+    render(1);
     return () => {
-      st.kill();
       if (callTl) callTl.kill();
     };
   }, []);
@@ -360,7 +346,6 @@ export default function Hero() {
             <Link to="/services" className="hero-cta-glass">
               See how it works
             </Link>
-            <SpotsPill className="spots-pill--hero" />
             <Countdown tone="hero" />
           </div>
           <div className="hero-call" data-el="card" aria-hidden="true">

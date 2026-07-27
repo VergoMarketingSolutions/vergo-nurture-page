@@ -2,14 +2,16 @@
 
 .hero-wrap {
   position: relative;
-  height: 260vh;
+  height: auto;
   background: #080b1c;
 }
 
+/* the extra 160vh of runway and the sticky pin only existed to scrub the
+   night-to-dawn scene; with the scene static the hero is a plain viewport */
 .hero-sticky {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100vh;
+  min-height: 640px;
   overflow: hidden;
 }
 
@@ -358,14 +360,8 @@
 }
 
 @media (max-width: 640px) {
-  .hero-wrap {
-    height: auto;
-  }
-
   .hero-sticky {
-    position: relative;
     height: 100svh;
-    min-height: 640px;
   }
 
   .hero-content {
@@ -934,17 +930,6 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-/* hero availability chip: solid fill so it holds contrast against both the
-   night sky and the full-dawn wash the scene ends on */
-.spots-pill--hero {
-  flex-basis: 100%;
-  justify-content: center;
-  margin-top: 4px;
-  background: #e2560c;
-  border-color: #e2560c;
-  color: #fff;
 }
 
 /* availability band + the scarcity note that closes each CTA */
