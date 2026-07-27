@@ -1128,3 +1128,144 @@
   justify-content: center;
   margin-top: 22px;
 }
+
+/* ---------- legal ---------- */
+
+/* Deliberately plain: white canvas, one readable column, no card chrome.
+   Colours here are the brand tokens only — charcoal, muted, Vergo Blue,
+   a hairline rule, and teal used once as an accent on the TOC marker. */
+.legal-page {
+  background: #fff;
+}
+
+.legal-shell {
+  max-width: 1208px;
+  margin: 0 auto;
+  padding: calc(150px + var(--announce-h)) 24px 96px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.legal-doc {
+  max-width: 680px;
+  min-width: 0;
+  text-align: left;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  color: #14141a;
+}
+
+.legal-doc h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 10px;
+  color: #14141a;
+}
+
+.legal-updated {
+  margin: 0 0 26px;
+  font-size: 14.5px;
+  color: #6b6d76;
+}
+
+.legal-lede {
+  margin: 0 0 8px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: #14141a;
+}
+
+.legal-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #14141a;
+  margin: 44px 0 4px;
+  padding-top: 10px;
+  border-top: 2px solid #0653b6;
+  display: inline-block;
+  /* so a #hash landing clears the fixed bar + nav even without JS */
+  scroll-margin-top: 140px;
+}
+
+.legal-section p {
+  margin: 14px 0 0;
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: #14141a;
+}
+
+.legal-doc a {
+  color: #0653b6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* table of contents — stacked above the doc on mobile, sticky rail on desktop */
+.legal-toc {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14.5px;
+}
+
+.legal-toc-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b6d76;
+  margin: 0 0 12px;
+}
+
+.legal-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid #e7e7e7;
+}
+
+.legal-toc a {
+  display: block;
+  /* 44px tap target on touch */
+  padding: 11px 14px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: #6b6d76;
+  line-height: 1.4;
+  transition: color 0.18s, border-color 0.18s;
+}
+
+.legal-toc a:hover,
+.legal-toc a:focus-visible {
+  color: #0653b6;
+  border-left-color: #6fd6ff;
+}
+
+@media (min-width: 900px) {
+  .legal-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 64px;
+  }
+
+  .legal-toc {
+    position: sticky;
+    top: calc(var(--announce-h) + 110px);
+    align-self: start;
+    order: -1;
+  }
+}
+
+@media (max-width: 899px) {
+  .legal-shell {
+    padding-top: calc(120px + var(--announce-h));
+    gap: 36px;
+  }
+}

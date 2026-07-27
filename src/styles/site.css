@@ -818,3 +818,14 @@
     margin-top: -11px;
   }
 }
+
+.footer-legal-link {
+  color: var(--gray);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.footer-legal-link:hover {
+  color: var(--blue);
+}

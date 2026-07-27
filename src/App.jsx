@@ -12,6 +12,7 @@ import Services from './pages/Services.jsx';
 import CostComparison from './pages/CostComparison.jsx';
 import RealMath from './pages/RealMath.jsx';
 import Quote from './pages/Quote.jsx';
+import Legal from './pages/Legal.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,6 +85,7 @@ export default function App() {
           <Route path="/compare" element={<CostComparison />} />
           <Route path="/real-math" element={<RealMath />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/legal" element={<Legal />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
