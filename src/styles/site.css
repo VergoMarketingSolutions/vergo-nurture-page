@@ -239,6 +239,14 @@
   margin-top: 10px;
 }
 
+/* five links + CTA runs tight just above the burger breakpoint — claw back
+   room from the inter-link gap rather than letting it crowd the wordmark */
+@media (max-width: 1080px) {
+  .nav-links {
+    gap: 17px;
+  }
+}
+
 @media (max-width: 940px) {
   .nav-links {
     display: none;

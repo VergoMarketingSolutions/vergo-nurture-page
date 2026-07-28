@@ -8,6 +8,7 @@ const links = [
   { to: '/services', label: 'Services' },
   { to: '/compare', label: 'Cost Comparison' },
   { to: '/real-math', label: 'The Real Math' },
+  { to: '/legal', label: 'Legal' },
 ];
 
 export default function Nav() {

@@ -1269,3 +1269,43 @@
     gap: 36px;
   }
 }
+
+/* contact block — label/value rows, tokens only */
+.legal-contact {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legal-contact li {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.legal-contact li > span:first-child {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #6b6d76;
+}
+
+.legal-contact-plain {
+  color: #14141a;
+}
+
+@media (max-width: 520px) {
+  .legal-contact li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

@@ -43,7 +43,8 @@ const SECTIONS = [
     id: 'privacy',
     title: 'Privacy',
     body: [
-      'If you contact us through this site, we collect the information you provide (such as your name, email, and message) to respond to your enquiry. We don’t sell your information to third parties. [A full Privacy Policy covering all data this site collects — including any analytics, cookies, or call-handling data — is in progress; contact us at the email below with any questions in the meantime.]',
+      'If you contact us through this site, we collect the information you provide (such as your name, email, and message) to respond to your enquiry. We don’t sell your information to third parties.',
+      'A full Privacy Policy covering all data this site collects — including any analytics, cookies, or call-handling data — is in preparation. Contact us at the email below with any questions in the meantime.',
     ],
   },
   {
@@ -54,7 +55,8 @@ const SECTIONS = [
   {
     id: 'contact',
     title: 'Contact',
-    body: ['Questions about any of the above can be directed to [INSERT CONTACT EMAIL].'],
+    body: ['Questions about any of the above can be directed to:'],
+    contact: true,
   },
 ];
 
@@ -106,11 +108,11 @@ export default function Legal() {
         <article className="legal-doc">
           <h1>Legal</h1>
           <p className="legal-updated">
-            <em>Last updated: [INSERT DATE]</em>
+            <em>Last updated: 28 July 2026</em>
           </p>
           <p className="legal-lede">
             This page covers the Terms of Service, refund policy, and related legal information
-            for vergomarketingsolutions.vercel.app, operated by Vergo Marketing Solutions Pty Ltd,
+            for vergosolutions.com.au, operated by Vergo Marketing Solutions Pty Ltd,
             trading as &ldquo;VM Solutions&rdquo; (&ldquo;Company&rdquo;, &ldquo;we&rdquo;,
             &ldquo;us&rdquo;). By using this site you agree to what&rsquo;s below. Where anything
             on this page differs from the Service Agreement you sign when you purchase a Package,
@@ -123,6 +125,26 @@ export default function Legal() {
               {s.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
+              {s.contact && (
+                <ul className="legal-contact">
+                  <li>
+                    <span>Email</span>
+                    <a href="mailto:vergomarketingsolutions@gmail.com">
+                      vergomarketingsolutions@gmail.com
+                    </a>
+                  </li>
+                  <li>
+                    <span>Phone</span>
+                    <a href="tel:+61481813435">0481 813 435</a>
+                  </li>
+                  <li>
+                    <span>Post</span>
+                    <span className="legal-contact-plain">
+                      Vergo Marketing Solutions Pty Ltd, Melbourne, Victoria, Australia
+                    </span>
+                  </li>
+                </ul>
+              )}
             </section>
           ))}
         </article>
