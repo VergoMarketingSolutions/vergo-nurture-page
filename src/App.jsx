@@ -75,7 +75,7 @@ export default function App() {
 
   return (
     <>
-      {location.pathname === '/' && <AnnouncementBar />}
+      <AnnouncementBar />
       <Nav />
       <ScrollRail />
       <main>

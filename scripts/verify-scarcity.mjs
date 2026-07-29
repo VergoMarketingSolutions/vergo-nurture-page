@@ -18,7 +18,7 @@ const errs = [];
 page.on('pageerror', (e) => errs.push(String(e)));
 page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
 
-const routes = ['/', '/services', '/compare', '/real-math', '/quote'];
+const routes = ['/', '/services', '/compare', '/real-math', '/quote', '/legal'];
 
 const probe = async () =>
   page.evaluate(() => {
@@ -31,7 +31,8 @@ const probe = async () =>
     const first =
       document.querySelector('.hero-eyebrow') ||
       document.querySelector('.page-head .eyebrow') ||
-      document.querySelector('.wb-kicker');
+      document.querySelector('.wb-kicker') ||
+      document.querySelector('.legal-wrap h1');
     const fr = first ? first.getBoundingClientRect() : null;
 
     return {
@@ -41,7 +42,10 @@ const probe = async () =>
       navBottom: Math.round(navRect.bottom),
       firstTop: fr ? Math.round(fr.top) : null,
       announceVar: getComputedStyle(document.documentElement).getPropertyValue('--announce-h').trim(),
-      countdowns: document.querySelectorAll('.countdown, .cd-inline').length,
+      // countdown/spots in the page body, i.e. excluding the bar's own inline timer
+      bodyCountdowns: [...document.querySelectorAll('.countdown, .cd-inline')].filter(
+        (el) => !el.closest('.announce')
+      ).length,
       spots: document.querySelectorAll('.spots-pill, .spots-note, .spots-meter').length,
       availability: document.querySelectorAll('.availability').length,
     };
@@ -60,12 +64,17 @@ for (const vp of [
     const p = await probe();
     const isHome = r === '/';
 
+    // the bar belongs on every page
+    log(`${vp.name} ${r}: bar present`, p.hasBar, `--announce-h ${p.announceVar}`);
     if (isHome) {
-      log(`${vp.name} ${r}: bar present`, p.hasBar, `--announce-h ${p.announceVar}`);
       log(`${vp.name} ${r}: availability section kept`, p.availability === 1);
+      log(`${vp.name} ${r}: 1 in-page countdown (availability only)`, p.bodyCountdowns === 1, `cd ${p.bodyCountdowns}`);
     } else {
-      log(`${vp.name} ${r}: no bar`, !p.hasBar);
-      log(`${vp.name} ${r}: no countdown/spots`, p.countdowns === 0 && p.spots === 0, `cd ${p.countdowns} spots ${p.spots}`);
+      log(
+        `${vp.name} ${r}: no in-page countdown/spots`,
+        p.bodyCountdowns === 0 && p.spots === 0,
+        `cd ${p.bodyCountdowns} spots ${p.spots}`
+      );
     }
 
     // nav must sit fully below the bar
@@ -74,7 +83,7 @@ for (const vp of [
     if (p.firstTop !== null) {
       log(`${vp.name} ${r}: top content clears nav`, p.firstTop >= p.navBottom - 1, `firstTop ${p.firstTop} >= navBottom ${p.navBottom}`);
     }
-    if (r === '/' || r === '/quote') {
+    if (r === '/' || r === '/quote' || r === '/compare' || r === '/legal') {
       await page.screenshot({ path: `${OUT}/${vp.name}${r.replace('/', '-') || '-home'}.png` });
     }
   }
