@@ -12,7 +12,6 @@ import {
   Star,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsNote, Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 function IncludedList({ items }) {
@@ -231,8 +230,6 @@ export default function Services() {
               See the real math <ChevronRight size={18} />
             </Link>
           </div>
-          <Countdown tone="band" />
-          <SpotsNote />
         </div>
       </section>
     </div>

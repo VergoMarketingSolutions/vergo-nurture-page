@@ -14,8 +14,6 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsPill, SpotsNote, Countdown } from '../components/Scarcity.jsx';
-import { SPOTS_LEFT, INTAKE_MONTH } from '../lib/availability.js';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const SERVICES = [
@@ -145,8 +143,6 @@ export default function Quote() {
           No checkout, no card, no lock-in. Send us a few details and we&rsquo;ll come back
           with a scoped quote, usually within two business days.
         </p>
-        <SpotsPill className="spots-pill--head" />
-        <Countdown tone="feature" />
       </header>
 
       <section className="section quote-section" data-section="THE FORM" data-theme="light">
@@ -260,12 +256,8 @@ export default function Quote() {
                 />
               </div>
 
-              <SpotsNote>
-                You&rsquo;re requesting one of the {SPOTS_LEFT} remaining {INTAKE_MONTH} spots.
-                Requests are worked in the order they land.
-              </SpotsNote>
               <button type="submit" className="button-primary quote-submit" disabled={sending}>
-                {sending ? 'Sending…' : 'Claim My Spot'}
+                {sending ? 'Sending…' : 'Send My Quote Request'}
               </button>
               {sendError && <p className="form-senderror">{sendError}</p>}
               <p className="form-guarantee">

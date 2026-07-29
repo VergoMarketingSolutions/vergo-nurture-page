@@ -18,7 +18,7 @@ import {
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsMeter, SpotsNote, Countdown } from '../components/Scarcity.jsx';
+import { SpotsMeter, Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const NUMBERS = [
@@ -334,8 +334,6 @@ export default function Home() {
               See the cost comparison <ChevronRight size={18} />
             </Link>
           </div>
-          <Countdown tone="band" />
-          <SpotsNote />
         </div>
       </section>
     </div>

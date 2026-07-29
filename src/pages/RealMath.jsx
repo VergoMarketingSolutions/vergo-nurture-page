@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { SPOTS_LEFT, SPOTS_TOTAL, INTAKE_MONTH } from '../lib/availability.js';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const ROWS = [
@@ -166,10 +165,6 @@ export default function RealMath() {
               don&rsquo;t pay.
             </span>
           </div>
-          <p className="wb-scarcity">
-            one catch: we only build {SPOTS_TOTAL} of these a month, and {INTAKE_MONTH} is down
-            to {SPOTS_LEFT}.
-          </p>
           <p className="wb-footnote">
             * ranges pulled from typical published AU pricing — your mileage will vary. The
             point isn&rsquo;t the exact dollars, it&rsquo;s the shape of the problem.

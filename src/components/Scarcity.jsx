@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarClock, Users, Clock } from 'lucide-react';
 import {
@@ -60,10 +60,28 @@ export function Countdown({ label = `${INTAKE_MONTH} intake closes in`, tone = '
   );
 }
 
-// Slim sitewide bar pinned above the floating nav.
+// Slim bar pinned above the floating nav (home only).
+// Publishes its real rendered height to --announce-h so the nav and hero
+// always clear it, even when the copy wraps to two lines on narrow screens.
 export function AnnouncementBar() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    const root = document.documentElement;
+    const apply = () => root.style.setProperty('--announce-h', `${Math.ceil(el.offsetHeight)}px`);
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      root.style.setProperty('--announce-h', '0px');
+    };
+  }, []);
+
   return (
-    <div className="announce" role="region" aria-label="Current availability">
+    <div className="announce" role="region" aria-label="Current availability" ref={ref}>
       <div className="announce-inner">
         <span className="announce-dot" aria-hidden="true" />
         <p className="announce-copy">
