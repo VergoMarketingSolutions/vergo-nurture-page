@@ -161,8 +161,11 @@ export default function RealMath() {
           <div className="wb-guarantee">
             <span className="wb-guarantee-check" aria-hidden="true">✓</span>
             <span>
-              risk-free: 30-day money-back guarantee — if VM doesn&rsquo;t earn its keep, you
-              don&rsquo;t pay.
+              low-risk: 30-day money-back guarantee on eligible services —{' '}
+              <Link to="/legal#refund-policy" className="wb-guarantee-terms">
+                conditions apply
+              </Link>
+              .
             </span>
           </div>
           <p className="wb-footnote">

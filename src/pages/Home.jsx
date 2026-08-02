@@ -324,7 +324,8 @@ export default function Home() {
           <h2>Stop paying for missed calls.</h2>
           <p>
             Tell us your call volume and current setup. You&rsquo;ll have a scoped quote
-            within two business days — backed by a 30-day money-back guarantee.
+            within two business days — backed by a 30-day money-back guarantee on eligible
+            services (<Link to="/legal#refund-policy">conditions apply</Link>).
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">

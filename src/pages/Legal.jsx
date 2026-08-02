@@ -68,25 +68,40 @@ export default function Legal() {
 
   // Deep links to a section have to survive two things the rest of the site
   // does: App.jsx force-scrolls to the top on every route change, and Lenis
-  // owns the scroll position, so a native hash jump gets overridden. Defer
-  // past both, and drive Lenis directly when it's running.
+  // owns the scroll position and settles over several frames. On a cold load
+  // one deferred scroll is enough, but arriving via a client-side <Link> races
+  // both — so re-assert over a short window, and stop as soon as we're there.
   useEffect(() => {
+    let timers = [];
+
+    const settleTo = (el) => {
+      const target = el.getBoundingClientRect().top + window.scrollY - ANCHOR_OFFSET;
+      if (Math.abs(window.scrollY - target) < 8) return true;
+      if (window.__lenis) {
+        window.__lenis.scrollTo(target, { immediate: true });
+      } else {
+        window.scrollTo({ top: target });
+      }
+      return false;
+    };
+
     const goToHash = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
       if (!id) return;
       const el = document.getElementById(id);
       if (!el) return;
-      requestAnimationFrame(() => {
-        if (window.__lenis) {
-          window.__lenis.scrollTo(el, { offset: -ANCHOR_OFFSET, immediate: true });
-        } else {
-          window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - ANCHOR_OFFSET });
-        }
-      });
+      timers.forEach(clearTimeout);
+      // plain timeouts, not rAF: rAF is paused while the tab is hidden, which
+      // would strand a background-opened deep link at the top of the page
+      timers = [0, 60, 160, 320].map((d) => setTimeout(() => settleTo(el), d));
     };
+
     goToHash();
     window.addEventListener('hashchange', goToHash);
-    return () => window.removeEventListener('hashchange', goToHash);
+    return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('hashchange', goToHash);
+    };
   }, []);
 
   return (

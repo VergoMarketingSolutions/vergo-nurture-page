@@ -1309,3 +1309,30 @@
     gap: 2px;
   }
 }
+
+/* refund caveat links — quiet, but present wherever the guarantee is claimed */
+.guarantee-terms {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form-guarantee a {
+  color: #187a49;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+.form-guarantee {
+  align-items: flex-start;
+}
+
+.form-guarantee svg {
+  flex: none;
+  margin-top: 2px;
+}

@@ -23,7 +23,12 @@ export default function Footer() {
             </div>
             <div className="footer-point">
               <IconGlass icon={ShieldCheck} size="xs" tone="#1d9e5f" />
-              <span>30-day money-back guarantee on every engagement</span>
+              <span>
+                30-day money-back guarantee on eligible services —{' '}
+                <Link to="/legal#refund-policy" className="footer-inline-link">
+                  conditions apply
+                </Link>
+              </span>
             </div>
           </div>
         </div>

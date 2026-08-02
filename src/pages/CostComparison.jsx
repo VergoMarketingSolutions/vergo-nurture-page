@@ -128,16 +128,19 @@ export default function CostComparison() {
         <div className="guarantee">
           <IconGlass icon={ShieldCheck} size="lg" tone="#1d9e5f" />
           <div className="guarantee-copy">
-            <h3>And it&rsquo;s completely risk-free</h3>
+            <h3>And it&rsquo;s low-risk</h3>
             <p>
-              Every engagement is backed by a <strong>30-day money-back guarantee</strong> — no
+              Eligible services are backed by a <strong>30-day money-back guarantee</strong> — no
               lock-in contracts. If VM Solutions doesn&rsquo;t earn its keep in the first month,
-              you get your money back.
+              you can claim it back.
             </p>
+            <Link to="/legal#refund-policy" className="guarantee-terms">
+              Conditions apply — see Legal
+            </Link>
           </div>
           <div className="guarantee-seal">
-            <strong>100%</strong>
-            <span>Money-back</span>
+            <strong>30</strong>
+            <span>Day guarantee</span>
           </div>
         </div>
       </section>

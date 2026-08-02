@@ -262,7 +262,10 @@ export default function Quote() {
               {sendError && <p className="form-senderror">{sendError}</p>}
               <p className="form-guarantee">
                 <ShieldCheck size={16} strokeWidth={2.2} />
-                Risk-free — every engagement is backed by our 30-day money-back guarantee.
+                <span>
+                  Eligible services are backed by our 30-day money-back guarantee.{' '}
+                  <Link to="/legal#refund-policy">Conditions apply — see Legal</Link>
+                </span>
               </p>
               <p className="form-fineprint">Lead capture only — no payment details, ever.</p>
             </form>

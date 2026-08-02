@@ -360,3 +360,9 @@
   text-decoration: underline wavy rgba(194, 65, 12, 0.4);
   text-underline-offset: 6px;
 }
+
+.wb-guarantee-terms {
+  color: #1e7d46;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
