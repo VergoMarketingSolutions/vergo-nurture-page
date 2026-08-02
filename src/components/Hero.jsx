@@ -1,16 +1,50 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { PhoneIncoming, CalendarCheck2 } from 'lucide-react';
+
+// What the phone actually costs you, one word at a time.
+const LOSSES = ['voicemail.', 'missed calls.', 'after-hours.', 'storm season.', 'the other guy.'];
 
 export default function Hero() {
   const wrapRef = useRef(null);
+  const rotateRef = useRef(null);
+
+  // Typewriter: type a word, hold, backspace it, move to the next. Plain
+  // timeouts rather than rAF so a backgrounded tab doesn't freeze mid-word
+  // and leave a half-typed line on screen.
+  useEffect(() => {
+    const el = rotateRef.current;
+    if (!el) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = LOSSES[0];
+      return undefined;
+    }
+    let word = 0;
+    let chars = 0;
+    let erasing = false;
+    let timer;
+    const tick = () => {
+      const current = LOSSES[word];
+      chars += erasing ? -1 : 1;
+      el.textContent = current.slice(0, chars);
+      let wait = erasing ? 40 : 80;
+      if (!erasing && chars === current.length) {
+        wait = 1600; // let it land before rubbing it out
+        erasing = true;
+      } else if (erasing && chars === 0) {
+        erasing = false;
+        word = (word + 1) % LOSSES.length;
+        wait = 260;
+      }
+      timer = setTimeout(tick, wait);
+    };
+    timer = setTimeout(tick, 700);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return undefined;
     const q = (sel) => wrap.querySelector(sel);
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 640px)').matches;
 
     // --- starfield (fewer + dimmer on small screens) ---
@@ -45,40 +79,7 @@ export default function Hero() {
       grain.style.backgroundImage = `url(${c.toDataURL()})`;
     }
 
-    // --- the live call: ring -> answered -> booked, looping ---
-    const call = {
-      card: q('[data-el="card"]'),
-      status: q('[data-call="status"]'),
-      wave: q('[data-call="wave"]'),
-      line: q('[data-call="line"]'),
-      booked: q('[data-call="booked"]'),
-    };
-    if (reduced) {
-      call.card.classList.add('is-answered');
-      call.status.textContent = 'Answered · VM receptionist';
-      return undefined;
-    }
-
-    gsap.set([call.line, call.booked], { opacity: 0, y: 10 });
-    gsap.set(call.wave, { opacity: 0 });
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
-    tl.call(() => {
-      call.card.classList.remove('is-answered');
-      call.status.textContent = 'Incoming call…';
-    })
-      .to({}, { duration: 0.8 })
-      .call(() => {
-        call.card.classList.add('is-answered');
-        call.status.textContent = 'Answered · VM receptionist';
-      })
-      .to(call.wave, { opacity: 1, duration: 0.25 })
-      .to(call.line, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '<0.15')
-      .to(call.booked, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.8)' }, '+=0.9')
-      .to({}, { duration: 2.0 })
-      .to([call.wave, call.line, call.booked], { opacity: 0, duration: 0.45 })
-      .set([call.line, call.booked], { y: 10 });
-
-    return () => tl.kill();
+    return undefined;
   }, []);
 
   return (
@@ -198,15 +199,19 @@ export default function Hero() {
 
         <div className="hero-content">
           <div className="hero-eyebrow">AI Front Desk + Marketing for HVAC &amp; Roofing</div>
-          <h1 className="hero-headline">
-            Every call answered.
-            <br />
-            Every lead <span className="hero-accent">followed&nbsp;up.</span>
+          <h1
+            className="hero-headline"
+            aria-label="Stop losing jobs to voicemail, missed calls, after-hours, storm season, and the other guy."
+          >
+            <span aria-hidden="true">Stop losing jobs to</span>
+            <span className="hero-rotate" aria-hidden="true">
+              <span className="hero-rotate-word" ref={rotateRef} />
+              <span className="hero-caret" />
+            </span>
           </h1>
           <p className="hero-sub">
-            You&rsquo;re on the tools and the phone rings anyway. VM answers in under 10
-            seconds, sounds like your best front-desk hire, and books the job straight into
-            your calendar. Nights, weekends, storm season.
+            You&rsquo;re up a ladder with both hands full. The phone rings out. They don&rsquo;t
+            leave a message — they just ring the next mob on Google.
           </p>
           <div className="hero-ctas">
             <Link to="/quote" className="hero-cta-solid">
@@ -216,37 +221,23 @@ export default function Hero() {
               See how it works
             </Link>
           </div>
-          <div className="hero-call" data-el="card" aria-hidden="true">
-            <div className="hero-call-top">
-              <span className="hero-call-dot" />
-              <span className="hero-call-status" data-call="status">
-                Incoming call…
-              </span>
-              <span className="hero-call-time">7:42 PM</span>
-            </div>
-            <div className="hero-call-body">
-              <span className="hero-call-icon">
-                <PhoneIncoming size={17} strokeWidth={2} />
-              </span>
-              <div className="hero-call-caller">
-                <strong>Mrs. Chen</strong>
-                <span>Ducted AC not cooling — Thornbury</span>
-              </div>
-              <span className="hero-call-wave" data-call="wave">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-              </span>
-            </div>
-            <div className="hero-call-line" data-call="line">
-              &ldquo;Got it — a tech can be there Thursday at 2 PM. Locking that in now.&rdquo;
-            </div>
-            <div className="hero-call-booked" data-call="booked">
-              <CalendarCheck2 size={15} strokeWidth={2.4} />
-              Booked · Thu 2:00 PM · summary texted to you
-            </div>
+          {/* The live-call demo runs in full directly below this section, so
+              this space earns its keep with the pitch instead of repeating it. */}
+          <div className="hero-pitch">
+            <p className="hero-pitch-lead">Here&rsquo;s the bit that stings.</p>
+            <p>
+              That caller had a burst pipe, a dead aircon, or a roof letting water in. They were
+              ready to book <em>today</em>. You never even knew they rang.
+            </p>
+            <p className="hero-pitch-punch">
+              You paid for that lead. The ads, the van, the signage — all of it, just to make
+              the phone ring. <strong>Then it rang out.</strong>
+            </p>
+            <ul className="hero-nos">
+              <li>Answered in under 10 seconds</li>
+              <li>Books straight into your calendar</li>
+              <li>No lock-in, keep your number</li>
+            </ul>
           </div>
         </div>
       </div>
