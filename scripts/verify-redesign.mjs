@@ -47,17 +47,16 @@ const dims = await page.evaluate(() => ({
   vh: window.innerHeight,
   docH: document.documentElement.scrollHeight,
 }));
-const heroSpan = dims.heroH - dims.vh;
-
-// hero scrub still works both directions
-let stars = await page.$eval('#stars', (el) => parseFloat(el.getAttribute('opacity') ?? '1'));
-log('hero: night state', stars > 0.95);
-await scrollTo(heroSpan * 0.99);
-const dawn = await page.evaluate(() => ({
-  fog: parseFloat(document.querySelector('#fogSheet').getAttribute('opacity')),
+// hero scene: ambient (no scrub) — everything must be visible on load
+const scene = await page.evaluate(() => ({
+  stars: document.querySelectorAll('#stars circle').length,
+  sigs: document.querySelectorAll('.sig').length,
+  ridges: document.querySelectorAll('.scene path').length,
+  headlineOp: parseFloat(getComputedStyle(document.querySelector('.hero-headline')).opacity),
   cardOp: parseFloat(getComputedStyle(document.querySelector('[data-el="card"]')).opacity),
 }));
-log('hero: dawn + call card revealed', dawn.fog < 0.05 && dawn.cardOp > 0.9, JSON.stringify(dawn));
+log('hero: scene renders (stars, signal rings, ridges)', scene.stars > 20 && scene.sigs === 3 && scene.ridges >= 3, JSON.stringify(scene));
+log('hero: copy + call card visible on load', scene.headlineOp > 0.95 && scene.cardOp > 0.9, JSON.stringify(scene));
 
 // call loop cycles: poll one full ~8.5s cycle, expect both states to appear
 const states = await page.evaluate(async () => {
