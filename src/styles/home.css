@@ -15,6 +15,29 @@
   overflow: hidden;
 }
 
+/* The scene is `preserveAspectRatio="slice"`, so on a wide/short window the
+   bottom of the artwork is cropped away and the visible edge lands mid-sky —
+   a light blue butting straight against the next section. Fade the last slice
+   of the hero into the callstage's opening colour so the seam disappears at
+   every window shape, not just the one where the crop happens to line up. */
+.hero-sticky::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 26, 54, 0) 0%,
+    rgba(10, 26, 54, 0.35) 38%,
+    rgba(10, 26, 54, 0.78) 70%,
+    #0a1a36 100%
+  );
+}
+
 .scene {
   position: absolute;
   inset: 0;
@@ -591,9 +614,37 @@
 
 .callstage {
   position: relative;
-  background: linear-gradient(180deg, #050f1f 0%, #0a1c38 42%, #0e2647 78%, var(--canvas) 100%);
-  padding: 104px 24px 132px;
+  /* picks up exactly where the hero fade lands (#0a1a36) and holds the hero's
+     deep blues under the light-on-dark content, all the way down */
+  background: linear-gradient(180deg, #0a1a36 0%, #0c2143 32%, #102c52 66%, #14355e 100%);
+  /* the fade band lives in the trailing padding — keep the two in step so
+     content can never end up sitting on the pale part of the fade */
+  --cs-fade: 240px;
+  padding: 104px 24px calc(var(--cs-fade) + 20px);
   overflow: hidden;
+}
+
+/* The fade-out is a fixed-height band rather than a percentage stop on the
+   gradient above: the section is much taller relative to its padding on
+   narrow screens, so percentage stops would drag the light area up under the
+   pale step chips. Pinning it to the trailing padding keeps the readable
+   dark zone identical at every viewport. Ends on the page canvas, not #fff —
+   the next section has no background of its own. */
+.callstage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--cs-fade);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 249, 247, 0) 0%,
+    rgba(250, 249, 247, 0.55) 55%,
+    var(--canvas) 100%
+  );
 }
 
 .callstage::before {
@@ -610,6 +661,7 @@
 
 .callstage-inner {
   position: relative;
+  z-index: 2;
   max-width: 1120px;
   margin: 0 auto;
 }
@@ -1000,7 +1052,8 @@
 
 @media (max-width: 640px) {
   .callstage {
-    padding: 76px 18px 104px;
+    --cs-fade: 150px;
+    padding: 76px 18px calc(var(--cs-fade) + 20px);
   }
 
   .cs-panel {
