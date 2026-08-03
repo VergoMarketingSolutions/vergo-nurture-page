@@ -188,7 +188,7 @@
      content is now taller than the padded box, so it sits at the top padding
      rather than optically centred — this needs to be generous or the eyebrow
      ends up jammed against the nav. */
-  padding: calc(var(--announce-h) + 168px) 24px 110px;
+  padding: calc(var(--announce-h) + 214px) 24px 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1030,18 +1030,43 @@
   padding: 0 24px;
 }
 
+/* 3D review wall: perspective on the frame, the tilt on the inner stage.
+   Rows are overwidth so the rotation can't expose their ends. */
+.tm-3d {
+  margin-top: 52px;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  overflow: hidden;
+  padding: 46px 0 54px;
+}
+
+.tm-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: rotateX(16deg) rotateZ(-3.5deg) scale(1.06);
+  transform-style: preserve-3d;
+}
+
 .tm-marquee {
-  margin-top: 46px;
   width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
 .tm-track {
   display: flex;
   width: max-content;
-  animation: tm-scroll 48s linear infinite;
+}
+
+.tm-track--left {
+  animation: tm-scroll 52s linear infinite;
+}
+
+/* same keyframes, played backwards, so this row travels the other way */
+.tm-track--right {
+  animation: tm-scroll 58s linear infinite reverse;
 }
 
 @keyframes tm-scroll {
@@ -1155,6 +1180,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tm-3d {
+    perspective: none;
+    padding: 0;
+  }
+
+  /* no tilt and no drift: one plainly scrollable row */
+  .tm-stage {
+    transform: none;
+  }
+
   .tm-marquee {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -1383,8 +1418,10 @@
 
 .realtalk {
   position: relative;
-  background: linear-gradient(165deg, #0a1a36 0%, #0e2647 55%, #102c52 100%);
-  padding: 104px 24px 108px;
+  background: #fff;
+  border-top: 1px solid rgba(20, 20, 26, 0.06);
+  border-bottom: 1px solid rgba(20, 20, 26, 0.06);
+  padding: 112px 24px 116px;
   overflow: hidden;
 }
 
@@ -1399,15 +1436,15 @@
 .realtalk h2 {
   margin: 18px 0 34px;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.2vw, 3.6rem);
+  font-size: clamp(2.2rem, 5.8vw, 4rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.03em;
-  color: #f7faff;
+  color: var(--navy);
 }
 
 .realtalk-hl {
-  color: #ff8a3d;
+  color: #e2560c;
 }
 
 .realtalk-cols {
@@ -1420,7 +1457,7 @@
 
 .realtalk-cols p {
   margin: 0;
-  color: #b6c9e4;
+  color: var(--gray);
   font-size: 16.5px;
   line-height: 1.7;
 }
@@ -1430,12 +1467,12 @@
   margin: 0 auto 34px;
   font-size: clamp(1.15rem, 2.1vw, 1.5rem);
   line-height: 1.5;
-  color: #f7faff;
+  color: var(--ink);
   font-weight: 500;
 }
 
 .realtalk-punch strong {
-  color: #ff8a3d;
+  color: #e2560c;
   font-weight: 800;
 }
 
@@ -1447,14 +1484,14 @@
   text-align: left;
   display: grid;
   gap: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(20, 20, 26, 0.1);
+  border-bottom: 1px solid rgba(20, 20, 26, 0.1);
 }
 
 .realtalk-list li {
   position: relative;
   padding-left: 30px;
-  color: #cfdcee;
+  color: var(--ink);
   font-size: 15.5px;
   line-height: 1.55;
 }
@@ -1468,8 +1505,8 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(226, 86, 12, 0.18);
-  color: #ff8a3d;
+  background: rgba(226, 86, 12, 0.12);
+  color: #b3480d;
   font-size: 14px;
   font-weight: 800;
   line-height: 20px;
@@ -1479,7 +1516,7 @@
 .realtalk-close {
   max-width: 700px;
   margin: 0 auto 32px;
-  color: #f7faff;
+  color: var(--ink);
   font-size: 17px;
   line-height: 1.65;
 }
@@ -1496,14 +1533,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #7cbcff;
+  color: var(--blue);
   font-weight: 700;
   font-size: 14.5px;
   transition: gap 0.2s, color 0.2s;
 }
 
 .realtalk-link:hover {
-  color: #a8d2ff;
+  color: var(--navy);
   gap: 10px;
 }
 
@@ -1519,5 +1556,25 @@
 
   .realtalk-list {
     padding: 20px 0;
+  }
+}
+
+/* the tilt eats horizontal room; ease it off as the viewport narrows */
+@media (max-width: 900px) {
+  .tm-stage {
+    transform: rotateX(12deg) rotateZ(-2.5deg) scale(1.04);
+  }
+}
+
+@media (max-width: 640px) {
+  .tm-3d {
+    perspective: none;
+    padding: 26px 0 30px;
+    margin-top: 34px;
+  }
+
+  .tm-stage {
+    transform: none;
+    gap: 14px;
   }
 }

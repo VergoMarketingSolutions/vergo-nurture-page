@@ -165,6 +165,38 @@ function Stars({ value }) {
   );
 }
 
+// One marquee row. The list is duplicated so the loop can reset at -50%
+// without a visible jump; the clones are hidden from screen readers.
+function ReviewRow({ items, direction }) {
+  return (
+    <div className="tm-marquee">
+      <div className={`tm-track tm-track--${direction}`}>
+        {[...items, ...items].map((t, i) => (
+          <figure
+            key={`${t.name}-${direction}-${i}`}
+            className="tm-card"
+            aria-hidden={i >= items.length ? 'true' : undefined}
+          >
+            <Stars value={t.stars} />
+            <blockquote>{t.quote}</blockquote>
+            <figcaption>
+              <span className="tm-avatar" style={{ background: t.color }}>
+                {t.initials}
+              </span>
+              <span className="tm-who">
+                <strong>{t.name}</strong>
+                <span>
+                  {t.role} · {t.where}
+                </span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   usePageMeta(
     'VM Solutions — 24/7 AI Receptionist & Marketing for HVAC + Roofing',
@@ -264,9 +296,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="realtalk" data-section="REAL TALK" data-theme="dark">
+      <section className="realtalk" data-section="REAL TALK" data-theme="light">
         <div className="realtalk-inner">
-          <div className="eyebrow eyebrow--onDark">Let&rsquo;s be honest for a sec</div>
+          <div className="eyebrow">Let&rsquo;s be honest for a sec</div>
           <h2>
             You didn&rsquo;t get into this trade
             <br />
@@ -333,29 +365,12 @@ export default function Home() {
           <div className="eyebrow">Reviews</div>
           <h2>Don&rsquo;t take our word for it.</h2>
         </div>
-        <div className="tm-marquee">
-          <div className="tm-track">
-            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-              <figure
-                key={`${t.name}-${i}`}
-                className="tm-card"
-                aria-hidden={i >= TESTIMONIALS.length ? 'true' : undefined}
-              >
-                <Stars value={t.stars} />
-                <blockquote>{t.quote}</blockquote>
-                <figcaption>
-                  <span className="tm-avatar" style={{ background: t.color }}>
-                    {t.initials}
-                  </span>
-                  <span className="tm-who">
-                    <strong>{t.name}</strong>
-                    <span>
-                      {t.role} · {t.where}
-                    </span>
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
+        {/* two rows sliding against each other, tilted back in 3D so the
+            wall of reviews reads as depth rather than a flat ticker */}
+        <div className="tm-3d">
+          <div className="tm-stage">
+            <ReviewRow items={TESTIMONIALS} direction="left" />
+            <ReviewRow items={[...TESTIMONIALS].reverse()} direction="right" />
           </div>
         </div>
       </section>
