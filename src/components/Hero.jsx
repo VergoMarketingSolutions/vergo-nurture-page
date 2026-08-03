@@ -2,7 +2,16 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 // What the phone actually costs you, one word at a time.
-const LOSSES = ['voicemail.', 'missed calls.', 'after-hours.', 'storm season.', 'the other guy.'];
+const LOSSES = [
+  'voicemail.',
+  'missed calls.',
+  'after-hours.',
+  'storm season.',
+  'the other guy.',
+  'a full inbox.',
+  'Sunday arvo.',
+  'smoko.',
+];
 
 export default function Hero() {
   const wrapRef = useRef(null);
@@ -201,7 +210,9 @@ export default function Hero() {
           <div className="hero-eyebrow">AI Front Desk + Marketing for HVAC &amp; Roofing</div>
           <h1
             className="hero-headline"
-            aria-label="Stop losing jobs to voicemail, missed calls, after-hours, storm season, and the other guy."
+            aria-label={`Stop losing jobs to ${LOSSES.map((w) => w.replace(/\.$/, '')).join(
+              ', '
+            )}.`}
           >
             <span aria-hidden="true">Stop losing jobs to</span>
             <span className="hero-rotate" aria-hidden="true">

@@ -273,7 +273,16 @@
   justify-content: center;
   gap: 0.1em;
   min-height: 1.05em;
+  max-width: 100%;
   color: #ff8a3d;
+}
+
+/* Flex items default to min-width: auto, which lets a span's text shrink
+   and wrap internally even when there's room — on narrow phones that broke
+   the longest word ("missed calls.") onto two lines and doubled the row's
+   height, undoing the whole point of reserving a fixed-height row for it. */
+.hero-rotate-word {
+  white-space: nowrap;
 }
 
 .hero-caret {
@@ -433,8 +442,13 @@
     padding: calc(var(--announce-h) + 104px) 20px 40px;
   }
 
+  /* This was still sized for the old two-line "Every call answered" copy
+     (capped at 2.5rem / ~40px). The new display headline needs to stay the
+     dominant element on the page — at the old size it was reading smaller
+     than the pitch card sitting right underneath it. */
   .hero-headline {
-    font-size: clamp(2.1rem, 9vw, 2.5rem);
+    font-size: clamp(2.6rem, 13vw, 3.6rem);
+    margin-bottom: 20px;
   }
 
   .hero-sub {
@@ -1404,8 +1418,13 @@
     padding: 18px 18px;
   }
 
+  /* quieter than the headline — the card is supporting proof, not the hook */
+  .hero-pitch-lead {
+    font-size: 15px !important;
+  }
+
   .hero-pitch p {
-    font-size: 14.5px;
+    font-size: 14px;
   }
 
   .hero-nos {
