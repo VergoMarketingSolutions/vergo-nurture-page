@@ -1417,10 +1417,10 @@
 /* ---------- real talk: the dark band that breaks up the white ---------- */
 
 .realtalk {
+  /* every other light section on this page is background-less and just
+     shows the page canvas (#faf9f7) — matching that instead of pure #fff
+     is what makes the seam disappear */
   position: relative;
-  background: #fff;
-  border-top: 1px solid rgba(20, 20, 26, 0.06);
-  border-bottom: 1px solid rgba(20, 20, 26, 0.06);
   padding: 112px 24px 116px;
   overflow: hidden;
 }
