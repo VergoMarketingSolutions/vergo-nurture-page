@@ -18,7 +18,6 @@ import {
 import Hero from '../components/Hero.jsx';
 import DemoSequence from '../components/DemoSequence.jsx';
 import IconGlass from '../components/IconGlass.jsx';
-import { SpotsMeter, Countdown } from '../components/Scarcity.jsx';
 import usePageMeta from '../lib/usePageMeta.js';
 
 const NUMBERS = [
@@ -125,6 +124,81 @@ const TESTIMONIALS = [
     name: 'Anna L.',
     role: 'FreshAir Climate Solutions',
     where: 'Newcastle, NSW',
+  },
+];
+
+// Second set for the other marquee row — different businesses, not the
+// same seven reviews running backwards.
+const TESTIMONIALS_B = [
+  {
+    stars: 5,
+    quote:
+      'I used to ring people back at 11pm because that was the only time I had. Now half of them are already booked before I’ve seen the missed call.',
+    initials: 'CR',
+    color: '#0653b6',
+    name: 'Cooper R.',
+    role: 'Southside Roofing',
+    where: 'Ballarat, VIC',
+  },
+  {
+    stars: 4.5,
+    quote:
+      'Switching over was the bit I was dreading. In the end nothing changed for our customers — same number, same voice on the ads, just someone actually picks up now.',
+    initials: 'PN',
+    color: '#1d7a4c',
+    name: 'Priya N.',
+    role: 'TotalAir Heating & Cooling',
+    where: 'Hobart, TAS',
+  },
+  {
+    stars: 5,
+    quote:
+      'Wet season here, phones go off like crazy for three months straight. First year we haven’t lost a job to it.',
+    initials: 'GO',
+    color: '#0e1b33',
+    name: 'Grant O.',
+    role: 'Peak Roofing Solutions',
+    where: 'Cairns, QLD',
+  },
+  {
+    stars: 4,
+    quote:
+      'The review turned up that our old tracking wasn’t even wired up properly — we’d been flying blind on half our ad spend for a year. Confronting, but worth knowing.',
+    initials: 'RK',
+    color: '#0653b6',
+    name: 'Renee K.',
+    role: 'CoolFlow Air & Heating',
+    where: 'Wollongong, NSW',
+  },
+  {
+    stars: 5,
+    quote:
+      'No lock-in meant I actually tried it instead of overthinking it for six months. Didn’t end up needing the exit anyway.',
+    initials: 'TB',
+    color: '#1d7a4c',
+    name: 'Tyson B.',
+    role: 'Ironclad Roofing',
+    where: 'Toowoomba, QLD',
+  },
+  {
+    stars: 4.5,
+    quote:
+      'I can finally see cost per booked job instead of guessing from a pile of invoices. Changed how I spend on ads more than the ads themselves did.',
+    initials: 'AM',
+    color: '#0e1b33',
+    name: 'Aisha M.',
+    role: 'Comfort Zone Heating & Cooling',
+    where: 'Canberra, ACT',
+  },
+  {
+    stars: 5,
+    quote:
+      'A storm knocked a tarp job our way at 2am. Normally that call goes to whoever answers first in the morning. This time it was booked before I woke up.',
+    initials: 'BS',
+    color: '#0653b6',
+    name: 'Blake S.',
+    role: 'Coastal Roofing Co',
+    where: 'Darwin, NT',
   },
 ];
 
@@ -370,18 +444,9 @@ export default function Home() {
         <div className="tm-3d">
           <div className="tm-stage">
             <ReviewRow items={TESTIMONIALS} direction="left" />
-            <ReviewRow items={[...TESTIMONIALS].reverse()} direction="right" />
+            <ReviewRow items={TESTIMONIALS_B} direction="right" />
           </div>
         </div>
-      </section>
-
-      <section className="section availability" data-section="AVAILABILITY" data-theme="light">
-        <div className="section-head">
-          <div className="eyebrow">Availability</div>
-          <h2>We can&rsquo;t take everyone this month.</h2>
-        </div>
-        <Countdown tone="feature" />
-        <SpotsMeter />
       </section>
 
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
