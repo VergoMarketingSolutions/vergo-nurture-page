@@ -1418,9 +1418,19 @@
     padding: 18px 18px;
   }
 
-  /* quieter than the headline — the card is supporting proof, not the hook */
+  /* quieter than the headline — the card is supporting proof, not the hook.
+     Smaller text alone wasn't enough: a bright bordered box reads as its
+     own focal point regardless of font size, so the border and background
+     get toned down here too rather than competing with the headline. */
+  .hero-pitch {
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
   .hero-pitch-lead {
     font-size: 15px !important;
+    font-weight: 600;
   }
 
   .hero-pitch p {

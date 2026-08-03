@@ -11,6 +11,8 @@ const LOSSES = [
   'a full inbox.',
   'Sunday arvo.',
   'smoko.',
+  'no answer.',
+  'bad service.',
 ];
 
 export default function Hero() {
