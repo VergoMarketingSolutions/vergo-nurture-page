@@ -35,7 +35,7 @@ const STEPS = [
     Icon: SearchCheck,
     title: 'Internal Marketing Review',
     pitch:
-      'Before you spend a dollar, we audit your website, ads, tracking and call handling — and hand you a fix-list in plain English. You see exactly where leads leak.',
+      'Before you spend another dollar, we pull apart your website, ads, tracking and call handling. Then we hand you the list. Plain English, no 60-page PDF you’ll never open. You’ll see exactly where the leads are leaking out.',
   },
   {
     tone: 'blue',
@@ -43,7 +43,7 @@ const STEPS = [
     Icon: Megaphone,
     title: 'Marketing Services',
     pitch:
-      'Ads, landing pages and review engines built for the trades. We report in booked jobs — not impressions, not clicks.',
+      'Ads, landing pages and review engines built for people who work for a living. We don’t report impressions. We don’t report clicks. We report jobs booked — because that’s the only number that pays a wage.',
   },
   {
     tone: 'green',
@@ -51,7 +51,7 @@ const STEPS = [
     Icon: PhoneCall,
     title: 'AI Receptionist',
     pitch:
-      'Every call the marketing generates gets answered in under 10 seconds, 24/7 — qualified, quoted, and booked into your calendar.',
+      'Every call gets picked up in under 10 seconds. Qualified, quoted, booked straight into your calendar. Nights, weekends, Christmas Day, the middle of a storm. It never goes on smoko and it never calls in sick.',
   },
 ];
 
@@ -132,17 +132,17 @@ const REASONS = [
   {
     Icon: ShieldCheck,
     title: 'No lock-in contracts',
-    text: 'Month-to-month on the phones, project-scoped on marketing. If it isn’t working, you walk.',
+    text: 'Month-to-month on the phones. Project-scoped on marketing. If it isn’t earning its keep, you walk — and we don’t make you sit through a retention call to do it.',
   },
   {
     Icon: PhoneForwarded,
     title: 'You keep your number',
-    text: 'We forward your existing line. Nothing changes for your customers — the calls just start getting answered.',
+    text: 'We forward the line you’ve already got. Your customers notice nothing, your signage doesn’t change, your trucks don’t change. The phone just stops ringing out.',
   },
   {
     Icon: LineChart,
     title: 'Measured in booked jobs',
-    text: 'Plain-English reporting on what matters: jobs booked and cost per job, not clicks and impressions.',
+    text: 'No dashboards full of numbers that don’t mean anything. Jobs booked and what each one cost you to win. If we can’t show you that, we haven’t done our job.',
   },
 ];
 
@@ -235,8 +235,9 @@ export default function Home() {
           <div className="eyebrow">The system</div>
           <h2>Audit. Build. Answer.</h2>
           <p>
-            Three services that only make sense in order: find the leaks, fill the pipeline,
-            then make sure every call it generates actually gets picked up.
+            Three services, and the order matters. Find where the money&rsquo;s leaking. Fill
+            the pipeline. Then make sure every call it buys you actually gets answered —
+            because filling the pipeline first is just paying to miss calls faster.
           </p>
         </div>
         <div className="pillar-grid">
@@ -253,7 +254,8 @@ export default function Home() {
           ))}
         </div>
         <p className="pillars-note">
-          Most owners start with the phones and work backwards.
+          Most owners start with the phones and work backwards. Hard to grow a pipeline you
+          can&rsquo;t answer.
         </p>
         <div className="pillars-cta">
           <Link to="/quote" className="button-primary">
@@ -262,10 +264,58 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="realtalk" data-section="REAL TALK" data-theme="dark">
+        <div className="realtalk-inner">
+          <div className="eyebrow eyebrow--onDark">Let&rsquo;s be honest for a sec</div>
+          <h2>
+            You didn&rsquo;t get into this trade
+            <br />
+            <span className="realtalk-hl">to answer phones.</span>
+          </h2>
+
+          <div className="realtalk-cols">
+            <p>
+              You got into it because you&rsquo;re good on the tools. Because you&rsquo;d rather
+              run your own show than work for someone who couldn&rsquo;t do the job half as well.
+            </p>
+            <p>
+              Then somewhere along the way you became the receptionist. And the quoter. And the
+              bloke chasing invoices at 9pm with a beer going warm next to the laptop.
+            </p>
+          </div>
+
+          <p className="realtalk-punch">
+            And here&rsquo;s the part nobody warns you about: the jobs that hurt aren&rsquo;t the
+            ones you quoted and lost. <strong>They&rsquo;re the ones you never knew rang.</strong>
+          </p>
+
+          <ul className="realtalk-list">
+            <li>A voicemail box full of half-messages you can&rsquo;t call back</li>
+            <li>Quotes going out three days late because you did them at midnight</li>
+            <li>Ad spend burning while nobody picks up the calls it&rsquo;s buying you</li>
+            <li>Weekends gone, and the phone still won&rsquo;t leave you alone</li>
+          </ul>
+
+          <p className="realtalk-close">
+            That&rsquo;s not a you problem. You&rsquo;re one bloke with two hands. It&rsquo;s a
+            systems problem — and systems are the bit we actually fix.
+          </p>
+
+          <div className="realtalk-cta">
+            <Link to="/quote" className="button-primary">
+              Get a Quote
+            </Link>
+            <Link to="/real-math" className="realtalk-link">
+              Show me what it&rsquo;s costing me <ChevronRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="quotes section" data-section="WHY VM" data-theme="light">
         <div className="section-head">
           <div className="eyebrow">Why VM</div>
-          <h2>Straight with you, built for the trades.</h2>
+          <h2>Why you&rsquo;d pick us over the other mob.</h2>
         </div>
         <div className="reasons-grid quote-grid">
           {REASONS.map((r) => (
@@ -281,7 +331,7 @@ export default function Home() {
       <section className="testimonials" data-section="REVIEWS" data-theme="light">
         <div className="section-head">
           <div className="eyebrow">Reviews</div>
-          <h2>What operators say.</h2>
+          <h2>Don&rsquo;t take our word for it.</h2>
         </div>
         <div className="tm-marquee">
           <div className="tm-track">
@@ -321,11 +371,13 @@ export default function Home() {
 
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
         <div className="cta-band">
-          <h2>Stop paying for missed calls.</h2>
+          <h2>Stop paying to miss calls.</h2>
           <p>
-            Tell us your call volume and current setup. You&rsquo;ll have a scoped quote
-            within two business days — backed by a 30-day money-back guarantee on eligible
-            services (<Link to="/legal#refund-policy">conditions apply</Link>).
+            Tell us your call volume and what you&rsquo;ve got running now. We&rsquo;ll come
+            back inside two business days with a scoped quote and a straight answer — including
+            &ldquo;you don&rsquo;t need us yet&rdquo; if that&rsquo;s the honest one. Backed by
+            a 30-day money-back guarantee on eligible services (
+            <Link to="/legal#refund-policy">conditions apply</Link>).
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">

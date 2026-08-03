@@ -69,8 +69,9 @@ export default function CostComparison() {
           Or nine cents a minute.
         </h1>
         <p>
-          A receptionist is a fixed salary. Our AI receptionist is a per-minute rate. Here is
-          the difference over a year.
+          A receptionist is a salary you pay whether the phone rings or not. Ours is a
+          per-minute rate you only pay when someone&rsquo;s actually talking. Here&rsquo;s what
+          that looks like over a year — with your own numbers, not ours.
         </p>
       </header>
 

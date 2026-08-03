@@ -27,19 +27,23 @@ const VOLUMES = ['Under 50 / month', '50–200 / month', '200–500 / month', '5
 const FAQS = [
   {
     q: 'Do I need to sign a long contract?',
-    a: 'No. The AI receptionist is month-to-month, and marketing engagements are scoped per project. If it isn’t earning its keep, you walk.',
+    a: 'No. The phones are month-to-month and marketing is scoped per project. If it isn’t earning its keep, you walk — no exit interview, no clause we spring on you in month nine.',
   },
   {
     q: 'What happens to my existing phone number?',
-    a: 'Nothing changes for your customers. We forward missed or after-hours calls from your existing number — you keep it, we just make sure it always gets answered.',
+    a: 'You keep it. Nothing changes on your trucks, your signage or your Google listing. We forward the missed and after-hours calls off the line you’ve already got, so from your customer’s side the only difference is that someone finally answers.',
   },
   {
     q: 'Can the AI actually book jobs, or just take messages?',
-    a: 'It books real jobs into your calendar — checking availability, confirming with the caller, and sending you a summary the moment the call ends.',
+    a: 'It books the job. It checks your real availability, locks the slot in with the caller, and texts you a summary before you’ve climbed down off the roof. A message service tells you who rang. This tells you who’s booked.',
+  },
+  {
+    q: 'Will it sound like a robot to my customers?',
+    a: 'It sounds like a person — and we tune the script to how you actually talk about your work, not some generic call-centre patter. Most owners tell us the giveaway isn’t the voice, it’s that nobody ever gets put on hold.',
   },
   {
     q: 'Which areas do you serve?',
-    a: 'We work with HVAC and roofing businesses across Australia. The receptionist works anywhere; marketing engagements are scoped to your service area.',
+    a: 'HVAC and roofing businesses right across Australia. The receptionist works wherever you do; marketing gets scoped to the suburbs you actually want to be driving to.',
   },
 ];
 

@@ -60,8 +60,9 @@ export default function Services() {
           audit, build, answer.
         </h1>
         <p>
-          Three services that feed each other. No fixed packages — every engagement is
-          scoped to your business, and you can start at whichever step matters most.
+          Three services that feed each other. No fixed packages, no tiers named after
+          precious metals — every engagement is scoped to your business, and you start at
+          whichever step is actually costing you money right now.
         </p>
       </header>
 
@@ -72,9 +73,10 @@ export default function Services() {
             <IconGlass icon={SearchCheck} size="lg" />
             <h2>Internal Marketing Review</h2>
             <p>
-              Before you spend another dollar, know where the current ones go. We audit your
-              website, ads, tracking, call handling and follow-up end to end, then hand you a
-              prioritised fix-list — whether or not you hire us to do the fixing.
+              Before you spend another dollar, find out where the last lot went. We go through
+              your website, ads, tracking, call handling and follow-up end to end, then hand
+              you a prioritised fix-list. You keep it whether you hire us to do the fixing or
+              not — and plenty of owners take it and knock the top three off themselves.
             </p>
             <IncludedList
               items={[
@@ -128,9 +130,11 @@ export default function Services() {
             <IconGlass icon={Megaphone} size="lg" />
             <h2>Marketing Services</h2>
             <p>
-              Ads, landing pages, review engines and lead follow-up designed specifically
-              for HVAC and roofing. We manage the campaigns, respond to leads fast, and
-              report in the only numbers you care about: booked jobs, not impressions.
+              Ads, landing pages, review engines and lead follow-up built for HVAC and roofing
+              — not recycled from some e-commerce playbook. We run the campaigns, chase the
+              leads fast, and report in the only numbers that matter to you: jobs booked and
+              what each one cost to win. Nobody here is going to email you a graph of
+              impressions and call it a result.
             </p>
             <IncludedList
               items={[
@@ -177,10 +181,11 @@ export default function Services() {
             <IconGlass icon={PhoneCall} size="lg" />
             <h2>AI Receptionist</h2>
             <p>
-              The step that makes the other two pay: a natural-sounding receptionist that
-              answers every call in under ten seconds, 24 hours a day — nights, weekends,
-              storm season. It qualifies the caller, answers the common questions, and books
-              the job straight into your calendar.
+              This is the step that makes the other two worth paying for. A receptionist that
+              sounds like a person, picks up inside ten seconds, and works 24 hours a day —
+              nights, weekends, storm season, the lot. It qualifies the caller, answers the
+              questions you get asked forty times a week, and books the job straight into your
+              calendar. Then it texts you a summary so you walk onto site already knowing.
             </p>
             <IncludedList
               items={[
@@ -217,10 +222,11 @@ export default function Services() {
 
       <section className="section cta-section" data-section="NEXT STEP" data-theme="light">
         <div className="cta-band">
-          <h2>Not sure which step you need first?</h2>
+          <h2>Not sure which one you need first?</h2>
           <p>
-            Tell us about your setup and we&rsquo;ll point you at the smallest thing that moves
-            the needle. Most owners start with the phones and work backwards.
+            Tell us what you&rsquo;ve got running and we&rsquo;ll point you at the smallest
+            thing that moves the needle — even when that&rsquo;s the cheapest one, or nothing
+            at all. Most owners start with the phones and work backwards.
           </p>
           <div className="cta-band-actions">
             <Link to="/quote" className="button-primary">
