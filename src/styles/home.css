@@ -184,8 +184,11 @@
   height: 100%;
   max-width: 1020px;
   margin: 0 auto;
-  /* reserve the availability bar + floating nav so content is never covered */
-  padding: calc(var(--announce-h) + 100px) 24px 64px;
+  /* Clear the availability bar + floating nav with room to breathe. The
+     content is now taller than the padded box, so it sits at the top padding
+     rather than optically centred — this needs to be generous or the eyebrow
+     ends up jammed against the nav. */
+  padding: calc(var(--announce-h) + 168px) 24px 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -250,10 +253,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  margin: 0 0 24px;
+  gap: 0.14em;
+  margin: 0 0 28px;
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 7.4vw, 5.6rem);
+  font-size: clamp(2.9rem, 8.2vw, 6.2rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.98;
@@ -419,11 +422,15 @@
 
 @media (max-width: 640px) {
   .hero-sticky {
-    height: 100svh;
+    min-height: 100svh;
+    height: auto;
   }
 
   .hero-content {
-    padding: calc(var(--announce-h) + 104px) 20px 30px;
+    /* same trap as the short-laptop case: centred flex content that is taller
+       than the box overflows upward and slides under the nav */
+    justify-content: flex-start;
+    padding: calc(var(--announce-h) + 104px) 20px 40px;
   }
 
   .hero-headline {
