@@ -21,28 +21,61 @@ link and sender identification the Spam Act 2003 requires. Rolling that
 yourself means building unsubscribe handling and suppression lists, which is a
 lot of surface area to get wrong for no upside.
 
-Any of these have a free tier that covers a list this size and does automation:
+### Use MailerLite
 
-| Platform | Free tier | Notes |
-|---|---|---|
-| MailerLite | 1,000 subscribers | Simplest automation builder of the three |
-| Brevo | 300 sends/day | Generous contact limit |
-| ConvertKit / Kit | 1,000 subscribers | Strongest for email-course sequences |
+Free to 1,000 subscribers, which is well past where this needs to be, and its
+automation builder is the least painful of the options. Brevo and Kit both work
+too if you already have one — the shape of the setup is identical.
 
-Steps, once you've picked one:
+Do these in order. Steps 1–5 are all in MailerLite; only step 6 touches code.
 
-1. Create the account (this needs your own login — it can't be done for you).
-2. Make a group/list called something like `AI SEO course`.
-3. Build an automation: **trigger** = joins that group → **action** = send
-   Email 1 → wait 2 days → Email 2 → wait 3 days → Email 3 → … through Email 6.
-4. Paste the six emails below in.
-5. Copy the platform's form/API endpoint and replace `SIGNUP_ENDPOINT` in
-   `src/components/IntroPopup.jsx`. That one line is the only code change.
-6. Send yourself a test signup and confirm Email 1 lands.
+1. **Sign up** at mailerlite.com. It asks what you're sending and roughly who
+   to — answer honestly, they review new accounts for spam and a vague answer
+   slows approval. Mention it's an opt-in educational series for trade
+   businesses.
+2. **Verify your sending domain.** It'll walk you through adding DNS records at
+   your registrar — same place you added the Vercel records for
+   vergosolutions.com.au. Do this properly rather than sending from a gmail
+   address: unverified senders land in spam, and the whole thing is pointless
+   if nobody sees email one.
+3. **Create a group** called `AI SEO course`. In MailerLite a "group" is just a
+   list — this is what the popup will feed into.
+4. **Create the automation.** Automations → new. Trigger: *when a subscriber
+   joins a group* → pick `AI SEO course`. Then build the chain:
 
-Suggested spacing: **day 0, 2, 5, 8, 12, 16.** Front-load the useful bits — most
-people who unsubscribe do it in the first two emails, so lesson one has to earn
-its place.
+   | Step | Action |
+   |---|---|
+   | 1 | Send Email 1 |
+   | 2 | Wait 2 days |
+   | 3 | Send Email 2 |
+   | 4 | Wait 3 days |
+   | 5 | Send Email 3 |
+   | 6 | Wait 3 days |
+   | 7 | Send Email 4 |
+   | 8 | Wait 4 days |
+   | 9 | Send Email 5 |
+   | 10 | Wait 4 days |
+   | 11 | Send Email 6 |
+
+   That lands on **day 0, 2, 5, 8, 12, 16.** Front-loaded on purpose — most
+   unsubscribes happen on the first two, so lesson one has to earn its place.
+5. **Paste the six emails below in**, subject lines included. Leave MailerLite's
+   unsubscribe footer alone; it's legally required, not optional.
+6. **Get the form endpoint and send it over.** Make an embedded form in
+   MailerLite pointed at the `AI SEO course` group, choose the HTML/embed
+   option, and copy the URL out of the form's `action="..."` attribute. Send me
+   that URL and I'll wire it into `SIGNUP_ENDPOINT` and test a real signup end
+   to end.
+
+Why step 6 needs testing rather than just pasting: browser-to-platform form
+posts can be blocked by CORS depending on which endpoint type you copy. If the
+embed URL is rejected, the fallback is a tiny Vercel serverless function that
+forwards the signup server-side — about 15 lines, no extra services. Either way
+it gets verified with a real address before it's considered done.
+
+Until step 6 is finished, signups still reach the business inbox via
+FormSubmit, so nothing is lost in the meantime — they just have to be added to
+MailerLite by hand if you want the sequence to fire.
 
 ---
 

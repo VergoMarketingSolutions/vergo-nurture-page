@@ -14,6 +14,18 @@ const REMEMBER_DAYS = 7;
 // than hunting through markup.
 const COURSE_VALUE = '$1,000';
 
+// Drop the meme into public/ named "popup-meme" with any of these extensions
+// and it just works — no need to convert a screenshot to a specific format
+// to match a hardcoded filename. Tried in order; the <img> removes itself
+// entirely if none of them exist.
+const MEME_SOURCES = [
+  '/popup-meme.gif',
+  '/popup-meme.png',
+  '/popup-meme.jpg',
+  '/popup-meme.jpeg',
+  '/popup-meme.webp',
+];
+
 // Where captured emails go.
 //
 // This posts to the same FormSubmit inbox alias the quote form uses, so
@@ -46,7 +58,7 @@ const dismissedRecently = () => {
 export default function IntroPopup() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const [hasMeme, setHasMeme] = useState(true);
+  const [memeIndex, setMemeIndex] = useState(0);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
@@ -211,12 +223,12 @@ export default function IntroPopup() {
               marketers.
             </p>
 
-            {hasMeme && (
+            {memeIndex < MEME_SOURCES.length && (
               <img
                 className="pop-meme"
-                src="/popup-meme.gif"
+                src={MEME_SOURCES[memeIndex]}
                 alt="Tradie in a hard hat waving off “actually training the apprentice” and giving the thumbs up to “sending them to get imaginary tools”."
-                onError={() => setHasMeme(false)}
+                onError={() => setMemeIndex((i) => i + 1)}
               />
             )}
 
