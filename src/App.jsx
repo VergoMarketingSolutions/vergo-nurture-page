@@ -6,6 +6,7 @@ import Lenis from 'lenis';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
 import { AnnouncementBar } from './components/Scarcity.jsx';
+import IntroPopup from './components/IntroPopup.jsx';
 import ScrollRail from './components/ScrollRail.jsx';
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
@@ -90,6 +91,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <IntroPopup />
     </>
   );
 }
