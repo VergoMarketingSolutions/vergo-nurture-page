@@ -6,14 +6,42 @@ is backed by something real before the popup goes live.
 
 ---
 
-## Where signups currently go
+## Where signups go — wired up and verified
 
-`src/components/IntroPopup.jsx` posts to `SIGNUP_ENDPOINT`, which right now is
-the same FormSubmit inbox alias the quote form uses. That means **signups reach
-your inbox immediately and nothing is lost** — but FormSubmit only forwards to
-an inbox. It does not store a list and it does not send a sequence.
+`src/components/IntroPopup.jsx` posts to the MailerLite embedded-form endpoint
+for the **`AI SEO course`** group:
 
-## To turn the automated sequence on
+```
+https://assets.mailerlite.com/jsonp/2556825/forms/194928629535213309/subscribe
+```
+
+Every signup lands in that group, which is what the drip automation triggers
+off. Subscribers → Groups → `AI SEO course` is the stored list, exportable to
+CSV any time.
+
+Three things about this endpoint that cost time to work out, worth keeping
+written down:
+
+- It wants **form-encoded** `fields[email]`, not JSON. Posting JSON returns
+  "The email field is required" — so the earlier FormSubmit-shaped payload
+  would have failed silently on every signup.
+- It answers **HTTP 200 even when it rejects the address**, with
+  `{"success":false,...}` in the body. Checking the status code alone would
+  report a refused signup as a success.
+- It sends `access-control-allow-origin: *`, so the browser posts to it
+  directly. No serverless proxy and no API key in the front end.
+
+Verified end to end: a real submission through the popup returns
+`{"success":true}`, a malformed address is correctly refused, and the popup's
+error state surfaces MailerLite's own message.
+
+Two test subscribers were created while wiring this up — delete them from the
+group when convenient:
+
+- `claude-wiring-test@vergosolutions.com.au`
+- `claude-endpoint-check@vergosolutions.com.au`
+
+## Still to do: build the automation
 
 The drip has to run from an email platform. It handles the list, the sending
 schedule, deliverability, and — not optional in Australia — the unsubscribe

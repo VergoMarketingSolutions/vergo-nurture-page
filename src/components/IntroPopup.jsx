@@ -26,15 +26,18 @@ const MEME_SOURCES = [
   '/popup-meme.webp',
 ];
 
-// Where captured emails go.
+// MailerLite embedded-form endpoint for the "AI SEO course" group. Signups
+// land in that group, which is what triggers the drip automation.
 //
-// This posts to the same FormSubmit inbox alias the quote form uses, so
-// signups land somewhere real from day one instead of being dropped. It does
-// NOT send the drip sequence — FormSubmit only forwards to an inbox. To turn
-// the 6-email course on, swap this one URL for your email platform's form
-// endpoint (MailerLite/Brevo/ConvertKit all give you one) and the sequence
-// runs from their side. See docs/email-course.md.
-const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/574fc98c40eb790b4c806754b487c034';
+// It expects form-encoded `fields[email]`, NOT JSON — posting JSON here gets a
+// "The email field is required" error back. It replies 200 with
+// {"success":false,...} on validation failures, so the response body has to be
+// checked rather than just the status code.
+//
+// Verified it sends `access-control-allow-origin: *`, so the browser can post
+// to it directly and no serverless proxy is needed. See docs/email-course.md.
+const SIGNUP_ENDPOINT =
+  'https://assets.mailerlite.com/jsonp/2556825/forms/194928629535213309/subscribe';
 
 // Someone already filling in the quote form does not need a popup.
 const SKIP_ROUTES = ['/quote'];
@@ -142,21 +145,22 @@ export default function IntroPopup() {
     setError('');
     setSending(true);
     try {
+      const body = new URLSearchParams();
+      body.set('fields[email]', value);
+      body.set('ml-submit', '1');
+      body.set('anticsrf', 'true');
+
       const res = await fetch(SIGNUP_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `AI SEO course signup — ${value}`,
-          _template: 'table',
-          _captcha: 'false',
-          Email: value,
-          'Signed up for': 'Free AI SEO course for HVAC & roofing (6-part email series)',
-          Source: 'Site popup',
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
       });
+      // MailerLite answers 200 even for validation failures, so the body has
+      // to be inspected — status alone would report a rejected signup as fine.
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) === 'false') {
-        throw new Error(data.message || `Request failed (${res.status})`);
+      if (!res.ok || data.success === false) {
+        const field = data?.errors?.fields?.email?.[0];
+        throw new Error(field || `Request failed (${res.status})`);
       }
       setSent(true);
       try {
