@@ -11,7 +11,7 @@ const STORAGE_KEY = 'vm.popup.dismissed';
 // The headline value claim, in one place. It's a quantified figure shown to
 // customers, so it needs to stay defensible — change or drop it here rather
 // than hunting through markup.
-const COURSE_VALUE = '$1,000';
+const COURSE_VALUE = '$2499';
 
 // Drop the meme into public/ named "popup-meme" with any of these extensions
 // and it just works — no need to convert a screenshot to a specific format
@@ -214,8 +214,7 @@ export default function IntroPopup() {
               You&rsquo;re in.
             </h2>
             <p className="pop-sub">
-              Part one is on its way to <strong>{email.trim()}</strong>. Six short lessons, one at
-              a time — no 90-minute webinar, no pitch deck.
+              Your masterplan is on its way to <strong>{email.trim()}</strong>. Get ready to dominate your local market — no 90-minute webinar, no pitch deck.
             </p>
             <button type="button" className="pop-cta pop-cta--ghost" onClick={close}>
               Back to the site
@@ -225,14 +224,12 @@ export default function IntroPopup() {
           <>
             <span className="pop-flag">Free · {COURSE_VALUE} value</span>
             <h2 id="pop-title" className="pop-title">
-              Stop sending the apprentice
+              Free $2499 masterplan
               <br />
-              <span className="pop-title-hl">for imaginary tools.</span>
+              <span className="pop-title-hl">to get your business to the next level.</span>
             </h2>
             <p className="pop-sub">
-              Six short emails on getting your HVAC or roofing business found in AI search —
-              ChatGPT, Google&rsquo;s AI answers, the lot. Written for people on the tools, not
-              marketers.
+              Learn exactly how to get your HVAC or roofing business found at the top of search results like ChatGPT and Google. This masterplan delivers the proven strategies you need to dominate your local market and start landing better jobs today.
             </p>
 
             {memeIndex < MEME_SOURCES.length && (
@@ -284,12 +281,12 @@ export default function IntroPopup() {
                 </span>
               )}
               <button type="submit" className="pop-cta" disabled={sending}>
-                {sending ? 'Sending…' : `Send me the free course`}
+                {sending ? 'Sending…' : `Send me the free masterplan`}
               </button>
             </form>
 
             <p className="pop-fine">
-              Six emails, then we leave you alone unless you want more. Unsubscribe any time, and
+              We'll send you the masterplan right away. Unsubscribe any time, and
               we don&rsquo;t sell your details.{' '}
               <Link to="/legal#privacy" onClick={close}>
                 See Legal
