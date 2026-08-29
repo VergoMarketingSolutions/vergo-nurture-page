@@ -229,7 +229,9 @@ export default function IntroPopup() {
               <span className="pop-title-hl">to get your business to the next level.</span>
             </h2>
             <p className="pop-sub">
-              Learn exactly how to get your HVAC or roofing business found at the top of search results like ChatGPT and Google. This masterplan delivers the proven strategies you need to dominate your local market and start landing better jobs today.
+              This $2,499 HVAC masterplan will instantly put your business at the top of local search.
+              <br /><br />
+              Start landing more high-paying jobs WITHOUT spending a fortune on ads.
             </p>
 
             {memeIndex < MEME_SOURCES.length && (

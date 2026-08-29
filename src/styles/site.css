@@ -902,6 +902,8 @@
   line-height: 1.06;
   text-transform: uppercase;
   color: var(--navy);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .pop-sub {
