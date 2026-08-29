@@ -6,8 +6,7 @@ import { X, CheckCircle2 } from 'lucide-react';
 // deliberately aggressive — this is the single number to raise if it
 // starts reading as pushy rather than cheeky.
 const DELAY_MS = 3000;
-const STORAGE_KEY = 'vm.popup.dismissedAt';
-const REMEMBER_DAYS = 7;
+const STORAGE_KEY = 'vm.popup.dismissed';
 
 // The headline value claim, in one place. It's a quantified figure shown to
 // customers, so it needs to stay defensible — change or drop it here rather
@@ -48,10 +47,9 @@ let scheduled = false;
 
 const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-const dismissedRecently = () => {
+const isDismissed = () => {
   try {
-    const ts = Number(window.localStorage.getItem(STORAGE_KEY));
-    return Number.isFinite(ts) && ts > 0 && Date.now() - ts < REMEMBER_DAYS * 86400000;
+    return Boolean(window.sessionStorage.getItem(STORAGE_KEY));
   } catch {
     // private mode / storage blocked — treat as "not dismissed" rather than throwing
     return false;
@@ -63,6 +61,7 @@ export default function IntroPopup() {
   const [open, setOpen] = useState(false);
   const [memeIndex, setMemeIndex] = useState(0);
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -73,7 +72,7 @@ export default function IntroPopup() {
   const close = useCallback(() => {
     setOpen(false);
     try {
-      window.localStorage.setItem(STORAGE_KEY, String(Date.now()));
+      window.sessionStorage.setItem(STORAGE_KEY, '1');
     } catch {
       /* nothing to do — it just shows again next visit */
     }
@@ -82,7 +81,7 @@ export default function IntroPopup() {
   useEffect(() => {
     if (scheduled) return undefined;
     if (SKIP_ROUTES.includes(pathname)) return undefined;
-    if (dismissedRecently()) return undefined;
+    if (isDismissed()) return undefined;
     scheduled = true;
     const t = setTimeout(() => setOpen(true), DELAY_MS);
     return () => clearTimeout(t);
@@ -142,11 +141,20 @@ export default function IntroPopup() {
       setError('That email doesn’t look right.');
       return;
     }
+    const phoneValue = phone.trim();
+    // Optional, so an empty box is fine — but a number with too few digits to
+    // ever be callable is almost certainly a typo, and silently storing it
+    // means finding out when someone tries to ring it.
+    if (phoneValue && phoneValue.replace(/\D/g, '').length < 8) {
+      setError('That phone number looks too short — or leave it blank.');
+      return;
+    }
     setError('');
     setSending(true);
     try {
       const body = new URLSearchParams();
       body.set('fields[email]', value);
+      if (phoneValue) body.set('fields[phone]', phoneValue);
       body.set('ml-submit', '1');
       body.set('anticsrf', 'true');
 
@@ -164,7 +172,7 @@ export default function IntroPopup() {
       }
       setSent(true);
       try {
-        window.localStorage.setItem(STORAGE_KEY, String(Date.now()));
+        window.sessionStorage.setItem(STORAGE_KEY, '1');
       } catch {
         /* non-fatal */
       }
@@ -252,6 +260,24 @@ export default function IntroPopup() {
                 placeholder="you@business.com.au"
                 autoComplete="email"
               />
+
+              <label className="pop-label pop-label--optional" htmlFor="pop-phone">
+                Phone <span>optional</span>
+              </label>
+              <input
+                id="pop-phone"
+                type="tel"
+                className="pop-input"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (error) setError('');
+                }}
+                placeholder="04xx xxx xxx"
+                autoComplete="tel"
+                inputMode="tel"
+              />
+
               {error && (
                 <span className="pop-error" role="alert">
                   {error}
